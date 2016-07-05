@@ -1,0 +1,146 @@
+.otrp-calculator{
+	    display: block;
+	    max-width: 614px;
+	    border: 1px solid #e2e2e2;
+	    margin:0 auto;
+	    font-size: 13px;
+	    line-height: normal;
+}
+.otrp-clear
+{
+	clear: both;
+}
+.title{
+	padding: 11px;
+    position: relative;
+    z-index: 1;    
+    background-color: white;
+    border-radius: 0;
+    box-shadow: none;
+}
+.title h1{
+	font-size: 24px;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    line-height: normal;
+}
+.content{
+    padding: 0 0 7px 0 !important;
+}
+.inputs-div{
+    position: relative;
+    line-height: normal;
+}
+.otrp-calculator .content .inputs-div .section{
+	    box-shadow: inset 0 0 7px #ffffff;
+}
+.otrp-calculator .content .inputs-div div h2{
+    line-height: 35px;
+    margin: 0;
+    height: 36px;
+    padding: 0;
+    color: #666666 !important;
+    background-color: #efefef !important;
+    font-weight: 300;
+    font-size: 18px;
+    border-bottom: 1px solid #CCCCCC;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.otrp-calculator .content .inputs-div div h2 .number-wrapper{
+    background: #c60c46;
+    border: 18px;    
+    float: left;
+    line-height: 36px;
+    text-align: center;
+    width: 36px;
+	border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    margin-left: 10px;
+
+}
+.number-wrapper{
+	background-color: #6f6f6f !important;
+    color: #FFF !important;
+}
+.otrp-calculator .content .inputs-div div h2 .title-wrapper{
+	margin-left: 15px;
+	color: #666666 !important;
+    background-color: #efefef !important;
+    font-weight: 300;
+    font-size: 18px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.expandable{
+	padding: 0 0 30px;
+}    
+.panel-header{
+    display: block;
+    position: relative;
+    zoom: 1;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: right;
+}
+.amount-header{
+	float: left;
+    width: 265px;
+}
+
+.panel-body{
+    padding: 0px 30px 0 30px;
+}
+
+.panel-inner-body{
+    border-bottom: 1px solid #CCCCCC;
+    overflow: hidden;
+}
+.amount-input{
+	    margin: 10px 15px 11px 0;
+    max-width: 303px;
+    width: 100%;
+        float: left;
+}
+.standard-label{
+	font-weight: 300;
+	float: left;
+    margin: 5px 5px 0 0;
+    max-width: 185px;
+}
+.standard-input{
+	background-color: #f6f8f9;
+	border: 1px solid #CCCCCC;
+    float: right;
+    font-size: 12px;
+    margin-right: 9px;
+    padding: 3px 0 3px 7px;
+    width: 105px;
+}
+.result-head{
+	color: #242424 !important;
+    font-size: 18px;
+    font-weight: 300;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    background: #efefef !important;
+    border-bottom: 1px solid #CCCCCC;
+        padding: 7px 9px 7px 18px;
+}
+.results-title{
+	float: left;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    font-weight: bold;
+}
+.result-div{
+    background-color: #FFF;
+    margin: 20px 10px 10px;
+    position: relative;
+    zoom: 1;
+}
