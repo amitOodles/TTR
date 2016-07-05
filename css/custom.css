@@ -143,4 +143,45 @@
     margin: 20px 10px 10px;
     position: relative;
     zoom: 1;
+    overflow:hidden;
+}
+.left-output{
+    float: left;
+    min-width: 100px;
+    width: 48%;
+    margin: 0 0 0 5px;
+}
+.content-result{
+    padding: 10px 15px 10px 0 !important;
+    border-bottom: 1px solid #CCC;
+}
+.results-label{
+    color: #444;
+    font-size: 1em;
+    float: left;
+    max-width: 70%;
+}
+.value-result{
+    color: #444;
+    float: right;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.right-output{
+    float: left;
+    width: 48%;
+    margin: 0px 0 0 15px;
+}
+.center-output{
+    margin: 5px;
+    background: grey;
+}
+.calculator-disclaimer{
+    color: #B2B2B2;
+    padding: 15px 15px 5px 15px;
+    display: block;
+    color: #B2B2B2;
+    font-size: 11px;
 }
