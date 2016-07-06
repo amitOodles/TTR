@@ -12,7 +12,7 @@
 .title{
 	padding: 11px;
     position: relative;
-    z-index: 1;    
+    z-index: 1;
     background-color: white;
     border-radius: 0;
     box-shadow: none;
@@ -51,7 +51,7 @@
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
-  
+
 
 .amount-header{
 	float: left;
@@ -83,7 +83,7 @@
 	border: 1px solid #CCCCCC;
     margin-right: 9px;
     padding: 3px 0 3px 7px;
-    width: 105px;
+    width: 100%;
 }
 
 .input-div .row{
@@ -170,7 +170,19 @@ ul.uib-datepicker-popup div.uib-datepicker :focus{
 }
 
 div.err-msg{
-	margin-top:13px;
 	color:crimson;
 }
 
+hr.submit-hr{
+	margin-bottom:10px;
+}
+
+.submit-btn{
+	margin-bottom:10px;
+	display:block;
+	margin:auto
+}
+
+form.ttr-form{
+	padding:10px;
+}
