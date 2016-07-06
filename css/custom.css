@@ -140,20 +140,15 @@
 }
 .result-div{
     background-color: #FFF;
-    margin: 20px 10px 10px;
+    //margin: 20px 10px 10px;
     position: relative;
     zoom: 1;
     overflow:hidden;
 }
-.left-output{
-    float: left;
-    min-width: 100px;
-    width: 48%;
-    margin: 0 0 0 5px;
-}
+
 .content-result{
     padding: 10px 15px 10px 0 !important;
-    border-bottom: 1px solid #CCC;
+    //border-bottom: 1px solid #CCC;
 }
 .results-label{
     color: #444;
@@ -169,11 +164,6 @@
     margin: 0;
 }
 
-.right-output{
-    float: left;
-    width: 48%;
-    margin: 0px 0 0 15px;
-}
 .center-output{
     margin: 5px;
     background: grey;
@@ -184,4 +174,8 @@
     display: block;
     color: #B2B2B2;
     font-size: 11px;
+}
+.result-div>.row>div>div{
+    width:98%;
+    border-bottom: 1px solid #CCC;
 }
