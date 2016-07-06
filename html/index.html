@@ -23,45 +23,96 @@
 						<span class="title-wrapper">Your Details</span>
 					</h2>
 					<div class="expandable">
+            <form name="ttrForm" novalidate ng-submit="submitForm(ttrForm.$valid)">
 						<div class="panel-header">
 							<div class="amount-header">
 								<span>Amount</span>
 							</div>
 							<div class="otrp-clear"></div>
 						</div>
+
+            <div class="panel-body">
+              <div class="panel-inner-body">
+                <div class="amount-input">
+                  <label class="standard-label">Birth Date</label>
+                  <input type="text" name="dateBirth" ng-change="getAge()"
+                  class="standard-input" show-button-bar="false" ng-click="open1()"
+                   uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
+                    datepicker-options="dateOptions" required close-text="Close"
+                    alt-input-formats="altInputFormats"/ readonly="readonly">
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <div class="panel-inner-body">
+                <div class="amount-input">
+                  <label class="standard-label">Your Age</label>
+                  <input type="text" name="age" class="standard-input" ng-model="age" readonly="readonly">
+                </div>
+              </div>
+            </div>
+
+
+            <div class="panel-body">
+              <div class="panel-inner-body">
+                <div class="amount-input">
+                  <label class="standard-label">Pension Start Date</label>
+                  <input type="text" name="datePension" class="standard-input"
+                  ng-click="open2()" show-button-bar="false" uib-datepicker-popup="{{format}}"
+                   ng-model="datePension" is-open="popup2.opened" datepicker-options="dateOptions"
+                    required close-text="Close" readonly="readonly"/>
+                </div>
+              </div>
+            </div>
+
 						<div class="panel-body">
 							<div class="panel-inner-body">
 								<div class="amount-input">
-									<label class="standard-label">Current Salary</label>
-									<input type="text" name="amount" class="standard-input" maxlength="9" ng-model="">
+									<label class="standard-label">Current Salary Exclude Super </label>
+									<input type="text" name="cses" class="standard-input" ng-model="cses" value="{{ cses | currency }}" required>
 								</div>
+                <div class="err-msg" ng-show="ttrForm.cses.$error.required && !ttrForm.cses.$pristine"> Please Enter Required Value</div>
 							</div>
 						</div>
 
 						<div class="panel-body">
 							<div class="panel-inner-body">
 								<div class="amount-input">
-									<label class="standard-label">Account Balance</label>
-									<input type="text" name="amount" class="standard-input" maxlength="9" ng-model="">
+									<label class="standard-label">Account Balance before TTR</label>
+									<input type="number" name="beforeTTR" class="standard-input" ng-model="beforeTTR" required>
 								</div>
+                <div class="err-msg" ng-show="ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine"> Please Enter Required Value</div>
 							</div>
 						</div>
 
 						<div class="panel-body">
 							<div class="panel-inner-body">
 								<div class="amount-input">
-									<label class="standard-label">Accumulation</label>
-									<input type="text" name="amount" class="standard-input" maxlength="9" ng-model="">
+									<label class="standard-label">Tax Free Percentage</label>
+									<input type="number" name="tfp" class="standard-input" ng-model="tfp" required >
 								</div>
+                <div class="err-msg" ng-show="ttrForm.tfp.$error.required && !ttrForm.tfp.$pristine"> Please Enter Required Value</div>
 							</div>
 						</div>
 
 						<div class="panel-body">
 							<div class="panel-inner-body">
 								<div class="amount-input">
-									<label class="standard-label">Pension</label>
-									<input type="text" name="amount" class="standard-input" maxlength="9" ng-model="">
+									<label class="standard-label">Net Return in Accumulation</label>
+									<input type="number" name="nra" class="standard-input" ng-model="nra" required>
 								</div>
+                <div class="err-msg" ng-show="ttrForm.nra.$error.required && !ttrForm.nra.$pristine"> Please Enter Required Value</div>
+							</div>
+						</div>
+
+            <div class="panel-body">
+							<div class="panel-inner-body">
+								<div class="amount-input">
+									<label class="standard-label">Net Return in pension</label>
+									<input type="number" name="nrp" class="standard-input" ng-model="nrp" required>
+								</div>
+                <div class="err-msg" ng-show="ttrForm.nrp.$error.required && !ttrForm.nrp.$pristine"> Please Enter Required Value</div>
 							</div>
 						</div>
 
@@ -69,39 +120,19 @@
 							<div class="panel-inner-body">
 								<div class="amount-input">
 									<label class="standard-label">Min takehome pay</label>
-									<input type="text" name="amount" class="standard-input" maxlength="9" ng-model="">
+									<input type="number" name="target" class="standard-input" ng-model="target" required>
 								</div>
+                <div class="err-msg" ng-show="ttrForm.target.$error.required && !ttrForm.target.$pristine"> Please Enter Required Value</div>
 							</div>
 						</div>
 
+<br/>
 
-            <div class="panel-body">
-              <div class="panel-inner-body">
-                <div class="amount-input">
-                  <label class="standard-label">Birth Date</label>
-                  <input type="text" ng-change="getAge()" class="standard-input" ng-click="open1()" uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats">
-                </div>
-              </div>
+            <div>
+<button type="submit" class="btn btn-primary" ng-disabled="ttrForm.$invalid" style="display:block; margin:auto">Calculate </button>
             </div>
 
-            <div class="panel-body">
-              <div class="panel-inner-body">
-                <div class="amount-input">
-                  <label class="standard-label">Pension Starts</label>
-                  <input type="text" class="standard-input" ng-change="getAge()" ng-click="open2()" uib-datepicker-popup="{{format}}"" ng-model="datePension" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                </div>
-              </div>
-            </div>
-
-            <div class="panel-body">
-							<div class="panel-inner-body">
-								<div class="amount-input">
-									<label class="standard-label">Your Age</label>
-									<input type="text" name="amount" class="standard-input" ng-model="age" disabled>
-								</div>
-							</div>
-						</div>
-
+</form>
 					</div>
 				</div>
 			</div>
@@ -120,14 +151,14 @@
 						<span class="results-label">Additional Pre-Tax Contributions</span>
         				<span class="value-result">$23,000</span>
         				<div class="otrp-clear"></div>
-					</div>	
+					</div>
 
 					<div class="content-result">
 						<span class="results-label">Additional Pre-Tax Contributions</span>
         				<span class="value-result">$23,000</span>
         				<div class="otrp-clear"></div>
 					</div>
-					
+
 					<div class="content-result">
 						<span class="results-label">Additional Pre-Tax Contributions</span>
         				<span class="value-result">$23,000</span>
@@ -144,14 +175,14 @@
 						<span class="results-label">Additional Pre-Tax Contributions</span>
         				<span class="value-result">$23,000</span>
         				<div class="otrp-clear"></div>
-					</div>	
+					</div>
 
 					<div class="content-result">
 						<span class="results-label">Additional Pre-Tax Contributions</span>
         				<span class="value-result">$23,000</span>
         				<div class="otrp-clear"></div>
 					</div>
-					
+
 					<div class="content-result">
 						<span class="results-label">Additional Pre-Tax Contributions</span>
         				<span class="value-result">$23,000</span>
@@ -159,7 +190,7 @@
 					</div>
 
 					<div class="otrp-clear"></div>
-					
+
 				</div>
 				<div class="otrp-clear"></div>
 				<div class="center-output">
@@ -176,7 +207,7 @@
 			<div class="otrp-clear"></div>
 			<span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
 			<div class="otrp-clear"></div>
-			
+
 		</div>
 	</div>
 

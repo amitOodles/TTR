@@ -185,3 +185,22 @@
     color: #B2B2B2;
     font-size: 11px;
 }
+/*.uib-datepicker-popup [ng-click="select(null)"] {
+      display: none;
+    }
+.uib-datepicker-popup [ng-click="close(null)"] {
+		      display: none;
+		}*/
+
+ul.dropdown-menu{
+	padding: 5px 5px !important;
+}
+
+ul.uib-datepicker-popup div.uib-datepicker :focus{
+	outline:none !important;
+}
+
+div.err-msg{
+	margin-top:13px;
+	color:crimson;
+}

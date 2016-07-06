@@ -3,7 +3,15 @@ app.controller("TTRController",['$scope','AgeCalculator',function($scope,AgeCalc
   $scope.dob = new Date();
   $scope.datePension = new Date();
 
-  $scope.today = function() {
+  $scope.firstDP = function(){
+    $scope.dateOptions.maxDate = new Date();
+  }
+
+  $scope.secondDp = function(){
+    delete $scope.dateOptions.maxDate;
+  }
+
+  $scope.today = function(){
       $scope.dt = new Date();
     };
     $scope.today();
@@ -22,16 +30,10 @@ app.controller("TTRController",['$scope','AgeCalculator',function($scope,AgeCalc
       // dateDisabled: disabled,
       formatYear: 'yy',
       // maxDate: new Date(2020, 5, 22),
-      minDate: new Date(),
-      startingDay: 1
+      // minDate: new Date(),
+      startingDay: 1,
+      showWeeks: false
     };
-
-    // Disable weekend selection
-    function disabled(data) {
-      var date = data.date,
-        mode = data.mode;
-      return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-    }
 
     $scope.toggleMin = function() {
       $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
@@ -42,9 +44,11 @@ app.controller("TTRController",['$scope','AgeCalculator',function($scope,AgeCalc
 
     $scope.open1 = function() {
       $scope.popup1.opened = true;
+      $scope.firstDP();
     };
 
     $scope.open2 = function() {
+      $scope.secondDp();
       $scope.popup2.opened = true;
     };
 
@@ -52,7 +56,7 @@ app.controller("TTRController",['$scope','AgeCalculator',function($scope,AgeCalc
       $scope.dt = new Date(year, month, day);
     };
 
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
     // $scope.altInputFormats = ['M!/d!/yyyy'];
 
@@ -98,7 +102,15 @@ app.controller("TTRController",['$scope','AgeCalculator',function($scope,AgeCalc
     }
 
     $scope.getAge = function(){
-      $scope.age = AgeCalculator.getAge($scope.dob,$scope.datePension);
+      $scope.age = AgeCalculator.getAge($scope.dob);
+    }
+
+    $scope.submitForm = function(isValid){
+      if(isValid){
+        console.log("correctly submitted");
+      }else{
+        console.log("has errors");
+      }
     }
 
 }]);
