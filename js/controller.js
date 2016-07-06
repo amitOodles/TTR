@@ -1,5 +1,6 @@
-app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator',function($scope,AgeCalculator,TaxRateCalculator){
+app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate',function($scope,AgeCalculator,TaxRateCalculator,SGCRate){
 
+  'SGCRate'
   $scope.dob = new Date();
   $scope.datePension = new Date();
 
