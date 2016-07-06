@@ -161,3 +161,16 @@
     border-bottom: 1px solid #CCC;
 }
 
+ul.dropdown-menu{
+	padding: 5px 5px !important;
+}
+
+ul.uib-datepicker-popup div.uib-datepicker :focus{
+	outline:none !important;
+}
+
+div.err-msg{
+	margin-top:13px;
+	color:crimson;
+}
+
