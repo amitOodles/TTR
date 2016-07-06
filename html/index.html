@@ -75,25 +75,25 @@
 						</div>
 
 
-            <div class="panel-body">
-              <div class="panel-inner-body">
-                <div class="amount-input">
-                  <label class="standard-label">Birth Date</label>
-                  <input type="text" ng-change="getAge()" class="standard-input" ng-click="open1()" uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats">
-                </div>
-              </div>
-            </div>
+			            <div class="panel-body">
+			              <div class="panel-inner-body">
+			                <div class="amount-input">
+			                  <label class="standard-label">Birth Date</label>
+			                  <input type="text" ng-change="getAge()" class="standard-input" ng-click="open1()" uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats">
+			                </div>
+			              </div>
+			            </div>
 
-            <div class="panel-body">
-              <div class="panel-inner-body">
-                <div class="amount-input">
-                  <label class="standard-label">Pension Starts</label>
-                  <input type="text" class="standard-input" ng-change="getAge()" ng-click="open2()" uib-datepicker-popup="{{format}}"" ng-model="datePension" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                </div>
-              </div>
-            </div>
+			            <div class="panel-body">
+			              <div class="panel-inner-body">
+			                <div class="amount-input">
+			                  <label class="standard-label">Pension Starts</label>
+			                  <input type="text" class="standard-input" ng-change="getAge()" ng-click="open2()" uib-datepicker-popup="{{format}}"" ng-model="datePension" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+			                </div>
+			              </div>
+			            </div>
 
-            <div class="panel-body">
+			            <div class="panel-body">
 							<div class="panel-inner-body">
 								<div class="amount-input">
 									<label class="standard-label">Your Age</label>
@@ -105,64 +105,39 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="result-head">
 				<h3 class="results-title">Your results</h3>
 				<div class="otrp-clear"></div>
 			</div>
 
-			<div class="result-div ">
-
-				<div class="left-output">
-
-					<h3>Estimated Results</h3>
-
-					<div class="content-result">
-						<span class="results-label">Additional Pre-Tax Contributions</span>
-        				<span class="value-result">$23,000</span>
-        				<div class="otrp-clear"></div>
-					</div>	
-
-					<div class="content-result">
-						<span class="results-label">Additional Pre-Tax Contributions</span>
-        				<span class="value-result">$23,000</span>
-        				<div class="otrp-clear"></div>
-					</div>
-					
-					<div class="content-result">
-						<span class="results-label">Additional Pre-Tax Contributions</span>
-        				<span class="value-result">$23,000</span>
-        				<div class="otrp-clear"></div>
-					</div>
-
-					<div class="otrp-clear"></div>
-
+			<div class="result-div container-fluid">
+				<div class="row content-result">
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Fields</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>With TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Witout TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Difference</div></div>
 				</div>
-				<div class="right-output">
-					<h3>Estimated Results</h3>
-
-					<div class="content-result">
-						<span class="results-label">Additional Pre-Tax Contributions</span>
-        				<span class="value-result">$23,000</span>
-        				<div class="otrp-clear"></div>
-					</div>	
-
-					<div class="content-result">
-						<span class="results-label">Additional Pre-Tax Contributions</span>
-        				<span class="value-result">$23,000</span>
-        				<div class="otrp-clear"></div>
-					</div>
-					
-					<div class="content-result">
-						<span class="results-label">Additional Pre-Tax Contributions</span>
-        				<span class="value-result">$23,000</span>
-        				<div class="otrp-clear"></div>
-					</div>
-
-					<div class="otrp-clear"></div>
-					
+				<div class="row content-result">
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Your Super Balance</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>With TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Witout TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Difference</div></div>
 				</div>
-				<div class="otrp-clear"></div>
-				<div class="center-output">
+				<div class="row content-result">
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Your take home money</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>With TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Witout TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Difference</div></div>
+				</div>
+				<div class="row content-result">
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Yout income</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>With TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Witout TTR</div></div>
+					<div class="col-xs-3 col-sm-3 col-lg-3"><div>Difference</div></div>
+				</div>
+				<div class="row">
+					<div class="center-output">
 
 						<div class="content-result">
 							<span class="results-label">Additional Pre-Tax Contributions</span>
@@ -170,8 +145,8 @@
 	        				<div class="otrp-clear"></div>
 						</div>
 
+					</div>
 				</div>
-
 			</div>
 			<div class="otrp-clear"></div>
 			<span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
