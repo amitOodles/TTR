@@ -109,8 +109,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.submitForm = function(isValid){
       if(isValid){
-        console.log(WithoutSSCalculator.getFinalAmount($scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target));
-
+        $scope.results = WithoutSSCalculator.getFinalAmount($scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
       }else{
         console.log("has errors");
       }

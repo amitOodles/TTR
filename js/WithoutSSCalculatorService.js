@@ -24,7 +24,7 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxR
             if(concessionalContribution<concessionalContributionCap[1]){
                         netConcessionalContribution=concessionalContribution-(concessionalContribution*concessionalContributionTax);
                     }else{
-                        netConcessionalContribution=concessionalContribution-(concessionalContributionCap[1]*concessionalContributionTax+excessContributionTax*(concessionalContribution-concessionalContributionCap[1])); 
+                        netConcessionalContribution=concessionalContribution-(concessionalContributionCap[1]*concessionalContributionTax+excessContributionTax*(concessionalContribution-concessionalContributionCap[1]));
                     }
             var investmentIncome=accumulateBeinningBalance*netReturnInAccumulation+netConcessionalContribution*(netReturnInAccumulation/2);
             var accumulationEndBalance=accumulateBeinningBalance+netConcessionalContribution+investmentIncome;
@@ -39,9 +39,9 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxR
             console.log("netConcessionalContribution:",netConcessionalContribution);
             console.log("investmentIncome:",investmentIncome);
             console.log("accumulationEndBalance:",accumulationEndBalance);
-            console.log("finalAmount:",finalAmount); 
-            return finalAmount;
+            console.log("finalAmount:",finalAmount);
+            return [finalAmount,takeHomePay,accumulationEndBalance];
             };
-            
-            
+
+
 }]);
