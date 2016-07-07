@@ -38,16 +38,16 @@
 .number-wrapper{
 	background-color: #6f6f6f !important;
     color: #FFF !important;
-    width:90%;
+		width:100%;
     margin: 0 !important;
-    padding:0 !important;
+		padding:6px 8px;
+		font-size:20px;
 }
 .title-wrapper{
-	margin-left: 15px;
+	margin-left: 10px;
 	color: #666666 !important;
     background-color: #efefef !important;
-    font-weight: 300;
-    font-size: 18px;
+    font-size: 20px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -91,11 +91,6 @@
 }
 .title-div{
     background: #efefef !important;
-    border-bottom: 1px solid #CCCCCC;
-        padding-top: 0 !important;
-    padding-bottom: 0 !important;
-        font-weight: 500;
-            font-size: 30px;
 }
 .amount-header{
     font-size: 12px;
@@ -171,6 +166,7 @@ ul.uib-datepicker-popup div.uib-datepicker :focus{
 
 div.err-msg{
 	color:crimson;
+	margin-top:10px;
 }
 
 hr.submit-hr{
@@ -185,4 +181,8 @@ hr.submit-hr{
 
 form.ttr-form{
 	padding:10px;
+}
+
+span.required{
+	color:crimson;
 }
