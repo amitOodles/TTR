@@ -40,7 +40,7 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxR
             console.log("investmentIncome:",investmentIncome);
             console.log("accumulationEndBalance:",accumulationEndBalance);
             console.log("finalAmount:",finalAmount);
-            return [finalAmount,takeHomePay,accumulationEndBalance];
+            return [takeHomePay,accumulationEndBalance,finalAmount];
             };
 
 
