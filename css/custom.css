@@ -25,7 +25,30 @@
     color: #000000;
     line-height: normal;
 }
+.info-icon{
+    background:  url("../images/info-icon.png") no-repeat;
+    background-color: #87c03d !important;
+        width: 26px;
+    height: 26px;
 
+}
+.email-icon{
+    background: url("../images/email-icon.png") no-repeat;
+    background-color: #87c03d !important;
+        width: 26px;
+    height: 21px;
+}
+.print-icon{
+    background: url("../images/printer-icon.png") no-repeat;
+    background-color: #87c03d !important;
+        width: 25px;
+    height: 29px;
+}
+.button{
+    border: none;
+    cursor: pointer;
+
+}
 /************ input div**************/
 .content{
     padding: 0 0 7px 0 !important;
