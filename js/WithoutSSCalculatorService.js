@@ -2,6 +2,9 @@
 //var WithoutSSCalculatorService = angular.module('WithoutSSCalculatorService', [])
 app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxRateCalculator,SGCRate){
         this.getFinalAmount = function (datePension,currentSalaryExcludeSuper,beforeTTR,taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay) {
+            taxFreePercent/=100;
+            netReturnInAccumulation/=100;
+            netReturnInPension/=100;
             var concessionalContributionTax=0.15;
             var excessContributionTax=0.32;
             var concessionalContributionCap=[30000,35000];
