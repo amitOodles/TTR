@@ -149,8 +149,11 @@
 .content-result{
     //padding: 10px 15px 10px 0 !important;
     //padding: 10px 0 10px 0 !important;
-    padding: 10px 0 10px 15px !important;
+    padding: 10px 15px 10px 15px !important;
     //border-bottom: 1px solid #CCC;
+}
+.option-indent{
+    text-align: right;
 }
 .result-subheadings{
     margin-top: 5px;
