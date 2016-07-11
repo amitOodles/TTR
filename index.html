@@ -45,10 +45,10 @@
                         </div> -->
                      <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <label class="standard-label">Birth Date</label>
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <label class="standard-label">Date Of Birth</label>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
                               <div class="input-group">
                                  <input type="text" name="dateBirth" ng-change="getAge()"
                                     class="standard-input form-control" show-button-bar="false" ng-click="open1()"
@@ -60,8 +60,8 @@
                                  </span>
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <!-- <div class="row">
@@ -75,10 +75,13 @@
                              </div>
                            </div> -->
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <label class="standard-label">Pension Starts</label>
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                             <div class="row ttr-label">
+                              <label style="display:block" class="standard-label">TTR Strategy Implementation Date</label>
+                            </div>
+                              <div class="row ttr-note">Please use 1 July of a particular Financial Year Here</div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
                               <div class="input-group">
                                  <input type="text" name="datePension" class="standard-input form-control"
                                     ng-click="open2()" show-button-bar="false" uib-datepicker-popup="{{format}}"
@@ -89,104 +92,107 @@
                                  </span>
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                               <label class="standard-label">Current Salary Exclude Super<span class="required"> *</span></label>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
-                              <div class="input-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                              <div class="input-group" ng-class="{ 'err-border' : (ttrForm.cses.$error.required && !ttrForm.cses.$pristine) ||  (ttrForm.cses.$error.required && ttrForm.cses.$touched) || (ttrForm.cses.$invalid && !ttrForm.cses.$pristine)}">
                                  <span class="input-group-addon">$</span>
                                  <input type="number" name="cses" class="standard-input form-control" ng-model="cses" required >
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <div class="err-msg" ng-show="(ttrForm.cses.$error.required && !ttrForm.cses.$pristine) ||  (ttrForm.cses.$error.required && ttrForm.cses.$touched) || (ttrForm.cses.$invalid && !ttrForm.cses.$pristine)">Enter Valid Numeric Value</div>
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                              <!-- <div class="err-msg" ng-show="(ttrForm.cses.$error.required && !ttrForm.cses.$pristine) ||  (ttrForm.cses.$error.required && ttrForm.cses.$touched) || (ttrForm.cses.$invalid && !ttrForm.cses.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <label class="standard-label">Account Balance before TTR<span class="required"> *</span></label>
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <label class="standard-label">Superannuation Balance As At The TTR Strategy Implementation Date<span class="required"> *</span></label>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
-                              <div class="input-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine) ||  (ttrForm.beforeTTR.$error.required && ttrForm.beforeTTR.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)}">
                                  <span class="input-group-addon">$</span>
                                  <input type="number" name="beforeTTR" class="standard-input form-control" ng-model="beforeTTR" required />
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <div class="err-msg" ng-show="(ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine) ||  (ttrForm.beforeTTR.$error.required && ttrForm.beforeTTR.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)">Enter Valid Numeric Value</div>
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                              <!-- <div class="err-msg" ng-show="(ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine) ||  (ttrForm.beforeTTR.$error.required && ttrForm.beforeTTR.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <label class="standard-label">Tax Free Percentage<span class="required"> *</span></label>
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <label class="standard-label">Tax Free Fercentage Of Your Current Superannuation Balance<span class="required"> *</span></label>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
-                              <div class="input-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.tfp.$error.required && !ttrForm.tfp.$pristine) ||  (ttrForm.tfp.$error.required && ttrForm.tfp.$touched) || (ttrForm.tfp.$invalid && !ttrForm.tfp.$pristine) }">
                                  <input type="number" name="tfp" class="standard-input form-control" ng-model="tfp" required >
                                  <span class="input-group-addon">%</span>
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <div class="err-msg" ng-show="(ttrForm.tfp.$error.required && !ttrForm.tfp.$pristine) ||  (ttrForm.tfp.$error.required && ttrForm.tfp.$touched) || (ttrForm.tfp.$invalid && !ttrForm.tfp.$pristine)">Enter Valid Numeric Value</div>
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                              <!-- <div class="err-msg" ng-show="(ttrForm.tfp.$error.required && !ttrForm.tfp.$pristine) ||  (ttrForm.tfp.$error.required && ttrForm.tfp.$touched) || (ttrForm.tfp.$invalid && !ttrForm.tfp.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <label class="standard-label">Net Return in Accumulation<span class="required">*</span></label>
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <label class="standard-label">Net Return In Accumulation<span class="required">*</span></label>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
-                              <div class="input-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.nra.$error.required && !ttrForm.nra.$pristine) ||  (ttrForm.nra.$error.required && ttrForm.nra.$touched) || (ttrForm.nra.$invalid && !ttrForm.nra.$pristine)}">
                                  <input type="number" name="nra" class="standard-input form-control" ng-model="nra" required>
                                  <span class="input-group-addon">%</span>
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <div class="err-msg" ng-show="(ttrForm.nra.$error.required && !ttrForm.nra.$pristine) ||  (ttrForm.nra.$error.required && ttrForm.nra.$touched) || (ttrForm.nra.$invalid && !ttrForm.nra.$pristine)">Enter Valid Numeric Value</div>
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                              <!-- <div class="err-msg" ng-show="(ttrForm.nra.$error.required && !ttrForm.nra.$pristine) ||  (ttrForm.nra.$error.required && ttrForm.nra.$touched) || (ttrForm.nra.$invalid && !ttrForm.nra.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <label class="standard-label">Net Return in Pension<span class="required"> *</span></label>
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <label class="standard-label">Net Return In Pension<span class="required"> *</span></label>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
-                              <div class="input-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.nrp.$error.required && !ttrForm.nrp.$pristine) ||  (ttrForm.nrp.$error.required && ttrForm.nrp.$touched) || (ttrForm.nrp.$invalid && !ttrForm.nrp.$pristine)}">
                                  <input type="number" name="nrp" class="standard-input form-control" ng-model="nrp" required>
                                  <span class="input-group-addon">%</span>
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <div class="err-msg" ng-show="(ttrForm.nrp.$error.required && !ttrForm.nrp.$pristine) ||  (ttrForm.nrp.$error.required && ttrForm.nrp.$touched) || (ttrForm.nrp.$invalid && !ttrForm.nrp.$pristine)">Enter Valid Numeric Value</div>
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                              <!-- <div class="err-msg" ng-show="(ttrForm.nrp.$error.required && !ttrForm.nrp.$pristine) ||  (ttrForm.nrp.$error.required && ttrForm.nrp.$touched) || (ttrForm.nrp.$invalid && !ttrForm.nrp.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <label class="standard-label">Minimum takehome pay<span class="required"> *</span></label>
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <label class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required"> *</span></label>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
-                              <div class="input-group">
+                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)}">
                                  <span class="input-group-addon">$</span>
                                  <input type="number" name="target" class="standard-input form-control" ng-model="target" required>
                               </div>
                            </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                              <div class="err-msg" ng-show="(ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)">Enter Valid Numeric Value</div>
-                           </div>
+                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
+                              <!-- <div class="err-msg" ng-show="(ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               <button type="submit" class="btn btn-primary submit-btn" ng-disabled="ttrForm.$invalid" >Calculate </button>
                            </div>
+                           <!-- <div ng-show="ttrForm.$invalid && !ttrForm.$pristine" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            Form contains erronous inputs. Please correct to Submit.
+                           </div> -->
                         </div>
                      </form>
                   </div>
