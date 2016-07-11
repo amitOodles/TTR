@@ -2,7 +2,7 @@
 	    display: block;
 	    max-width: 614px;
 	    border: 1px solid #e2e2e2;
-	    font-size: 13px;
+	    font-size: 12px;
 	    line-height: normal;
 }
 .otrp-clear
@@ -110,7 +110,7 @@
 }
 
 .input-div .row{
-    padding: 5px;
+    padding: 10px 5px 10px 5px;
 }
 .title-div{
     background: #efefef !important;
@@ -139,15 +139,21 @@
 }
 .result-div{
     background-color: #FFF;
-    //margin: 20px 10px 10px;
     position: relative;
-    zoom: 1;
     overflow:hidden;
+    //padding-right: 0;
+    //padding-left: 0;
+    color:black;
 }
 
 .content-result{
-    padding: 10px 15px 10px 0 !important;
+    //padding: 10px 15px 10px 0 !important;
+    //padding: 10px 0 10px 0 !important;
+    padding: 10px 0 10px 15px !important;
     //border-bottom: 1px solid #CCC;
+}
+.result-subheadings{
+    margin-top: 5px;
 }
 .results-label{
     color: #444;
@@ -192,8 +198,10 @@ div.err-msg{
 	margin-top:10px;
 }
 
-hr.submit-hr{
-	margin-bottom:10px;
+hr{
+    margin-top: 0; 
+     margin-bottom: 0;
+     border-top: solid 1px #CCCCCC;
 }
 
 .submit-btn{
@@ -203,9 +211,17 @@ hr.submit-hr{
 }
 
 form.ttr-form{
-	padding:10px;
+	//padding:10px;
 }
 
 span.required{
 	color:crimson;
+}
+.option{
+    padding-right: 0px;
+    padding-left: 5px;
+}
+.ttr-form .form-group{
+    margin-bottom: 0 !important;
+
 }
