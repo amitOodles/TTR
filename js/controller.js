@@ -4,6 +4,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
   $scope.dob = new Date();
   $scope.datePension = new Date();
+  $scope.resultWithSS=[0,0,0];
+  $scope.resultWithoutSS=[0,0,0];
 
   $scope.firstDP = function(){
     $scope.dateOptions.maxDate = new Date();
