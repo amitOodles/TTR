@@ -7,6 +7,14 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
+  $scope.cses = 0;
+  $scope.beforeTTR = 0;
+  $scope.tfp = 0;
+  $scope.nra = 0;
+  $scope.nrp = 0;
+  $scope.target = 0;
+  $scope.ss = 0;
+
   $scope.firstDP = function(){
     $scope.dateOptions.maxDate = new Date();
   }
@@ -112,13 +120,54 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     $scope.Math = window.Math
 
     $scope.submitForm = function(isValid){
+      console.log($scope.drawDownNumber);
+      console.log($scope.drawDownPercent);
+      console.log($scope.ss);
+
+      $scope.ddPercent = Number($scope.drawDownNumber) + Number($scope.drawDownPercent);
+      console.log($scope.ddPercent);
       if(isValid){
-        $scope.resultWithSS = WithSSCalculator.getResults($scope.dob,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target)
+        $scope.resultWithSS = WithSSCalculator.getResults($scope.dob,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target,$scope.ss);
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
         console.log("complete");
       }else{
         console.log("has errors");
       }
     }
+
+    $scope.numArray = [];
+
+    $scope.percentageArray = [];
+
+    $scope.drawDownNumber = "4";
+
+    $scope.drawDownPercent = 0.0.toFixed(2);
+
+    for(var i = 0; i<100; i=i+5){
+      $scope.percentageArray.push((i/100).toFixed(2));
+    }
+
+    for(var i =4; i<=10;i++){
+      $scope.numArray.push(i);
+    }
+
+    // $scope.ss = 0;
+
+    $scope.invalidContribution = false;
+
+    $scope.maxSalarySacrifice = 0;
+
+    // $scope.isGreaterThanCses = false;
+
+    $scope.checkContribution = function(){
+      // if($scope.ss > $scope.cses){
+      //   $scope.isGreaterThanCses = true;
+      // }
+      var resultContribution = WithSSCalculator.checkContribution($scope.cses,$scope.dob,$scope.ss,$scope.datePension);
+      $scope.invalidContribution = resultContribution[0];
+      $scope.maxSalarySacrifice = resultContribution[1];
+    }
+
+
 
 }]);
