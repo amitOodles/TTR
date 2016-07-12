@@ -259,3 +259,48 @@ span.pension-note{
 .err-border .form-control{
 	border-color: #ff4d4d;
 }
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+	width:100% !important;
+}
+
+.percent-group{
+	padding-left:0px;
+}
+.percent-group .btn{
+	border-radius:0px !important;
+      background-color: #f6f8f9;
+}
+.num-btn{
+	padding-right:0px;
+
+}
+.num-btn .bootstrap-select>.dropdown-toggle {
+	padding-right:20px;
+}
+.num-btn button{
+	padding-left : 5px !important;
+	padding-left : 5px !important;
+	border-radius:0px !important;
+	background-color: #f6f8f9;
+}
+.row-ss{
+	color: crimson;
+font-size: 10px;
+margin-top: -10px;
+}
+/*
+.group-2 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+		width:120px !important;
+}
+.group-2{
+	padding-left:18px;
+}*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}

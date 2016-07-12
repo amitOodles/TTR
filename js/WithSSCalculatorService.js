@@ -1,7 +1,7 @@
 //var WithSSCalculatorService = angular.module('WithSSCalculatorService', [])
 app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
     this.getResults = function(dob,datePension,currentSalaryExcludeSuper,beforeTTR,
-      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay){
+      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,ss){
         var financialYear=datePension.getFullYear()+1;
         console.log(financialYear);
         var drawdownValue=0.04;
@@ -19,7 +19,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
         }
         console.log(assessablePensionIncome);
         //To Ask
-        var salarySacrificeAmount = 0;
+        var salarySacrificeAmount = ss;
 
         var concessionalContribution = SGCRate.calculateSGCRate(datePension)*cses + salarySacrificeAmount;
         console.log(concessionalContribution);
@@ -92,4 +92,28 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
       return [takeHomePayment,accumulationEndBalance,finalValue]
       };
+
+      this.checkContribution=function(cses,dob,ss,datePension){
+        var age = AgeCalculator.getAge(dob);
+        var concessionalContribution = SGCRate.calculateSGCRate(datePension)*cses;
+        var totalContribution = ss + concessionalContribution;
+        console.log(totalContribution);
+
+        var concessionalContributionCap ;
+
+        if(age < 49){
+          concessionalContributionCap = 30000;
+        }else{
+          concessionalContributionCap = 35000;
+        }
+
+        var maxSalarySacrifice = concessionalContributionCap - concessionalContribution;
+
+        if(totalContribution <= concessionalContributionCap){
+          return [false,maxSalarySacrifice];
+        }else{
+          return [true,maxSalarySacrifice];
+        }
+      }
+
 }]);
