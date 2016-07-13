@@ -1,13 +1,14 @@
 
 //var WithoutSSCalculatorService = angular.module('WithoutSSCalculatorService', [])
 app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxRateCalculator,SGCRate){
-        this.getFinalAmount = function (datePension,currentSalaryExcludeSuper,beforeTTR,taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay) {
+        this.getFinalAmount = function (age,datePension,currentSalaryExcludeSuper,beforeTTR,taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay) {
             taxFreePercent/=100;
             netReturnInAccumulation/=100;
             netReturnInPension/=100;
             var concessionalContributionTax=0.15;
             var excessContributionTax=0.32;
-            var concessionalContributionCap=[30000,35000];
+            var concessionalContributionCap;
+            concessionalContributionCap=age<49?30000:35000;
             var financialYear=datePension.getFullYear()+1;
             var drawdownValue=0.04;
             var salaryExcludeSGC=currentSalaryExcludeSuper;
@@ -24,10 +25,10 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxR
             var pensionEndBalance=0;
             var accumulateBeinningBalance=beforeTTR;
             var netConcessionalContribution;
-            if(concessionalContribution<concessionalContributionCap[1]){
+            if(concessionalContribution<concessionalContributionCap){
                         netConcessionalContribution=concessionalContribution-(concessionalContribution*concessionalContributionTax);
                     }else{
-                        netConcessionalContribution=concessionalContribution-(concessionalContributionCap[1]*concessionalContributionTax+excessContributionTax*(concessionalContribution-concessionalContributionCap[1]));
+                        netConcessionalContribution=concessionalContribution-(concessionalContributionCap*concessionalContributionTax+excessContributionTax*(concessionalContribution-concessionalContributionCap));
                     }
             var investmentIncome=accumulateBeinningBalance*netReturnInAccumulation+netConcessionalContribution*(netReturnInAccumulation/2);
             var accumulationEndBalance=accumulateBeinningBalance+netConcessionalContribution+investmentIncome;
