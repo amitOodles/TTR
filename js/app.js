@@ -1,1 +1,1 @@
-var app = angular.module("TTRApp",['ui.bootstrap','AgeCalculatorService','TaxRateCalculatorService','SGCRateService','ngPrint']);
+var app = angular.module("TTRApp",['AngularPrint','ui.bootstrap','AgeCalculatorService','TaxRateCalculatorService','SGCRateService']);
