@@ -127,7 +127,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       $scope.ddPercent = Number($scope.drawDownNumber) + Number($scope.drawDownPercent);
       console.log($scope.ddPercent);
       if(isValid){
-        $scope.resultWithSS = WithSSCalculator.getResults($scope.dob,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target,$scope.ss);
+        $scope.resultWithSS = WithSSCalculator.getResults($scope.dob,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target,$scope.ss,$scope.ddPercent);
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
         console.log("complete");
       }else{

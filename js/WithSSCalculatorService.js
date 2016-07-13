@@ -1,10 +1,10 @@
 //var WithSSCalculatorService = angular.module('WithSSCalculatorService', [])
 app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
     this.getResults = function(dob,datePension,currentSalaryExcludeSuper,beforeTTR,
-      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,ss){
+      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,ss,drawdownPercent){
         var financialYear=datePension.getFullYear()+1;
         console.log(financialYear);
-        var drawdownValue=0.04;
+        var drawdownValue = drawdownPercent;
         console.log(drawdownValue);
         var cses =  currentSalaryExcludeSuper;
         console.log(cses);
