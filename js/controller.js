@@ -15,6 +15,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.target = 0;
   $scope.ss = 0;
 
+  // $scope.unattainableTHP = false;
+
   $scope.firstDP = function(){
     $scope.dateOptions.maxDate = new Date();
   }
@@ -120,14 +122,17 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     $scope.Math = window.Math
 
     $scope.submitForm = function(isValid){
-      console.log($scope.drawDownNumber);
-      console.log($scope.drawDownPercent);
-      console.log($scope.ss);
+      // if($scope.unattainableTHP == true){
+      //   $scope.unattainableTHP = false;
+      // }
 
-      $scope.ddPercent = Number($scope.drawDownNumber) + Number($scope.drawDownPercent);
-      console.log($scope.ddPercent);
       if(isValid){
-        $scope.resultWithSS = WithSSCalculator.getResults($scope.dob,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target,$scope.ss,$scope.ddPercent);
+        $scope.resultWithSS = WithSSCalculator.getResults($scope.dob,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
+        // console.log("FAV DD" + $scope.resultWithSS[3]);
+        // console.log("FAV SS" + $scope.resultWithSS[4]);
+        $scope.unattainableTHP = $scope.resultWithSS[5];
+        $scope.favourableDD = $scope.resultWithSS[3];
+        $scope.favourableSS = $scope.resultWithSS[4];
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
         console.log("complete");
       }else{
