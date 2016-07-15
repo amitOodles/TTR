@@ -14,7 +14,16 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.nrp = 0;
   $scope.target = 0;
   $scope.ss = 0;
-
+  $scope.infoShow=function(value){
+    if(value){
+      document.getElementsByClassName("information-overlay")[0].style.visibility="visible";
+      document.getElementsByClassName("information-overlay")[0].style.zIndex="9999"; 
+      document.getElementsByClassName("information-overlay")[0].style.position="inline-block"; 
+      document.getElementsByClassName("information-overlay")[0].style.height =  ""+(document.getElementsByClassName("otrp-calculator")[0].clientHeight-10)+"px";
+    }else{
+      document.getElementsByClassName("information-overlay")[0].style.visibility="hidden";
+    }
+  }
   $scope.firstDP = function(){
     $scope.dateOptions.maxDate = new Date();
   }
@@ -167,6 +176,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       $scope.invalidContribution = resultContribution[0];
       $scope.maxSalarySacrifice = resultContribution[1];
     }
+
+    $scope.overlay = false;
 
 
 
