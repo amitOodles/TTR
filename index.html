@@ -172,48 +172,7 @@
                            <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
-                        <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Drawdown Percentage<span class="required"> *</span></label>
-                           </div>
-                           <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 num-btn">
-                                 <select class="selectpicker" name="MainNum" ng-model="drawDownNumber">
-                                   <option ng-repeat="num in numArray" value={{num}}>{{num}}</option>
-                                 </select>
-                               </div>
-                               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 form-group percent-group">
-                                 <div class="input-group group-2">
-                             <select class="selectpicker form-control" name="MainPer" ng-model="drawDownPercent">
-                               <option ng-if="drawDownNumber !== 10" ng-repeat="percent in percentageArray" value={{percent}}>{{percent}}</option>
-                               <option ng-if="drawDownNumber === 10"  value=0.00>0.00</option>
-                             </select>
-                             <span class="input-group-addon">%</span>
-                           </div>
-                           </div>
-                        </div>
-                        <hr class="submit-hr"/>
-                        <div class="row" ng-show="cses">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Salary Sacrifice Value<span class="required">*</span></label>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : invalidContribution }" >
-                              <!-- ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)}" -->
-                                 <span class="input-group-addon">$</span>
-                                 <input type="number" name="target" class="standard-input form-control" ng-model="ss" value={{ss}} ng-change="checkContribution()">
-                              </div>
-                           </div>
-                           </div>
-                           <div class="row row-ss" ng-show="invalidContribution">
-                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                               Your salary scarifice cannot be greater than {{maxSalarySacrifice}}.
-                               <!-- Your salary sacrifice contribution and Employer Contribution sum exceeds Contribution Cap for your age. -->
-                             </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                              <!-- <div class="err-msg" ng-show="(ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)">Enter Valid Numeric Value</div> -->
-                           <!-- </div> -->
-                        </div>
-                        <hr class="submit-hr" ng-show="cses"/>
+
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                               <label class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required">*</span></label>
@@ -314,6 +273,19 @@
                         </div> -->
                   </div>
                </div>
+               <!-- <div class="row" ng-show="unattainableTHP">
+                 <div class="col-xs-12">
+                   No salary sacrifice value meets your minimum take home requirements.
+                 </div>
+               </div>
+               <div class="row" ng-hide="true">
+                <div class="col-xs-12">
+                  TTR calculations made at DrawDown value of {{favourableDD}}.
+                </div>
+                <div class="col-xs-12">
+                  TTR calculations made at Salary Sacrifice value of {{favourableSS}}.
+                </div>
+              </div> -->
                <div class="row">
                   <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
                </div>

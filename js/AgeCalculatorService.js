@@ -5,8 +5,8 @@ var AgeCalculatorService = angular.module('AgeCalculatorService', [])
 var today = new Date();
 
 thisYear = today.getFullYear();
-thisMonth = today.getMonth();
-thisDay = today.getDate();
+thisMonth = 6;
+thisDay = 1;
 birthYear = dateBirth.getFullYear();
 birthMonth = dateBirth.getMonth();
 birthDay = dateBirth.getDate();
@@ -22,8 +22,6 @@ if (birthMonth === thisMonth && thisDay < birthDay)
 {
   age--;
 }
-
-console.log("your age is",age);
 
 return age;
 
