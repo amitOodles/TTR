@@ -73,7 +73,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
         var unattainableTHP =  true;
 
         for(i=400;i<=1000;i=i+5){
-          for(ss=0;ss<=upperSS;ss=ss+1){
+          for(ss=0;ss<=upperSS;ss=ss+10){
 
         var concessionalContribution = validEmployerContribution + ss;
 

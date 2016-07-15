@@ -2,30 +2,31 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
   // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
 
-  $scope.dob = new Date();
-  $scope.datePension = new Date();
+  $scope.formData = {};
+
+  $scope.formData.dob = new Date();
+  $scope.formData.datePension = new Date();
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
-  $scope.cses = 0;
-  $scope.beforeTTR = 0;
-  $scope.tfp = 0;
-  $scope.nra = 0;
-  $scope.nrp = 0;
-  $scope.target = 0;
-  $scope.ss = 0;
+  $scope.formData.cses = 0;
+  $scope.formData.beforeTTR = 0;
+  $scope.formData.tfp = 0;
+  $scope.formData.nra = 0;
+  $scope.formData.nrp = 0;
+  $scope.formData.target = 0;
+  // $scope.formData.ss = 0;
   $scope.infoShow=function(value){
     if(value){
       document.getElementsByClassName("information-overlay")[0].style.visibility="visible";
-      document.getElementsByClassName("information-overlay")[0].style.zIndex="9999"; 
-      document.getElementsByClassName("information-overlay")[0].style.position="inline-block"; 
+      document.getElementsByClassName("information-overlay")[0].style.zIndex="9999";
+      document.getElementsByClassName("information-overlay")[0].style.position="inline-block";
       document.getElementsByClassName("information-overlay")[0].style.height =  ""+(document.getElementsByClassName("otrp-calculator")[0].clientHeight-10)+"px";
     }else{
       document.getElementsByClassName("information-overlay")[0].style.visibility="hidden";
     }
   }
-  // $scope.unattainableTHP = false;
-  
+
   $scope.firstDP = function(){
     $scope.dateOptions.maxDate = new Date();
   }
@@ -125,65 +126,72 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     }
 
     $scope.getAge = function(){
-      $scope.age = AgeCalculator.getAge($scope.dob);
+      $scope.age = AgeCalculator.getAge($scope.formData.dob);
     }
 
-    $scope.Math = window.Math
+    $scope.Math = window.Math;
+
+    $scope.unattainableTHP = false;
+
+    $scope.attainableTHP = false;
 
     $scope.submitForm = function(isValid){
-      // if($scope.unattainableTHP == true){
-      //   $scope.unattainableTHP = false;
-      // }
 
       if(isValid){
-        $scope.resultWithSS = WithSSCalculator.getResults($scope.dob,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
-        // console.log("FAV DD" + $scope.resultWithSS[3]);
-        // console.log("FAV SS" + $scope.resultWithSS[4]);
+        $scope.resultWithSS = WithSSCalculator.getResults($scope.formData.dob,
+          $scope.formData.datePension,$scope.formData.cses,$scope.formData.beforeTTR,
+          $scope.formData.tfp,$scope.formData.nra,$scope.formData.nrp,$scope.formData.target);
         $scope.unattainableTHP = $scope.resultWithSS[5];
+        $scope.attainableTHP = !$scope.unattainableTHP;
         $scope.favourableDD = $scope.resultWithSS[3];
         $scope.favourableSS = $scope.resultWithSS[4];
-        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
+        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.formData.age,
+          $scope.formData.datePension,$scope.formData.cses,$scope.formData.beforeTTR,
+          $scope.formData.tfp,$scope.formData.nra,$scope.formData.nrp,$scope.formData.target);
         console.log("complete");
       }else{
         console.log("has errors");
       }
     }
 
-    $scope.numArray = [];
-
-    $scope.percentageArray = [];
-
-    $scope.drawDownNumber = "4";
-
-    $scope.drawDownPercent = 0.0.toFixed(2);
-
-    for(var i = 0; i<100; i=i+5){
-      $scope.percentageArray.push((i/100).toFixed(2));
-    }
-
-    for(var i =4; i<=10;i++){
-      $scope.numArray.push(i);
-    }
-
-    // $scope.ss = 0;
-
-    $scope.invalidContribution = false;
-
-    $scope.maxSalarySacrifice = 0;
-
-    // $scope.isGreaterThanCses = false;
-
-    $scope.checkContribution = function(){
-      // if($scope.ss > $scope.cses){
-      //   $scope.isGreaterThanCses = true;
-      // }
-      var resultContribution = WithSSCalculator.checkContribution($scope.cses,$scope.dob,$scope.ss,$scope.datePension);
-      $scope.invalidContribution = resultContribution[0];
-      $scope.maxSalarySacrifice = resultContribution[1];
-    }
+    // $scope.numArray = [];
+    //
+    // $scope.percentageArray = [];
+    //
+    // $scope.drawDownNumber = "4";
+    //
+    // $scope.drawDownPercent = 0.0.toFixed(2);
+    //
+    // for(var i = 0; i<100; i=i+5){
+    //   $scope.percentageArray.push((i/100).toFixed(2));
+    // }
+    //
+    // for(var i =4; i<=10;i++){
+    //   $scope.numArray.push(i);
+    // }
+    //
+    // // $scope.ss = 0;
+    //
+    // $scope.invalidContribution = false;
+    //
+    // $scope.maxSalarySacrifice = 0;
+    //
+    // // $scope.isGreaterThanCses = false;
+    //
+    // $scope.checkContribution = function(){
+    //   // if($scope.ss > $scope.cses){
+    //   //   $scope.isGreaterThanCses = true;
+    //   // }
+    //   var resultContribution = WithSSCalculator.checkContribution($scope.cses,$scope.dob,$scope.ss,$scope.datePension);
+    //   $scope.invalidContribution = resultContribution[0];
+    //   $scope.maxSalarySacrifice = resultContribution[1];
+    // }
 
     $scope.overlay = false;
 
-
+    $scope.$watch("formData", function(){
+    $scope.unattainableTHP = false;
+    $scope.attainableTHP = false;
+    }, true);
 
 }]);
