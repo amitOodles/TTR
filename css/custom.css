@@ -1,4 +1,5 @@
 .otrp-calculator{
+	    margin-top:20px;
 	    display: block;
 	    max-width: 614px;
 	    border: 1px solid #e2e2e2;
@@ -30,9 +31,9 @@
     background-color: #87c03d !important;
         width: 26px;
     height: 26px;
-
 }
 .email-icon{
+	  margin-top:2px;
     background: url("../images/email-icon.png") no-repeat;
     background-color: #87c03d !important;
         width: 26px;
@@ -305,6 +306,7 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 .information-overlay{
+	  margin-top:20px;
     position: absolute;
     visibility: hidden;
     top: 1%;
@@ -325,6 +327,7 @@ input[type=number] {
     width: 25px;
     height: 25px;
     border:0;
+		float: right;
 }
 .info-title{
     margin-top: 15px;
@@ -333,7 +336,54 @@ input[type=number] {
 .info-title h2{
     margin:0;
 }
-  .info-content p{
+.info-content p{
     margin-top: 15px;
+}
+.unattainable-thp-error{
+	margin-top:10px;
+	font-size:10px;
+	color:crimson;
+}
+.attainable-thp{
+	margin-top:10px;
+	font-size:10px;
+	color:cornflowerblue;
+}
+button:focus{
+	outline:0 !important;
+}
 
-  }  
+@media only screen
+  /*and (min-device-width: 320px)*/
+  and (max-device-width: 321px){
+		ul.uib-datepicker-popup{
+			left:-140px !important;
+		}
+	}
+
+@media only screen
+	  and (min-device-width: 322px)
+		and (max-device-width: 360px)
+		{
+			ul.uib-datepicker-popup{
+				left:-120px !important;
+			}
+	}
+
+	@media only screen
+		  and (min-device-width: 361px)
+			and (max-device-width: 399px)
+			{
+				ul.uib-datepicker-popup{
+					left:-110px !important;
+				}
+		}
+
+		@media only screen
+				and (min-device-width: 400px)
+				and (max-device-width: 450px)
+				{
+					ul.uib-datepicker-popup{
+						left:-80px !important;
+					}
+			}
