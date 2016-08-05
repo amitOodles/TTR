@@ -1,15 +1,15 @@
 //var WithSSCalculatorService = angular.module('WithSSCalculatorService', [])
 app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
     this.getResults = function(dob,datePension,currentSalaryExcludeSuper,beforeTTR,
-      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay){
+      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,maxTHP){
         var financialYear=datePension.getFullYear()+1;
 
         var nrpSqrt = Math.sqrt(1 + (netReturnInPension/100)) - 1;
 
         var cses =  currentSalaryExcludeSuper;
 
-        var age = AgeCalculator.getAge(dob);
-
+        var age = AgeCalculator.getAge(dob,datePension.getFullYear());
+         
         var concessionalContributionCap ;
 
         if(age < 49){
@@ -24,17 +24,15 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var excessContributionTax = 0.32;
 
-        var totalEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
-
-        var validEmployerContribution;
+        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
 
         var upperSS;
 
-        if(totalEmployerContribution >= 19307.80){
-          validEmployerContribution = 19307.80;
-        }else{
-          validEmployerContribution = totalEmployerContribution;
-        }
+        // if(totalEmployerContribution >= 19307.80){
+        //   validEmployerContribution = 19307.80;
+        // }else{
+        //   validEmployerContribution = totalEmployerContribution;
+        // }
 
         upperSS = concessionalContributionCap - validEmployerContribution;
 
@@ -104,7 +102,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
         takeHomePayment = afterTaxIncome + exemptPensionIncome;
         // console.log("TAKE HOME PAYMENT " + takeHomePayment);
 
-        if(takeHomePayment >= minTakeHomePay){
+        if(takeHomePayment >= minTakeHomePay && !maxTHP){
           var pensionPayment = assessablePensionIncome + exemptPensionIncome;
 
           var investmentIncome = (pensionStartBalance * nrpSqrt) + ((pensionStartBalance * (nrpSqrt+1) - pensionPayment) * nrpSqrt);
@@ -144,9 +142,15 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         }
 
+        if(takeHomePayment >= minTakeHomePay && maxTHP){
+          finalTakeHome = takeHomePayment;
+        }
+
       }
       }
+      if(maxTHP){return finalTakeHome}else{
       return [finalTakeHome,finalAccumulationEndBalance,maxFinalValue,finalDD,finalSS,unattainableTHP];
+    }
       };
 
 

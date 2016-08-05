@@ -1,15 +1,16 @@
 
 //var WithoutSSCalculatorService = angular.module('WithoutSSCalculatorService', [])
-app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxRateCalculator,SGCRate){
-        this.getFinalAmount = function (age,datePension,currentSalaryExcludeSuper,beforeTTR,taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay) {
+app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
+        this.getFinalAmount = function (dob,datePension,currentSalaryExcludeSuper,beforeTTR,taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay) {
             taxFreePercent/=100;
             netReturnInAccumulation/=100;
             netReturnInPension/=100;
             var concessionalContributionTax=0.15;
             var excessContributionTax=0.32;
+            var age = AgeCalculator.getAge(dob,datePension.getFullYear());
             var concessionalContributionCap;
             concessionalContributionCap=age<49?30000:35000;
-            var financialYear=datePension.getFullYear()+1;
+            // var financialYear=datePension.getFullYear()+1;s
             var drawdownValue=0.04;
             var salaryExcludeSGC=currentSalaryExcludeSuper;
             var assessablePensionIncome=0;
