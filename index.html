@@ -33,13 +33,6 @@
                         <span class="title-wrapper">Your Details</span>
                         <div class="otrp-clear"></div>
                      </div>
-                     <!-- <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-lg-6">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-lg-6 ">
-                          <span class="amount-header">Amount</span>
-                        </div>
-                        </div> -->
                      <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -47,11 +40,11 @@
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
                               <div class="input-group">
-                                 <input type="text" name="dateBirth" ng-change="getAge()"
-                                    class="standard-input form-control" show-button-bar="false" ng-click="open1()"
+                                 <input type="text" name="dob"
+                                    class="standard-input form-control" show-button-bar="false"
                                     uib-datepicker-popup="{{format}}" ng-model="formData.dob" is-open="popup1.opened"
                                     datepicker-options="dateOptions" required close-text="Close"
-                                    alt-input-formats="altInputFormats"/ readonly="readonly">
+                                    />
                                  <span class="input-group-addon" ng-click="open1()">
                                  <span class="glyphicon glyphicon-calendar"></span>
                                  </span>
@@ -61,16 +54,6 @@
                            <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
-                        <!-- <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                             <label class="standard-label">Your Age</label>
-                           </div>
-                           <div class="col-xs-4 col-sm-4 col-lg-4">
-                               <input type="text" name="age" class="standard-input" ng-model="age" readonly="readonly">
-                             </div>
-                             <div class="col-xs-4 col-sm-4 col-lg-4">
-                             </div>
-                           </div> -->
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                               <div class="row ttr-label">
@@ -80,10 +63,11 @@
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
                               <div class="input-group">
-                                 <input type="text" name="datePension" class="standard-input form-control"
-                                    ng-click="open2()" show-button-bar="false" uib-datepicker-popup="{{format}}"
-                                    ng-model="formData.datePension" is-open="popup2.opened" datepicker-options="dateOptions"
-                                    required close-text="Close" readonly="readonly"/>
+                                 <input type="text" name="datePension"
+                                    class="standard-input form-control" show-button-bar="false"
+                                    uib-datepicker-popup="{{format}}" ng-model="formData.datePension" is-open="popup2.opened"
+                                    datepicker-options="dateOptions" required close-text="Close"
+                                    />
                                  <span class="input-group-addon" ng-click="open2()">
                                  <span class="glyphicon glyphicon-calendar"></span>
                                  </span>
@@ -375,55 +359,54 @@
                </div>
             </div>
          </div>
-      </div>
-      </div>
-      <div class="row information-overlay" print-hide>
-         <div class="col-xs-12 col-sm-12 col-lg-12 ">
-            <div class="row info-title">
-               <div class="col-xs-9 col-sm-9 col-lg-9">
-                  <h2>Calculator Information</h2>
+         <div class="row information-overlay" print-hide>
+            <div class="col-xs-12 col-sm-12 col-lg-12 ">
+               <div class="row info-title">
+                  <div class="col-xs-9 col-sm-9 col-lg-9">
+                     <h2>Calculator Information</h2>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 col-lg-3">
+                     <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
+                  </div>
                </div>
-               <div class="col-xs-3 col-sm-3 col-lg-3">
-                  <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
-               </div>
-            </div>
-            <hr class="submit-hr"/>
-            <div class="row info-content">
-               <div class="col-xs-12 col-sm-12 col-lg-12">
-                  <ol>
-                  <li>
-                     Salary indicated here does not include any superannuation guarantee contribution.
-                  </li>
-                  <li>
-                     It is assumed that the member's superannuation balance is fully in accumulation phase before using this calculator.
-                  </li>
-                  <li>
-                     It is assumed that at least the minimum take-home(after salary sacrifice and tax) wage is required by the member.
-                  </li>
-                  <li>
-                     The pension drawdown percentage is within 4% to 10%.
-                  </li>
-                  <li>
-                     It is assumed that the contribution will be made in the middle of the financial year.
-                  </li>
-                  <li>
-                     It is assumed that the tax free percentage of the pension account will not change.
-                  </li>
-                  <li>
-                     It is assumed that the member will be entitled for a rebate of 15% of the taxable pension income.
-                  </li>
-                  <li>
-                     It is assumed that the member will contribute (including superannuation guarantee contribution and salary sacrifice) up to the maximum concessional contribution cap in a financial year.
-                  </li>
-                  <li>
-                     It is assumed that the net investment return in accumulation and pension phase take into the consideration of the tax impact.
-                  </li>
-                  </ul>
+               <hr class="submit-hr"/>
+               <div class="row info-content">
+                  <div class="col-xs-12 col-sm-12 col-lg-12">
+                     <ol>
+                     <li>
+                        Salary indicated here does not include any superannuation guarantee contribution.
+                     </li>
+                     <li>
+                        It is assumed that the member's superannuation balance is fully in accumulation phase before using this calculator.
+                     </li>
+                     <li>
+                        It is assumed that at least the minimum take-home(after salary sacrifice and tax) wage is required by the member.
+                     </li>
+                     <li>
+                        The pension drawdown percentage is within 4% to 10%.
+                     </li>
+                     <li>
+                        It is assumed that the contribution will be made in the middle of the financial year.
+                     </li>
+                     <li>
+                        It is assumed that the tax free percentage of the pension account will not change.
+                     </li>
+                     <li>
+                        It is assumed that the member will be entitled for a rebate of 15% of the taxable pension income.
+                     </li>
+                     <li>
+                        It is assumed that the member will contribute (including superannuation guarantee contribution and salary sacrifice) up to the maximum concessional contribution cap in a financial year.
+                     </li>
+                     <li>
+                        It is assumed that the net investment return in accumulation and pension phase take into the consideration of the tax impact.
+                     </li>
+                     </ol>
+                  </div>
                </div>
             </div>
          </div>
       </div>
-      </div>
+
       <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
       <script src="js/angular.min.js" type="text/javascript"></script>
       <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
