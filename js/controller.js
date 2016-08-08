@@ -1,4 +1,4 @@
-app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator){
+app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService','ChartServiceHc','DonutChartServiceHc',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService,ChartServiceHc,DonutChartServiceHc){
 
   // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
 
@@ -6,15 +6,31 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
   $scope.formData.dob = new Date();
   $scope.formData.datePension = new Date();
+  $scope.formData.datePension.setMonth(6);
+  $scope.formData.datePension.setDate(1);
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
-  $scope.formData.cses = 0;
-  $scope.formData.beforeTTR = 0;
-  $scope.formData.tfp = 0;
-  $scope.formData.nra = 0;
-  $scope.formData.nrp = 0;
-  $scope.formData.target = 0;
+  $scope.formData.cses = 100000;
+  $scope.formData.beforeTTR = 100000;
+  $scope.formData.tfp = 2;
+  $scope.formData.nra = 2;
+  $scope.formData.nrp = 2;
+  $scope.formData.target = 100;
+  $scope.excludeSGC = 80000;
+  $scope.target = 40000;
+
+  $scope.maxTHP = 0; 
+
+  $scope.maxTHPError = false;
+
+  $scope.csesError = false;
+
+  $scope.thpError = false;
+
+  $scope.csesZeroError = false;
+
+  $scope.chartOneOpen = true;
   // $scope.formData.ss = 0;
   $scope.infoShow=function(value){
     if(value){
@@ -80,8 +96,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       $scope.dt = new Date(year, month, day);
     };
 
-    $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[2];
+    $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate','dd/MM/yyyy','d!/M!/yyyy'];
+    $scope.format = $scope.formats[5];
     // $scope.altInputFormats = ['M!/d!/yyyy'];
 
     $scope.popup1 = {
@@ -155,7 +171,12 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.attainableTHP = !$scope.unattainableTHP;
         $scope.favourableDD = $scope.resultWithSS[3];
         $scope.favourableSS = $scope.resultWithSS[4];
-        
+                if($scope.attainableTHP && !$scope.unattainableTHPS){
+          // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
+          ChartServiceHc.createChart(1000,500,100);
+          DonutChartServiceHc.createChart(1000,500,100);
+
+        }
         console.log($scope.resultWithSS.toString());
         console.log("complete");
       }else{
@@ -195,7 +216,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     //   $scope.invalidContribution = resultContribution[0];
     //   $scope.maxSalarySacrifice = resultContribution[1];
     // }
-
+$scope.submitForm(true);
     $scope.overlay = false;
 
     $scope.$watch("formData", function(){
