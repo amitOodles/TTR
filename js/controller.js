@@ -144,17 +144,19 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     $scope.submitForm = function(isValid){
 
       if(isValid){
+        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.formData.dob,
+          $scope.formData.datePension,$scope.formData.cses,$scope.formData.beforeTTR,
+          $scope.formData.tfp,$scope.formData.nra,$scope.formData.nrp,$scope.formData.target);
         console.log("max thp ss is",$scope.maxTakeHomeSS());
         $scope.resultWithSS = WithSSCalculator.getResults($scope.formData.dob,
           $scope.formData.datePension,$scope.formData.cses,$scope.formData.beforeTTR,
-          $scope.formData.tfp,$scope.formData.nra,$scope.formData.nrp,$scope.formData.target,false);
+          $scope.formData.tfp,$scope.formData.nra,$scope.formData.nrp,$scope.formData.target,false,$scope.resultWithoutSS[2]);
         $scope.unattainableTHP = $scope.resultWithSS[5];
         $scope.attainableTHP = !$scope.unattainableTHP;
         $scope.favourableDD = $scope.resultWithSS[3];
         $scope.favourableSS = $scope.resultWithSS[4];
-        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.formData.dob,
-          $scope.formData.datePension,$scope.formData.cses,$scope.formData.beforeTTR,
-          $scope.formData.tfp,$scope.formData.nra,$scope.formData.nrp,$scope.formData.target);
+        
+        console.log($scope.resultWithSS.toString());
         console.log("complete");
       }else{
         console.log("has errors");

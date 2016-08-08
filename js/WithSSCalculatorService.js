@@ -1,7 +1,7 @@
 //var WithSSCalculatorService = angular.module('WithSSCalculatorService', [])
 app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
     this.getResults = function(dob,datePension,currentSalaryExcludeSuper,beforeTTR,
-      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,maxTHP){
+      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,maxTHP,minFinalAmount){
         var financialYear=datePension.getFullYear()+1;
 
         var nrpSqrt = Math.sqrt(1 + (netReturnInPension/100)) - 1;
@@ -58,7 +58,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var changeSS = true;
 
-        var maxFinalValue = 0;
+        var maxFinalValue = minFinalAmount; 
 
         var finalTakeHome = 0;
 
@@ -126,7 +126,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var finalValue = takeHomePayment + pensionEndBalance + accumulationEndBalance;
 
-        if(finalValue > maxFinalValue){
+        if(finalValue >= maxFinalValue + 100){
           //console.log("changing final value from" + maxFinalValue +"to" + finalValue);
           maxFinalValue = finalValue;
           //console.log("changing thp value from" + finalTakeHome +"to" + takeHomePayment);
