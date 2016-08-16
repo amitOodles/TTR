@@ -1,14 +1,18 @@
 //var WithSSCalculatorService = angular.module('WithSSCalculatorService', [])
 app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
-    this.getResults = function(dob,datePension,currentSalaryExcludeSuper,beforeTTR,
-      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,maxTHP,minFinalAmount){
-        var financialYear=datePension.getFullYear()+1;
+    this.getResults = function(age,fy,currentSalaryExcludeSuper,beforeTTR,
+      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,maxTHPCalculation){
 
         var nrpSqrt = Math.sqrt(1 + (netReturnInPension/100)) - 1;
 
         var cses =  currentSalaryExcludeSuper;
 
-        var age = AgeCalculator.getAge(dob,datePension.getFullYear());
+        var datePension =  new Date;
+            datePension.setYear(fy);
+            datePension.setDate(2);
+            datePension.setMonth(5);
+
+        // var age = AgeCalculator.getAge(dob,datePension.getFullYear());
          
         var concessionalContributionCap ;
 
@@ -58,7 +62,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var changeSS = true;
 
-        var maxFinalValue = minFinalAmount; 
+        var maxFinalValue = 0; 
 
         var finalTakeHome = 0;
 
@@ -102,7 +106,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
         takeHomePayment = afterTaxIncome + exemptPensionIncome;
         // console.log("TAKE HOME PAYMENT " + takeHomePayment);
 
-        if(takeHomePayment >= minTakeHomePay && !maxTHP){
+        if(takeHomePayment >= minTakeHomePay){
           var pensionPayment = assessablePensionIncome + exemptPensionIncome;
 
           var investmentIncome = (pensionStartBalance * nrpSqrt) + ((pensionStartBalance * (nrpSqrt+1) - pensionPayment) * nrpSqrt);
@@ -126,7 +130,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var finalValue = takeHomePayment + pensionEndBalance + accumulationEndBalance;
 
-        if(finalValue >= maxFinalValue + 100){
+        if(finalValue >= maxFinalValue){
           //console.log("changing final value from" + maxFinalValue +"to" + finalValue);
           maxFinalValue = finalValue;
           //console.log("changing thp value from" + finalTakeHome +"to" + takeHomePayment);
@@ -142,13 +146,13 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         }
 
-        if(takeHomePayment >= minTakeHomePay && maxTHP){
-          finalTakeHome = takeHomePayment;
-        }
+        // if(takeHomePayment >= minTakeHomePay && maxTHP){
+        //   finalTakeHome = takeHomePayment;
+        // }
 
       }
       }
-      if(maxTHP){return finalTakeHome}else{
+      if(maxTHPCalculation){return finalTakeHome}else{
       return [finalTakeHome,finalAccumulationEndBalance,maxFinalValue,finalDD,finalSS,unattainableTHP];
     }
       };
@@ -156,36 +160,36 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
 
 
-      this.checkContribution=function(cses,dob,ss,datePension){
-        var age = AgeCalculator.getAge(dob);
+      // this.checkContribution=function(cses,dob,ss,datePension){
+      //   var age = AgeCalculator.getAge(dob);
 
-        var concessionalContributionCap ;
+      //   var concessionalContributionCap ;
 
-        if(age < 49){
-          concessionalContributionCap = 30000;
-        }else{
-          concessionalContributionCap = 35000;
-        }
+      //   if(age < 49){
+      //     concessionalContributionCap = 30000;
+      //   }else{
+      //     concessionalContributionCap = 35000;
+      //   }
 
-        var concessionalContribution = SGCRate.calculateSGCRate(datePension)*cses;
+      //   var concessionalContribution = SGCRate.calculateSGCRate(datePension)*cses;
 
-        var employerContributionMax;
+      //   var employerContributionMax;
 
-        if(concessionalContribution >= concessionalContributionCap){
-          employerContributionMax = 19307.80;
-        }else{
-          employerContributionMax = concessionalContribution;
-        }
-        var totalContribution = ss + employerContributionMax;
-        //console.log(totalContribution);
+      //   if(concessionalContribution >= concessionalContributionCap){
+      //     employerContributionMax = 19307.80;
+      //   }else{
+      //     employerContributionMax = concessionalContribution;
+      //   }
+      //   var totalContribution = ss + employerContributionMax;
+      //   //console.log(totalContribution);
 
-       var maxSalarySacrifice = concessionalContributionCap - employerContributionMax;
+      //  var maxSalarySacrifice = concessionalContributionCap - employerContributionMax;
 
-        if(totalContribution <= concessionalContributionCap){
-          return [false,maxSalarySacrifice];
-        }else{
-          return [true,maxSalarySacrifice];
-        }
-      }
+      //   if(totalContribution <= concessionalContributionCap){
+      //     return [false,maxSalarySacrifice];
+      //   }else{
+      //     return [true,maxSalarySacrifice];
+      //   }
+      // }
 
 }]);

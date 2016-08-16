@@ -10,7 +10,9 @@
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/bootstrap-select.min.css">
       <link rel="stylesheet" href="css/custom.css">
+      <link rel="stylesheet" href="css/font-awesome.css">
       <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css" >
+      <link rel="stylesheet" href="css/nouislider.min.css">
    </head>
    <body print-section ng-cloak>
       <div class="otrp-calculator container-fluid " ng-controller="TTRController" >
@@ -34,158 +36,142 @@
                         <div class="otrp-clear"></div>
                      </div>
                      <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
+
+                     <div class="row">
+                        <div class="col-xs-6">
+                          Age
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="ageInput" name="ageInput" ng-model="age">
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="ageSlider" style="margin-top:12px;"></div>
+                           </div>
+                           </div>  
+                        </div>
+                        <div class="col-xs-6">
+                          Financial Year
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="fySlider" style="margin-top:12px;"></div>
+                           </div>
+                           </div>  
+                        </div>
+                        </div>
+
+                        <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Date Of Birth</label>
+                        <div class="col-xs-6">
+                          Current Salary
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="csesSlider" style="margin-top:12px;"></div>
                            </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group">
-                                 <input type="text" name="dob"
-                                    class="standard-input form-control" show-button-bar="false"
-                                    uib-datepicker-popup="{{format}}" ng-model="formData.dob" is-open="popup1.opened"
-                                    datepicker-options="dateOptions" required close-text="Close"
-                                    />
-                                 <span class="input-group-addon" ng-click="open1()">
-                                 <span class="glyphicon glyphicon-calendar"></span>
-                                 </span>
-                              </div>
+                           </div>  
+                        </div>
+                        <div class="col-xs-6">
+                          Before TTR
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="beforeTTRInput" name="beforeTTRInput" ng-model="beforeTTR" >
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="beforeTTRSlider" style="margin-top:12px;"></div>
                            </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- </div> -->
+                           </div>  
+                        </div>
                         </div>
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <div class="row ttr-label">
-                                 <label style="display:block" class="standard-label">TTR Strategy Implementation Date</label>
-                              </div>
-                              <div class="row ttr-note">Please use 1 July of a particular Financial Year Here</div>
+                        <div class="col-xs-6">
+                          Tax Free Percentage
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="tfpInput" name="tfpInput" ng-model="tfp">
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="tfpSlider" style="margin-top:12px;"></div>
                            </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group">
-                                 <input type="text" name="datePension"
-                                    class="standard-input form-control" show-button-bar="false"
-                                    uib-datepicker-popup="{{format}}" ng-model="formData.datePension" is-open="popup2.opened"
-                                    datepicker-options="dateOptions" required close-text="Close"
-                                    />
-                                 <span class="input-group-addon" ng-click="open2()">
-                                 <span class="glyphicon glyphicon-calendar"></span>
-                                 </span>
-                              </div>
-                           </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- </div> -->
+                           </div>  
                         </div>
+                        <div class="col-xs-6">
+                          Net Return in Accumulation percentage
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="nraInput" name="nraInput" ng-model="nra" >
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="nraSlider" style="margin-top:12px;"></div>
+                           </div>
+                           </div>  
+                        </div>
+                        </div>
+
                         <hr class="submit-hr"/>
                         <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Current Salary Exclude Super<span class="required">*</span></label>
+                        <div class="col-xs-6">
+                          Net Return in Pension percentage
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="nrpInput" name="nrpInput" ng-model="nrp" >
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="nrpSlider" style="margin-top:12px;"></div>
                            </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{ 'err-border' : (ttrForm.cses.$error.required && !ttrForm.cses.$pristine) ||  (ttrForm.cses.$error.required && ttrForm.cses.$touched) || (ttrForm.cses.$invalid && !ttrForm.cses.$pristine)}">
-                                 <span class="input-group-addon">$</span>
-                                 <input type="number" name="cses" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="formData.cses" required >
-                              </div>
-                           </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- <div class="err-msg" ng-show="(ttrForm.cses.$error.required && !ttrForm.cses.$pristine) ||  (ttrForm.cses.$error.required && ttrForm.cses.$touched) || (ttrForm.cses.$invalid && !ttrForm.cses.$pristine)">Enter Valid Numeric Value</div> -->
-                           <!-- </div> -->
+                           </div>  
                         </div>
-                        <hr class="submit-hr"/>
-                        <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Superannuation Balance As At The TTR Strategy Implementation Date<span class="required">*</span></label>
+                        <div class="col-xs-6">
+                          Take Home Pay
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="thpSlider" style="margin-top:12px;"></div>
                            </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine) ||  (ttrForm.beforeTTR.$error.required && ttrForm.beforeTTR.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)}">
-                                 <span class="input-group-addon">$</span>
-                                 <input type="number" name="beforeTTR" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="formData.beforeTTR"  required />
-                              </div>
-                           </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- <div class="err-msg" ng-show="(ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine) ||  (ttrForm.beforeTTR.$error.required && ttrForm.beforeTTR.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)">Enter Valid Numeric Value</div> -->
-                           <!-- </div> -->
+                           </div>  
                         </div>
-                        <hr class="submit-hr"/>
-                        <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Tax Free Fercentage Of Your Current Superannuation Balance<span class="required">*</span></label>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.tfp.$error.required && !ttrForm.tfp.$pristine) ||  (ttrForm.tfp.$error.required && ttrForm.tfp.$touched) || (ttrForm.tfp.$invalid && !ttrForm.tfp.$pristine) }">
-                                 <input type="number" name="tfp" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="formData.tfp"  required >
-                                 <span class="input-group-addon">%</span>
-                              </div>
-                           </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- <div class="err-msg" ng-show="(ttrForm.tfp.$error.required && !ttrForm.tfp.$pristine) ||  (ttrForm.tfp.$error.required && ttrForm.tfp.$touched) || (ttrForm.tfp.$invalid && !ttrForm.tfp.$pristine)">Enter Valid Numeric Value</div> -->
-                           <!-- </div> -->
                         </div>
-                        <hr class="submit-hr"/>
-                        <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Net Return In Accumulation<span class="required">*</span></label>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.nra.$error.required && !ttrForm.nra.$pristine) ||  (ttrForm.nra.$error.required && ttrForm.nra.$touched) || (ttrForm.nra.$invalid && !ttrForm.nra.$pristine)}">
-                                 <input type="number" name="nra" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="formData.nra" required>
-                                 <span class="input-group-addon">%</span>
-                              </div>
-                           </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- <div class="err-msg" ng-show="(ttrForm.nra.$error.required && !ttrForm.nra.$pristine) ||  (ttrForm.nra.$error.required && ttrForm.nra.$touched) || (ttrForm.nra.$invalid && !ttrForm.nra.$pristine)">Enter Valid Numeric Value</div> -->
-                           <!-- </div> -->
-                        </div>
-                        <hr class="submit-hr"/>
-                        <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Net Return In Pension<span class="required">*</span></label>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.nrp.$error.required && !ttrForm.nrp.$pristine) ||  (ttrForm.nrp.$error.required && ttrForm.nrp.$touched) || (ttrForm.nrp.$invalid && !ttrForm.nrp.$pristine)}">
-                                 <input type="number" name="nrp" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="formData.nrp" required>
-                                 <span class="input-group-addon">%</span>
-                              </div>
-                           </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- <div class="err-msg" ng-show="(ttrForm.nrp.$error.required && !ttrForm.nrp.$pristine) ||  (ttrForm.nrp.$error.required && ttrForm.nrp.$touched) || (ttrForm.nrp.$invalid && !ttrForm.nrp.$pristine)">Enter Valid Numeric Value</div> -->
-                           <!-- </div> -->
-                        </div>
-                        <hr class="submit-hr"/>
-                        <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required">*</span></label>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)}">
-                                 <span class="input-group-addon">$</span>
-                                 <input type="number" name="target" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="formData.target" required>
-                              </div>
-                           </div>
-                           <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                           <!-- <div class="err-msg" ng-show="(ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)">Enter Valid Numeric Value</div> -->
-                           <!-- </div> -->
-                        </div>
-                        <hr class="submit-hr"/>
-                        <div class="row"  print-remove ng-hide="thpError || csesError">
-                           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                              <button type="submit" class="btn btn-primary submit-btn" 
-                                 ng-disabled="ttrForm.$invalid || csesError || thpError">Calculate </button>
-                           </div>
-                           <!-- <div ng-show="ttrForm.$invalid && !ttrForm.$pristine" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                              Form contains erronous inputs. Please correct to Submit.
-                              </div> -->
-                        </div>
-                        <div class="row" print-remove ng-show="thpError || csesError">
-                           <div class="col-xs-12">
-                              <p class="error-text thpError-text" ng-show="thpError && !csesError">
-                                 This Take Home Pay value is not attainable for your Annual Salary.
-                              </p>
-                              <p class="error-text" ng-show="csesError">
-                                 This Calculator only works for a maximum Annual Salary of {{ 300000 | currency }}, due to the Div 293 Tax implications. To know more, click on the <b>Information</b> button above. 
-                              </p>
-                           </div>
-                        </div>
+
+                        
                      </form>
                   </div>
                </div>
@@ -419,6 +405,8 @@
       <script src="js/SGCRateCalculator.js" type="text/javascript"></script>
       <script src="js/WithoutSSCalculatorService.js" type="text/javascript"></script>
       <script src="js/WithSSCalculatorService.js" type="text/javascript"></script>
+      <script src="js/nouislider.min.js" type="text/javascript"></script>
+            <script src="js/wNumb.js" type="text/javascript"></script>
       <script src="bower_components/angularPrint/angularPrint.js" type="text/javascript"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js"></script>
       <script src="js/ChartService.js" type="text/javascript"></script>
