@@ -29,20 +29,20 @@
 }
 .info-icon{
     background:  url("../images/info-icon.png") no-repeat;
-    background-color: #87c03d !important;
+        background-color: #91B6BE !important;
         width: 26px;
     height: 26px;
 }
 .email-icon{
 	  margin-top:2px;
     background: url("../images/email-icon.png") no-repeat;
-    background-color: #87c03d !important;
+       background-color: #91B6BE !important;
         width: 26px;
     height: 21px;
 }
 .print-icon{
     background: url("../images/printer-icon.png") no-repeat;
-    background-color: #87c03d !important;
+        background-color: #91B6BE !important;
         width: 25px;
     height: 29px;
 }
@@ -257,6 +257,8 @@ span.pension-note{
 }
 .form-control{
 	border-radius: 0px;
+        font-size: 12px;
+          height: 26px;
 }
 
 .err-border .input-group-addon{
@@ -471,7 +473,7 @@ button:focus{
         padding-right: 0;
 }
 .get-in-touch{
-    background-color: #88C2E8 !important;
+        background-color: #91B6BE !important;
     color: #fff !important;
     border-radius: 0;
     border:0px;
@@ -797,20 +799,62 @@ p.thpError-text{
 }
 
 .chart-buttons-row button{
-  background-color: #337ab7;
+      background-color: #91B6BE !important;
   color:#fff;
-  border-radius:4px;
+  border-radius:0 !important;
   outline:none;
   border:1px solid #ddd;
 }
 
 .chart-buttons-row button:hover,.chart-buttons-row button:active,.chart-buttons-row button:focus,.chart-buttons-row button:visited{
   color:#fff; !important;
-  background-color: #337ab7 !important;
+      background-color: #91B6BE !important;
   border:1px solid #ddd !important;
   outline:none !important;
 }
 
 .print-btn button{
 float:right;
+}
+
+///////////////////////
+
+
+
+.form-group .noUi-handle .noUi-handle-lower{
+   background: url(../images/slider-handle.png) !important;
+    width: 18px !important;
+    height: 28px !important;
+    border: 0 !important;
+     border-radius: 0 !important;
+    cursor: default;
+     box-shadow: none !important; 
+}
+
+.form-group .noUi-horizontal .noUi-handle {
+    top: -9px !important;
+    background: url(../images/slider-handle.png) !important;
+    width: 18px !important;
+    height: 28px !important;
+    border: 0 !important;
+     border-radius: 0 !important;
+     box-shadow: none !important; 
+
+}
+
+.form-group .noUi-handle:after, .noUi-handle:before {
+    background: none !important;
+}
+
+.form-group .noUi-horizontal {
+    height: 10px !important;
+        border-radius: 0 !important;
+}
+
+.form-group .noUi-connect {
+      background: #91B6BE ;
+    background: -webkit-linear-gradient(#263C40, #91B6BE); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#263C40, #91B6BE); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#263C40, #91B6BE); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#263C40, #91B6BE); /* Standard syntax */
 }
