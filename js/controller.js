@@ -246,6 +246,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
     $scope.attainableTHP = false;
 
+    $scope.needSS = false;
+
     // var finalAmountSS = WithoutSSCalculator.getFinalAmount($scope.age,
     //       $scope.fy,$scope.cses,$scope.beforeTTR,
     //       $scope.tfp,$scope.nra,$scope.nrp,$scope.thp)[2];
@@ -268,6 +270,11 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
         $scope.attainableTHP = !$scope.unattainableTHP;
         $scope.favourableDD = $scope.resultWithSS[3];
         $scope.favourableSS = $scope.resultWithSS[4];
+        if($scope.resultWithSS[2] - $scope.resultWithoutSS[2] > 0){
+          $scope.needSS = true;
+        }else{
+          $scope.needSS = false;
+        }
                 if($scope.attainableTHP && !$scope.unattainableTHPS){
           // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
           ChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)),Number($scope.resultWithSS[2].toFixed(2)),Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
