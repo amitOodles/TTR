@@ -858,3 +858,7 @@ float:right;
     background: -moz-linear-gradient(#263C40, #91B6BE); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#263C40, #91B6BE); /* Standard syntax */
 }
+
+.form-group .noUi-origin{
+  border-radius:0px !important;
+}
