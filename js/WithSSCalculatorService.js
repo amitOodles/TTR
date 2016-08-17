@@ -157,6 +157,108 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
     }
       };
 
+      this.maxTakeHome = function(age,fy,currentSalaryExcludeSuper,beforeTTR,taxFreePercent){
+        var cses = currentSalaryExcludeSuper;
+
+        var datePension =  new Date;
+            datePension.setYear(fy);
+            datePension.setDate(2);
+            datePension.setMonth(5);
+         
+        var concessionalContributionCap ;
+
+        if(age < 49){
+          concessionalContributionCap = 30000;
+        }else{
+          concessionalContributionCap = 35000;
+        }
+
+        // var accumulationBeginningBalance = 0;
+
+        var concessionalContributionTax = 0.15;
+
+        var excessContributionTax = 0.32;
+
+        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
+
+        var upperSS;
+
+        upperSS = concessionalContributionCap - validEmployerContribution;
+
+        //console.log(upperSS);
+
+        var pensionStartBalance = beforeTTR;
+
+        var assesablePensionIncome;
+
+        var taxableIncome;
+
+        var tmLevi;
+
+        var rebate;
+
+        var afterTaxIncome;
+
+        var exemptPensionIncome;
+
+        var takeHomePayment;
+
+        var drawdownValue;
+
+        // var changeSS = true;
+
+        var maxFinalValue = 0; 
+
+        var finalTakeHome = 0;
+
+        // var finalSS = 0;
+
+        // var finalDD = 0;
+
+        // var finalAccumulationEndBalance = 0;
+
+        // var unattainableTHP =  true;
+
+        for(i=400;i<=1000;i=i+5){
+          for(ss=0;ss<=upperSS;ss=ss+10){
+
+        var concessionalContribution = validEmployerContribution + ss;
+
+        drawdownValue = i/10000;
+
+        if(age < 60){
+          assessablePensionIncome = beforeTTR * drawdownValue * (1 - (taxFreePercent/100));
+        }else{
+          assessablePensionIncome = 0;
+        }
+
+        taxableIncome = cses - ss + assessablePensionIncome;
+
+        tmLevi = TaxRateCalculator.getTaxRate(taxableIncome) * (taxableIncome
+           + 1 - TaxRateCalculator.getLowerBoundValue(taxableIncome))
+         + TaxRateCalculator.getTaxBase(taxableIncome);
+
+        rebate = assessablePensionIncome * 0.15;
+
+        afterTaxIncome = taxableIncome - tmLevi + rebate;
+
+        if(age <60){
+          exemptPensionIncome =  beforeTTR * drawdownValue * (taxFreePercent/100);
+        }else{
+          exemptPensionIncome = beforeTTR * drawdownValue;
+        }
+
+        takeHomePayment = afterTaxIncome + exemptPensionIncome;
+
+        if(takeHomePayment >= finalTakeHome){
+          finalTakeHome = takeHomePayment;
+        }
+        }
+        }
+        return finalTakeHome;
+        }
+
+
 
 
 

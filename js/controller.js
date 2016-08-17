@@ -1,4 +1,4 @@
-app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService','ChartServiceHc','DonutChartServiceHc',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService,ChartServiceHc,DonutChartServiceHc){
+app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService','ChartServiceHc','DonutChartServiceHc',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService,ChartServiceHc,DonutChartServiceHc){
 
   // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
 
@@ -261,7 +261,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age,
           $scope.fy,$scope.cses,$scope.beforeTTR,
           $scope.tfp,$scope.nra,$scope.nrp,$scope.thp);
-        console.log("max thp ss is",$scope.maxTakeHomeSS());
+        // console.log("max thp ss is",$scope.maxTakeHomeSS());
         $scope.resultWithSS = WithSSCalculator.getResults($scope.age,
           $scope.fy,$scope.cses,$scope.beforeTTR,
           $scope.tfp,$scope.nra,$scope.nrp,$scope.thp,false);
@@ -275,6 +275,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
           DonutChartServiceHc.createChart(1000,500,100);
 
         }
+        $timeout(0);
         console.log($scope.resultWithSS.toString());
         console.log("complete");
       }else{
@@ -397,11 +398,6 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     connect : 'lower'
     });
 
-    // $scope.calculateMaxTHP2 = function(){
-    // $scope.maxTHP2 =  Math.floor(WithoutSSCalculator.getFinalAmount($scope.age,$scope.fy,$scope.cses,$scope.thp,true));
-    // console.log($scope.maxTHP2)
-    // }
-
     var ageInput = document.getElementById('ageInput'),
     fyInput = document.getElementById('fyInput'),
     csesInput = document.getElementById('csesInput'),
@@ -411,6 +407,23 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     nrpInput = document.getElementById('nrpInput'),
     thpInput = document.getElementById('thpInput');
 
+    $scope.calculateMaxTHPSS = function(){
+    return WithSSCalculator.maxTakeHome($scope.age,$scope.fy,$scope.cses,$scope.beforeTTR,$scope.tfp);
+    }
+
+    $scope.changeMaxTarget = function(endValue){
+    console.log(endValue);
+    thpSlider.noUiSlider.updateOptions({
+    range: {
+      'min': 1000,
+      'max': endValue - (endValue % 1000)
+    },
+    // step :1000,
+    // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
+    });
+    }
+    $scope.changeMaxTarget($scope.calculateMaxTHPSS());
+    $scope.submitForm2(true);
     csesInput.addEventListener("change",function(){
       csesSlider.noUiSlider.set($scope.cses);
     })
@@ -446,60 +459,53 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     csesSlider.noUiSlider.on('set', function( values, handle ) {
     csesInput.value = values[handle];
     $scope.cses = Number(values[handle]);
-
-    $scope.calculateMaxTHP2();
-
-       thpSlider.noUiSlider.updateOptions({
-    range: {
-      'min': 1000,
-      'max': Math.floor($scope.maxTHP2)-1
-    },
-    step :1000,
-    start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
-  });
+    $scope.changeMaxTarget($scope.calculateMaxTHPSS());
+    $scope.submitForm2(true);
     });
 
     ageSlider.noUiSlider.on('set', function( values, handle ) {
     ageInput.value = values[handle];
     $scope.age = Number(values[handle]);
+    $scope.changeMaxTarget($scope.calculateMaxTHPSS());
+    $scope.submitForm2(true);
     });
 
     fySlider.noUiSlider.on('set', function( values, handle ) {
     fyInput.value = values[handle];
     $scope.fy = Number(values[handle]);
+    $scope.submitForm2(true);
     });
 
     beforeTTRSlider.noUiSlider.on('set', function( values, handle ) {
     beforeTTRInput.value = values[handle];
     $scope.beforeTTR = Number(values[handle]);
+    $scope.changeMaxTarget($scope.calculateMaxTHPSS());
+    $scope.submitForm2(true);
     });
 
     tfpSlider.noUiSlider.on('set', function( values, handle ) {
     tfpInput.value = values[handle];
     $scope.tfp = Number(values[handle]);
+    $scope.changeMaxTarget($scope.calculateMaxTHPSS());
+    $scope.submitForm2(true);
     });
 
     nraSlider.noUiSlider.on('set', function( values, handle ) {
     nraInput.value = values[handle];
     $scope.nra = Number(values[handle]);
+    $scope.submitForm2(true);
     });
 
     nrpSlider.noUiSlider.on('set', function( values, handle ) {
     nrpInput.value = values[handle];
     $scope.nrp = Number(values[handle]);
+    $scope.submitForm2(true);
     });
 
     thpSlider.noUiSlider.on('set', function( values, handle ) {
     thpInput.value = values[handle];
     $scope.thp = Number(values[handle]);
+    $scope.submitForm2(true);
     });
 
-
-
-    // $scope.submitForm2(true);
-
-
-
-
-
-}]);
+    }]);
