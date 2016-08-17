@@ -173,9 +173,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
         $scope.favourableSS = $scope.resultWithSS[4];
                 if($scope.attainableTHP && !$scope.unattainableTHPS){
           // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
-          ChartServiceHc.createChart(1000,500,100);
-          DonutChartServiceHc.createChart(1000,500,100);
-
+          ChartServiceHc.createChart(Number(resultWithoutSS[2].toFixed(2)),Number(resultWithSS[2].toFixed(2)),Number((resultWithoutSS[2] - resultWithoutSS[2]).toFixed(2)));
+          DonutChartServiceHc.createChart(Number(resultWithoutSS[2].toFixed(2)),Number(resultWithSS[2].toFixed(2)),Number((resultWithoutSS[2] - resultWithoutSS[2]).toFixed(2)));
         }
         console.log($scope.resultWithSS.toString());
         console.log("complete");
@@ -271,8 +270,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
         $scope.favourableSS = $scope.resultWithSS[4];
                 if($scope.attainableTHP && !$scope.unattainableTHPS){
           // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
-          ChartServiceHc.createChart(1000,500,100);
-          DonutChartServiceHc.createChart(1000,500,100);
+          ChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)),Number($scope.resultWithSS[2].toFixed(2)),Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
+
+          DonutChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)),Number($scope.resultWithSS[2].toFixed(2)),Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
 
         }
         $timeout(0);

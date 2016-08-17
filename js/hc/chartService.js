@@ -1,5 +1,5 @@
 app.service('ChartServiceHc',function(){
-  this.createChart = function(thpWithoutSS,thpWithSS,taxSaving){
+  this.createChart = function(finalWSS,finalSS,taxSaving){
     
     Highcharts.setOptions({lang: {
             thousandsSep: ','
@@ -11,7 +11,7 @@ app.service('ChartServiceHc',function(){
             type: 'column'
         },
         title: {
-            text: 'Salary Sacrifice Optimisation'
+            text: 'Transition to Retirement'
         },
         exporting:{
             enabled:false
@@ -56,20 +56,16 @@ app.service('ChartServiceHc',function(){
         },
 
         series: [{
-            // name: 'Brands',
             colorByPoint: true,
             data: [{
-                name: 'Take Home Pay Without Salary Sacrifice',
-                y: thpWithoutSS,
-                // drilldown: 'Microsoft Internet Explorer'
+                name: 'Final Amount Without Salary Sacrifice',
+                y: finalWSS,
             }, {
-                name: 'Take Home Pay With Salary Sacrifice',
-                y: thpWithSS,
-                // drilldown: 'Chrome'
+                name: 'Final Amount With Salary Sacrifice',
+                y: finalSS,
             }, {
                 name: 'Tax Saving',
                 y: taxSaving,
-                // drilldown: 'Firefox'
             }]
         }],
 
