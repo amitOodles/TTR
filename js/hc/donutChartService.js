@@ -112,7 +112,7 @@ app.service('DonutChartServiceHc',function(){
                                     // horizontalAlign : 'middle', 
                                     y:(chart.chartHeight * 0.4),
                                      x:(chart.chartWidth  * 0.38),
-                                    text:'<span style="font-weight:700;font-size:14px">'+ this.series.data[this.x].name + '</span></span><br><span style="text-align:center; width=100px;font-weight:700;font-size:14px;">  $' + Highcharts.numberFormat((((this.y/100)*total).toFixed(2)),2,'.') + '</span>' 
+                                    text:'<span style="font-weight:700;font-size:14px">'+ this.series.data[this.x].name + '</span></span><br><span>  $' + Highcharts.numberFormat((((this.y/100)*total).toFixed(2)),2,'.') + '</span>' 
                                     // 'x: ' + this.x + ', y: ' + this.y this.series.data[this.x].y.toFixed(2)
                                     // + '<span style="font-size:14px">' + this.series.data[this.x].y.toFixed(2) + 
                                 });
