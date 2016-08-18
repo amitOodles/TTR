@@ -792,6 +792,19 @@ p.thpError-text{
 .result-div{
     border-bottom:1px solid #e2e2e2;
 }
+.form-group .noUi-connect{
+   background: #3FB8AF !important;
+  -webkit-print-color-adjust: exact; 
+}
+.form-group .noUi-background{
+    background: #FAFAFA !important;
+    -webkit-print-color-adjust: exact; 
+}
+
+.form-group .noUi-handle{
+  background: #000 !important;
+    -webkit-print-color-adjust: exact;
+}
 }
 
 .chart-buttons-row{
@@ -861,4 +874,20 @@ float:right;
 
 .form-group .noUi-origin{
   border-radius:0px !important;
+}
+
+@media(max-width: 767px){
+  .print-dup{
+    display : inline-block !important;
+    float:right !important;
+  }
+  .second-row-mobile{
+    margin-top:-20px;
+  }
+}
+
+.form-heading{
+  font-family: "Roboto", Helvetica, Verdana, Arial, Sans-serif;
+  font-weight : 300;
+  color : #444;
 }
