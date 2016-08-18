@@ -888,6 +888,6 @@ float:right;
 
 .form-heading{
   font-family: "Roboto", Helvetica, Verdana, Arial, Sans-serif;
-  font-weight : 300;
-  color : #444;
+  font-weight : 300 !important;
+  color : #444 !important;
 }
