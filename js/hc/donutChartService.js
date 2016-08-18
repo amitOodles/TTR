@@ -14,6 +14,20 @@ app.service('DonutChartServiceHc',function(){
     var length = $("#highcharts-6").width;
     console.log(length);
 
+    //     // Make monochrome colors and set them as default for all pies
+    // Highcharts.getOptions().plotOptions.pie.colors = (function () {
+    //     var colors = [],
+    //         base = Highcharts.getOptions().colors[0],
+    //         i;
+
+    //     for (i = 0; i < 10; i += 1) {
+    //         // Start out with a darkened base color (negative brighten), and end
+    //         // up with a much brighter color
+    //         colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+    //     }
+    //     return colors;
+    // }());
+
     $('#donutContainer').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -86,7 +100,7 @@ app.service('DonutChartServiceHc',function(){
                                     .css({
                                         color: '#000',
                                         textAlign : 'left',
-                                        // width: '100px',
+                                        width: '100px',
                                         // position:'absolute'
                                     })
                                     .add();
@@ -98,8 +112,9 @@ app.service('DonutChartServiceHc',function(){
                                     // horizontalAlign : 'middle', 
                                     y:(chart.chartHeight * 0.4),
                                      x:(chart.chartWidth  * 0.38),
-                                    text:'<span style="font-weight:700; font-size:14px;">'  + this.series.data[this.x].name+ '</span><br><span style="text-align:center; width=100px;">    $  ' + Highcharts.numberFormat((((this.y/100)*total).toFixed(2)),2,'.') + '</span>' 
-                                    // 'x: ' + this.x + ', y: ' + this.y
+                                    text:'<span style="font-weight:700;font-size:14px">'+ this.series.data[this.x].name + '</span></span><br><span style="text-align:center; width=100px;font-weight:700;font-size:14px;">  $' + Highcharts.numberFormat((((this.y/100)*total).toFixed(2)),2,'.') + '</span>' 
+                                    // 'x: ' + this.x + ', y: ' + this.y this.series.data[this.x].y.toFixed(2)
+                                    // + '<span style="font-size:14px">' + this.series.data[this.x].y.toFixed(2) + 
                                 });
                                 var point = this,
                                 points = this.series.points;
@@ -145,15 +160,15 @@ app.service('DonutChartServiceHc',function(){
         },
         series: [{
             type: 'pie',
-            name: 'Amount',
+            // name: 'Amount',
             innerSize: '70%',
             // outerSize:'60%',
             colorByPoint:true,
             data: [
                 ['Final Amount Without Salary Sacrifice', finalWSSPercentage],
-                ['Tax Savings',taxSavingPercentage],
+                ['Final Amount With Salary Sacrifice', finalSSPercentage],
+                ['Tax Savings',taxSavingPercentage]
                 // ['Salary Sacrifice', SSPercentage],
-                ['Final Amount With Salary Sacrifice', finalSSPercentage]
             ]
         }]
     },function (chart) {
@@ -167,7 +182,7 @@ app.service('DonutChartServiceHc',function(){
                                     .css({
                                         color: '#000',
                                         textAlign : 'left',
-                                        width: '130px',
+                                        width: '100px',
                                         // left : '100px'
                                         // position:'absolute'
                                     })
