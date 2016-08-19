@@ -4,12 +4,12 @@ var AgeCalculatorService = angular.module('AgeCalculatorService', [])
 
 var today = new Date();
 
-thisYear = today.getFullYear();
-thisMonth = 6;
-thisDay = 1;
-birthYear = dateBirth.getFullYear();
-birthMonth = dateBirth.getMonth();
-birthDay = dateBirth.getDate();
+var thisYear = today.getFullYear();
+var thisMonth = 6;
+var thisDay = 1;
+var birthYear = dateBirth.getFullYear();
+var birthMonth = dateBirth.getMonth();
+var birthDay = dateBirth.getDate();
 
 var age = thisYear - birthYear;
 

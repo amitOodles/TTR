@@ -1,15 +1,19 @@
 //var WithSSCalculatorService = angular.module('WithSSCalculatorService', [])
 app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
-    this.getResults = function(dob,datePension,currentSalaryExcludeSuper,beforeTTR,
-      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay){
-        var financialYear=datePension.getFullYear()+1;
+    this.getResults = function(age,fy,currentSalaryExcludeSuper,beforeTTR,
+      taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay,maxTHPCalculation){
 
         var nrpSqrt = Math.sqrt(1 + (netReturnInPension/100)) - 1;
 
         var cses =  currentSalaryExcludeSuper;
 
-        var age = AgeCalculator.getAge(dob);
+        var datePension =  new Date;
+            datePension.setYear(fy);
+            datePension.setDate(2);
+            datePension.setMonth(5);
 
+        // var age = AgeCalculator.getAge(dob,datePension.getFullYear());
+         
         var concessionalContributionCap ;
 
         if(age < 49){
@@ -24,17 +28,15 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var excessContributionTax = 0.32;
 
-        var totalEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
-
-        var validEmployerContribution;
+        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
 
         var upperSS;
 
-        if(totalEmployerContribution >= 19307.80){
-          validEmployerContribution = 19307.80;
-        }else{
-          validEmployerContribution = totalEmployerContribution;
-        }
+        // if(totalEmployerContribution >= 19307.80){
+        //   validEmployerContribution = 19307.80;
+        // }else{
+        //   validEmployerContribution = totalEmployerContribution;
+        // }
 
         upperSS = concessionalContributionCap - validEmployerContribution;
 
@@ -60,7 +62,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var changeSS = true;
 
-        var maxFinalValue = 0;
+        var maxFinalValue = 0; 
 
         var finalTakeHome = 0;
 
@@ -128,7 +130,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var finalValue = takeHomePayment + pensionEndBalance + accumulationEndBalance;
 
-        if(finalValue > maxFinalValue){
+        if(finalValue >= maxFinalValue){
           //console.log("changing final value from" + maxFinalValue +"to" + finalValue);
           maxFinalValue = finalValue;
           //console.log("changing thp value from" + finalTakeHome +"to" + takeHomePayment);
@@ -144,17 +146,25 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         }
 
+        // if(takeHomePayment >= minTakeHomePay && maxTHP){
+        //   finalTakeHome = takeHomePayment;
+        // }
+
       }
       }
+      if(maxTHPCalculation){return finalTakeHome}else{
       return [finalTakeHome,finalAccumulationEndBalance,maxFinalValue,finalDD,finalSS,unattainableTHP];
+    }
       };
 
+      this.maxTakeHome = function(age,fy,currentSalaryExcludeSuper,beforeTTR,taxFreePercent){
+        var cses = currentSalaryExcludeSuper;
 
-
-
-      this.checkContribution=function(cses,dob,ss,datePension){
-        var age = AgeCalculator.getAge(dob);
-
+        var datePension =  new Date;
+            datePension.setYear(fy);
+            datePension.setDate(2);
+            datePension.setMonth(5);
+         
         var concessionalContributionCap ;
 
         if(age < 49){
@@ -163,25 +173,125 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
           concessionalContributionCap = 35000;
         }
 
-        var concessionalContribution = SGCRate.calculateSGCRate(datePension)*cses;
+        // var accumulationBeginningBalance = 0;
 
-        var employerContributionMax;
+        var concessionalContributionTax = 0.15;
 
-        if(concessionalContribution >= concessionalContributionCap){
-          employerContributionMax = 19307.80;
+        var excessContributionTax = 0.32;
+
+        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
+
+        var upperSS;
+
+        upperSS = concessionalContributionCap - validEmployerContribution;
+
+        //console.log(upperSS);
+
+        var pensionStartBalance = beforeTTR;
+
+        var assesablePensionIncome;
+
+        var taxableIncome;
+
+        var tmLevi;
+
+        var rebate;
+
+        var afterTaxIncome;
+
+        var exemptPensionIncome;
+
+        var takeHomePayment;
+
+        var drawdownValue;
+
+        // var changeSS = true;
+
+        var maxFinalValue = 0; 
+
+        var finalTakeHome = 0;
+
+        // var finalSS = 0;
+
+        // var finalDD = 0;
+
+        // var finalAccumulationEndBalance = 0;
+
+        // var unattainableTHP =  true;
+
+        for(i=400;i<=1000;i=i+5){
+          for(ss=0;ss<=upperSS;ss=ss+10){
+
+        var concessionalContribution = validEmployerContribution + ss;
+
+        drawdownValue = i/10000;
+
+        if(age < 60){
+          assessablePensionIncome = beforeTTR * drawdownValue * (1 - (taxFreePercent/100));
         }else{
-          employerContributionMax = concessionalContribution;
+          assessablePensionIncome = 0;
         }
-        var totalContribution = ss + employerContributionMax;
-        //console.log(totalContribution);
 
-       var maxSalarySacrifice = concessionalContributionCap - employerContributionMax;
+        taxableIncome = cses - ss + assessablePensionIncome;
 
-        if(totalContribution <= concessionalContributionCap){
-          return [false,maxSalarySacrifice];
+        tmLevi = TaxRateCalculator.getTaxRate(taxableIncome) * (taxableIncome
+           + 1 - TaxRateCalculator.getLowerBoundValue(taxableIncome))
+         + TaxRateCalculator.getTaxBase(taxableIncome);
+
+        rebate = assessablePensionIncome * 0.15;
+
+        afterTaxIncome = taxableIncome - tmLevi + rebate;
+
+        if(age <60){
+          exemptPensionIncome =  beforeTTR * drawdownValue * (taxFreePercent/100);
         }else{
-          return [true,maxSalarySacrifice];
+          exemptPensionIncome = beforeTTR * drawdownValue;
         }
-      }
+
+        takeHomePayment = afterTaxIncome + exemptPensionIncome;
+
+        if(takeHomePayment >= finalTakeHome){
+          finalTakeHome = takeHomePayment;
+        }
+        }
+        }
+        return finalTakeHome;
+        }
+
+
+
+
+
+      // this.checkContribution=function(cses,dob,ss,datePension){
+      //   var age = AgeCalculator.getAge(dob);
+
+      //   var concessionalContributionCap ;
+
+      //   if(age < 49){
+      //     concessionalContributionCap = 30000;
+      //   }else{
+      //     concessionalContributionCap = 35000;
+      //   }
+
+      //   var concessionalContribution = SGCRate.calculateSGCRate(datePension)*cses;
+
+      //   var employerContributionMax;
+
+      //   if(concessionalContribution >= concessionalContributionCap){
+      //     employerContributionMax = 19307.80;
+      //   }else{
+      //     employerContributionMax = concessionalContribution;
+      //   }
+      //   var totalContribution = ss + employerContributionMax;
+      //   //console.log(totalContribution);
+
+      //  var maxSalarySacrifice = concessionalContributionCap - employerContributionMax;
+
+      //   if(totalContribution <= concessionalContributionCap){
+      //     return [false,maxSalarySacrifice];
+      //   }else{
+      //     return [true,maxSalarySacrifice];
+      //   }
+      // }
 
 }]);

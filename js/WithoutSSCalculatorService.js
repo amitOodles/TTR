@@ -1,15 +1,22 @@
 
 //var WithoutSSCalculatorService = angular.module('WithoutSSCalculatorService', [])
-app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxRateCalculator,SGCRate){
-        this.getFinalAmount = function (age,datePension,currentSalaryExcludeSuper,beforeTTR,taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay) {
+app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function (TaxRateCalculator,SGCRate,AgeCalculator){
+        this.getFinalAmount = function (age,fy,currentSalaryExcludeSuper,beforeTTR,taxFreePercent,netReturnInAccumulation,netReturnInPension,minTakeHomePay) {
+            
+            var datePension =  new Date;
+            datePension.setYear(fy);
+            datePension.setDate(2);
+            datePension.setMonth(5);
+
             taxFreePercent/=100;
             netReturnInAccumulation/=100;
             netReturnInPension/=100;
             var concessionalContributionTax=0.15;
             var excessContributionTax=0.32;
+            // var age = AgeCalculator.getAge(dob,datePension.getFullYear());
             var concessionalContributionCap;
             concessionalContributionCap=age<49?30000:35000;
-            var financialYear=datePension.getFullYear()+1;
+            // var financialYear=datePension.getFullYear()+1;s
             var drawdownValue=0.04;
             var salaryExcludeSGC=currentSalaryExcludeSuper;
             var assessablePensionIncome=0;
@@ -33,17 +40,17 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function (TaxR
             var investmentIncome=accumulateBeinningBalance*netReturnInAccumulation+netConcessionalContribution*(netReturnInAccumulation/2);
             var accumulationEndBalance=accumulateBeinningBalance+netConcessionalContribution+investmentIncome;
             var finalAmount=accumulationEndBalance+takeHomePay+pensionEndBalance;
-            console.log("salaryExcludeSGC:",salaryExcludeSGC);
-            console.log("concessionalContribution:",concessionalContribution);
-            console.log("taxableIncome:",taxableIncome);
-            console.log("taxMediLevy:",taxMediLevy);
-            console.log("afterTaxReturn:",afterTaxReturn);
-            console.log("takeHomePay:",takeHomePay);
-            console.log("accumulateBeinningBalance:",accumulateBeinningBalance);
-            console.log("netConcessionalContribution:",netConcessionalContribution);
-            console.log("investmentIncome:",investmentIncome);
-            console.log("accumulationEndBalance:",accumulationEndBalance);
-            console.log("finalAmount:",finalAmount);
+            // console.log("salaryExcludeSGC:",salaryExcludeSGC);
+            // console.log("concessionalContribution:",concessionalContribution);
+            // console.log("taxableIncome:",taxableIncome);
+            // console.log("taxMediLevy:",taxMediLevy);
+            // console.log("afterTaxReturn:",afterTaxReturn);
+            // console.log("takeHomePay:",takeHomePay);
+            // console.log("accumulateBeinningBalance:",accumulateBeinningBalance);
+            // console.log("netConcessionalContribution:",netConcessionalContribution);
+            // console.log("investmentIncome:",investmentIncome);
+            // console.log("accumulationEndBalance:",accumulationEndBalance);
+            // console.log("finalAmount:",finalAmount);
             return [takeHomePay,accumulationEndBalance,finalAmount];
             };
 
