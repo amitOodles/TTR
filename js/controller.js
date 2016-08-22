@@ -226,7 +226,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
      $scope.age = 42;
 
-    $scope.fy = 2016;
+    $scope.fy = 2017;
 
     $scope.cses = 80000;
 
@@ -354,7 +354,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      start: [$scope.beforeTTR],
      range: {
       'min': [0],
-      'max': [ 300000 ]
+      'max': [ 500000 ]
      },
     step : 500,
     format: wNumb({
