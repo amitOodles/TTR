@@ -226,7 +226,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
      $scope.age = 42;
 
-    $scope.fy = 2016;
+    $scope.fy = 2017;
 
     $scope.cses = 80000;
 
@@ -259,13 +259,21 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     $scope.submitForm2 = function(isValid){
 
       if(isValid){
-        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age,
-          $scope.fy,$scope.cses,$scope.beforeTTR,
-          $scope.tfp,$scope.nra,$scope.nrp,$scope.thp);
+
+      var cses1=$scope.cses.replace("$","").replace(",","");
+      var beforeTTR1=$scope.beforeTTR.replace("$","").replace(",","");
+      var tfp1=$scope.tfp.replace("%","").replace(",","");
+      var nra1=$scope.nra.replace("%","").replace(",","");
+      var nrp1=$scope.nrp.replace("%","").replace(",","");
+      var thp1=$scope.thp.replace("$","").replace(",","");
+
+/*Number(cses1),Number(beforeTTR1),Number(tfp1),Number(nra1),Number(nrp1),Number(thp1)*/
+
+        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),
+          Number(tfp1),Number(nra1),Number(nrp1),Number(thp1));
         // console.log("max thp ss is",$scope.maxTakeHomeSS());
         $scope.resultWithSS = WithSSCalculator.getResults($scope.age,
-          $scope.fy,$scope.cses,$scope.beforeTTR,
-          $scope.tfp,$scope.nra,$scope.nrp,$scope.thp,false);
+          $scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1),Number(nra1),Number(nrp1),Number(thp1),false);
         $scope.unattainableTHP = $scope.resultWithSS[5];
         $scope.attainableTHP = !$scope.unattainableTHP;
         $scope.favourableDD = $scope.resultWithSS[3];
@@ -335,7 +343,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      },
     step : 500,
     format: wNumb({
-     decimals: 0,
+      decimals: 0,
+      prefix: '$',
+      thousand: ','
     }),
     connect : 'lower'
     });
@@ -344,11 +354,13 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      start: [$scope.beforeTTR],
      range: {
       'min': [0],
-      'max': [ 300000 ]
+      'max': [ 500000 ]
      },
     step : 500,
     format: wNumb({
-     decimals: 0,
+      decimals: 0,
+      prefix: '$',
+      thousand: ','
     }),
     connect : 'lower'
     });
@@ -361,7 +373,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      },
     step : 500,
     format: wNumb({
-     decimals: 0,
+      decimals: 0,
+      prefix: '$',
+      thousand: ','
     }),
     connect : 'lower'
     });
@@ -374,7 +388,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      },
     step : 1,
     format: wNumb({
-     decimals: 0,
+      decimals: 0,
+      postfix: '%',
+      thousand: ','
     }),
     connect : 'lower'
     });
@@ -387,23 +403,28 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      },
     step : 1,
     format: wNumb({
-     decimals: 0,
+      decimals: 0,
+      postfix: '%',
+      thousand: ','
     }),
     connect : 'lower'
     });
 
     noUiSlider.create(nrpSlider, {
-     start: [$scope.nra],
+     start: [$scope.nrp],
      range: {
       'min': [ 0 ],
       'max': [ 100 ]
      },
     step : 1,
     format: wNumb({
-     decimals: 0,
+      decimals: 0,
+      postfix: '%',
+      thousand: ','
     }),
     connect : 'lower'
     });
+
 
     var ageInput = document.getElementById('ageInput'),
     fyInput = document.getElementById('fyInput'),
@@ -414,8 +435,58 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     nrpInput = document.getElementById('nrpInput'),
     thpInput = document.getElementById('thpInput');
 
+
+
+
+    ageSlider.noUiSlider.on('update', function( values, handle ) {
+        ageInput.value = values[handle];
+        $scope.age = Number(values[handle]);
+    });
+    fySlider.noUiSlider.on('update', function( values, handle ) {
+        fyInput.value = values[handle];
+        $scope.fy = Number(values[handle]);
+    });
+    csesSlider.noUiSlider.on('update', function( values, handle ) {
+        csesInput.value = values[handle];
+        $scope.cses = (values[handle]);
+    });
+    beforeTTRSlider.noUiSlider.on('update', function( values, handle ) {
+        beforeTTRInput.value = values[handle];
+        $scope.beforeTTR = (values[handle]);
+    });
+    thpSlider.noUiSlider.on('update', function( values, handle ) {
+        thpInput.value = values[handle];
+        $scope.thp = (values[handle]);
+    });
+    tfpSlider.noUiSlider.on('update', function( values, handle ) {
+        tfpInput.value = values[handle];
+        $scope.tfp = (values[handle]);
+    });
+    nraSlider.noUiSlider.on('update', function( values, handle ) {
+        nraInput.value = values[handle];
+        $scope.nra = (values[handle]);
+    });
+    nrpSlider.noUiSlider.on('update', function( values, handle ) {
+        nrpInput.value = values[handle];
+        $scope.nrp = (values[handle]);
+    });
+
+
+
+
     $scope.calculateMaxTHPSS = function(){
-    return WithSSCalculator.maxTakeHome($scope.age,$scope.fy,$scope.cses,$scope.beforeTTR,$scope.tfp);
+      console.log("yooyoyoy",$scope.cses);
+      var cses1=$scope.cses.replace("$","").replace(",","");
+      var beforeTTR1=$scope.beforeTTR.replace("$","").replace(",","");
+      var tfp1=$scope.tfp.replace("%","").replace(",","");
+      var nra1=$scope.nra.replace("%","").replace(",","");
+      var nrp1=$scope.nrp.replace("%","").replace(",","");
+      var thp1=$scope.thp.replace("$","").replace(",","");
+        //var age2=age1.replace(",","");
+        console.log("yooyoyoy",cses1,beforeTTR1,tfp1,nra1,nrp1,thp1);
+
+      console.log("yumtum",$scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
+    return WithSSCalculator.maxTakeHome($scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
     }
 
     $scope.changeMaxTarget = function(endValue){
@@ -465,53 +536,53 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
     csesSlider.noUiSlider.on('set', function( values, handle ) {
     csesInput.value = values[handle];
-    $scope.cses = Number(values[handle]);
+    $scope.cses = (values[handle]);
     $scope.changeMaxTarget($scope.calculateMaxTHPSS());
     $scope.submitForm2(true);
     });
 
     ageSlider.noUiSlider.on('set', function( values, handle ) {
     ageInput.value = values[handle];
-    $scope.age = Number(values[handle]);
+    $scope.age = (values[handle]);
     $scope.changeMaxTarget($scope.calculateMaxTHPSS());
     $scope.submitForm2(true);
     });
 
     fySlider.noUiSlider.on('set', function( values, handle ) {
     fyInput.value = values[handle];
-    $scope.fy = Number(values[handle]);
+    $scope.fy = (values[handle]);
     $scope.submitForm2(true);
     });
 
     beforeTTRSlider.noUiSlider.on('set', function( values, handle ) {
     beforeTTRInput.value = values[handle];
-    $scope.beforeTTR = Number(values[handle]);
+    $scope.beforeTTR = (values[handle]);
     $scope.changeMaxTarget($scope.calculateMaxTHPSS());
     $scope.submitForm2(true);
     });
 
     tfpSlider.noUiSlider.on('set', function( values, handle ) {
     tfpInput.value = values[handle];
-    $scope.tfp = Number(values[handle]);
+    $scope.tfp = (values[handle]);
     $scope.changeMaxTarget($scope.calculateMaxTHPSS());
     $scope.submitForm2(true);
     });
 
     nraSlider.noUiSlider.on('set', function( values, handle ) {
     nraInput.value = values[handle];
-    $scope.nra = Number(values[handle]);
+    $scope.nra = (values[handle]);
     $scope.submitForm2(true);
     });
 
     nrpSlider.noUiSlider.on('set', function( values, handle ) {
     nrpInput.value = values[handle];
-    $scope.nrp = Number(values[handle]);
+    $scope.nrp = (values[handle]);
     $scope.submitForm2(true);
     });
 
     thpSlider.noUiSlider.on('set', function( values, handle ) {
     thpInput.value = values[handle];
-    $scope.thp = Number(values[handle]);
+    $scope.thp = (values[handle]);
     $scope.submitForm2(true);
     });
 
