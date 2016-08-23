@@ -535,6 +535,14 @@ button:focus{
     font-weight: bold;
     margin-top: 5px;
 }
+
+.res-1  .row{
+  font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 7px;
+
+}
+
 .res-2 > .col-xs-12 > .row > .col-xs-6{
     padding: 5px 5px 5px 0;
 }
@@ -546,6 +554,8 @@ button:focus{
 .res-value{
     font-size: 16px;
         text-align: right;
+        padding-left: 0;
+        padding-right: 5px;
 }
 .res-diff{
     /*font-size: 36px;*/
@@ -556,12 +566,14 @@ button:focus{
 .res-head{
     /*padding-top: 3px;*/
     /*padding-bottom: 3px;*/
+    padding-left: 0;
+    padding-right: 5px;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 .res-1 strong{
-    font-size: 14px;
+    font-size: 16px;
     text-transform: capitalize;
 }
 .res-2 strong{
