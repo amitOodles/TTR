@@ -12,7 +12,7 @@ app.service('DonutChartServiceHc',function(){
     // var SSPercentage = optimisedSS/total * 100;
 
     var length = $("#highcharts-6").width;
-    console.log(length);
+    // console.log(length);
 
     //     // Make monochrome colors and set them as default for all pies
     // Highcharts.getOptions().plotOptions.pie.colors = (function () {

@@ -5,6 +5,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
   // $scope.formData = {};
   var initDate = new Date();
   initDate.setYear(1990);
+  initDate.setMonth(5);
   $scope.dob = initDate;
   // $scope.formData.datePension = new Date();
   // $scope.formData.datePension.setMonth(6);
@@ -470,7 +471,6 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     });
 
     $scope.calculateMaxTHPSS = function(){
-      console.log("yooyoyoy",$scope.cses);
       var cses1=$scope.cses.replace("$","").replace(",","");
       var beforeTTR1=$scope.beforeTTR.replace("$","").replace(",","");
       var tfp1=$scope.tfp.replace("%","").replace(",","");
@@ -478,9 +478,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       var nrp1=$scope.nrp.replace("%","").replace(",","");
       var thp1=$scope.thp.replace("$","").replace(",","");
         //var age2=age1.replace(",","");
-        console.log("yooyoyoy",cses1,beforeTTR1,tfp1,nra1,nrp1,thp1);
 
-      console.log("yumtum",$scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
+      // console.log("yumtum",$scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
     return WithSSCalculator.maxTakeHome($scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
     }
 
@@ -500,7 +499,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
      $scope.ageChange =  function(){
        var dobText = document.getElementById("dobText"); 
-       var date_regex = /^\d{1,2}\/\d{1,2}\/\d{4}$/ ;
+       // var date_regex = /^\d{1,2}\/\d{1,2}\/\d{4}$/ ;
+       var date_regex = /^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/  ;
        var correct =  date_regex.test(dobText.value);
        if(!correct){
         $scope.dob = initDate;
@@ -530,7 +530,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
     fyInput.addEventListener("change",function(){
       fySlider.noUiSlider.set($scope.fy);
-      $scope.changeAge();
+      $scope.ageChange();
     })
 
     beforeTTRInput.addEventListener("change",function(){
