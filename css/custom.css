@@ -263,10 +263,12 @@ span.pension-note{
 }
 
 .err-border .input-group-addon{
-	border-color: #ff4d4d;
+	border-color: #66afe9;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
 .err-border .form-control{
-	border-color: #ff4d4d;
+	border-color: #66afe9;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
 
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
@@ -365,7 +367,7 @@ button:focus{
   /*and (min-device-width: 320px)*/
   and (max-device-width: 321px){
 		ul.uib-datepicker-popup{
-			left:-140px !important;
+			/*left:-140px !important;*/
 		}
 	}
 
@@ -374,7 +376,7 @@ button:focus{
 		and (max-device-width: 360px)
 		{
 			ul.uib-datepicker-popup{
-				left:-120px !important;
+				/*left:-120px !important;*/
 			}
 	}
 
@@ -383,7 +385,7 @@ button:focus{
 			and (max-device-width: 399px)
 			{
 				ul.uib-datepicker-popup{
-					left:-110px !important;
+					/*left:-110px !important;*/
 				}
 		}
 
@@ -392,7 +394,7 @@ button:focus{
 				and (max-device-width: 450px)
 				{
 					ul.uib-datepicker-popup{
-						left:-80px !important;
+						/*left:-80px !important;*/
 					}
 			}
 
@@ -486,7 +488,7 @@ button:focus{
   /*and (min-device-width: 320px)*/
   and (max-device-width: 321px){
         ul.uib-datepicker-popup{
-            left:-140px !important;
+            /*left:-140px !important;*/
         }
     }
 
@@ -495,7 +497,7 @@ button:focus{
         and (max-device-width: 360px)
         {
             ul.uib-datepicker-popup{
-                left:-120px !important;
+                /*left:-120px !important;*/
             }
     }
 
@@ -504,7 +506,7 @@ button:focus{
             and (max-device-width: 399px)
             {
                 ul.uib-datepicker-popup{
-                    left:-110px !important;
+                    /*left:-110px !important;*/
                 }
         }
 
@@ -513,7 +515,7 @@ button:focus{
                 and (max-device-width: 450px)
                 {
                     ul.uib-datepicker-popup{
-                        left:-80px !important;
+                        /*left:-80px !important;*/
                     }
             }
 
@@ -903,4 +905,8 @@ float:right;
   font-family: "Roboto", Helvetica, Verdana, Arial, Sans-serif;
   font-weight : 300 !important;
   color : #444 !important;
+}
+
+.input-group-addon{
+  padding:4px 10px;
 }

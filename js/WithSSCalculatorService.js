@@ -10,7 +10,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
         var datePension =  new Date;
             datePension.setYear(fy);
             datePension.setDate(2);
-            datePension.setMonth(5);
+            datePension.setMonth(6);
 
         // var age = AgeCalculator.getAge(dob,datePension.getFullYear());
          
@@ -163,7 +163,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
         var datePension =  new Date;
             datePension.setYear(fy);
             datePension.setDate(2);
-            datePension.setMonth(5);
+            datePension.setMonth(6);
          
         var concessionalContributionCap ;
 
