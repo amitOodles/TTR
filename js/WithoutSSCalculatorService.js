@@ -6,7 +6,7 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator
             var datePension =  new Date;
             datePension.setYear(fy);
             datePension.setDate(2);
-            datePension.setMonth(5);
+            datePension.setMonth(6);
 
             taxFreePercent/=100;
             netReturnInAccumulation/=100;
