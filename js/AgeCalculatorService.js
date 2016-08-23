@@ -1,10 +1,10 @@
 var AgeCalculatorService = angular.module('AgeCalculatorService', [])
 .service('AgeCalculator', function (){
-    this.getAge = function (dateBirth) {
+    this.getAge = function (dateBirth,financialYear) {
 
-var today = new Date();
+// var today = new Date();
 
-var thisYear = today.getFullYear();
+var thisYear = financialYear;
 var thisMonth = 6;
 var thisDay = 1;
 var birthYear = dateBirth.getFullYear();

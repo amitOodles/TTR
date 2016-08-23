@@ -39,23 +39,39 @@
                      <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
 
                      <div class="row">
-                        <div class="col-xs-12 col-sm-6 form-heading">
+                        <div class="col-xs-8 col-sm-4 form-heading">
+                          Date Of Birth
+                          <div class="row">
+                           <div class="col-xs-12">
+                             <div class="form-group">
+                             <div class="input-group">
+                              <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
+                                 <input type="text" name="dob"
+                                    class="standard-input form-control" show-button-bar="false"
+                                    uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
+                                    datepicker-options="dateOptions" required close-text="Close" ng-change="ageChange()"
+                                    />
+                                 <span class="input-group-addon" ng-click="open1()">
+                                 <span class="glyphicon glyphicon-calendar"></span>
+                                 </span>
+                              </div>
+                             </div>
+                             </div>
+                           </div>  
+                        </div>
+                        <div class="col-xs-4 col-sm-2 form-heading">
                           Age
                           <div class="row">
-                           <div class="col-xs-4 col-sm-4">
+                           <div class="col-xs-12">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="number"  onClick="this.select();" class="form-control" id="ageInput" name="ageInput" ng-model="age">
+                             <input type="number"  onClick="this.select();" class="form-control" id="ageInput" name="ageInput" ng-model="age" disabled>
                              </div>
                              </div>
-                           <div class="col-xs-8 col-sm-8 form-group">
-                           <!-- <label></label> -->
-                              <div id="ageSlider" style="margin-top:8px;"></div>
-                           </div>
                            </div>  
                         </div>
                         <div class="col-xs-12 col-sm-6 form-heading">
-                          Financial Year
+                          Financial Year/Tax Year
                           <!-- TTR Strategy Implementation Year -->
                           <div class="row">
                            <div class="col-xs-4 col-sm-4">

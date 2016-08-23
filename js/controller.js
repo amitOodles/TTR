@@ -3,8 +3,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
   // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
 
   // $scope.formData = {};
-
-  // $scope.formData.dob = new Date();
+  var initDate = new Date();
+  initDate.setYear(1990);
+  $scope.dob = initDate;
   // $scope.formData.datePension = new Date();
   // $scope.formData.datePension.setMonth(6);
   // $scope.formData.datePension.setDate(1);
@@ -252,6 +253,10 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     //       $scope.fy,$scope.cses,$scope.beforeTTR,
     //       $scope.tfp,$scope.nra,$scope.nrp,$scope.thp)[2];
 
+    $scope.ageChange =  function(){
+       $scope.age = AgeCalculator.getAge($scope.dob,$scope.fy);
+    }
+
     $scope.maxTHPSS = WithSSCalculator.getResults($scope.age,
           $scope.fy,$scope.cses,$scope.beforeTTR,
           $scope.tfp,$scope.nra,$scope.nrp,$scope.thp,true);
@@ -299,8 +304,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     }
     
 
-    var ageSlider = document.getElementById('ageSlider'),
-    fySlider = document.getElementById('fySlider'),
+    // var ageSlider = document.getElementById('ageSlider'),
+    var fySlider = document.getElementById('fySlider'),
     csesSlider = document.getElementById('csesSlider'),
     thpSlider = document.getElementById('thpSlider'),
     tfpSlider = document.getElementById('tfpSlider'),
@@ -309,18 +314,18 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     beforeTTRSlider = document.getElementById('beforeTTRSlider');
 
 
-    noUiSlider.create(ageSlider, {
-     start: [$scope.age],
-     range: {
-      'min': [  18 ],
-      'max': [ 65 ]
-     },
-    step : 1,
-    format: wNumb({
-     decimals: 0,
-    }),
-    connect : 'lower'
-    });
+    // noUiSlider.create(ageSlider, {
+    //  start: [$scope.age],
+    //  range: {
+    //   'min': [  18 ],
+    //   'max': [ 65 ]
+    //  },
+    // step : 1,
+    // format: wNumb({
+    //  decimals: 0,
+    // }),
+    // connect : 'lower'
+    // });
 
     noUiSlider.create(fySlider, {
      start: [$scope.fy],
@@ -438,13 +443,14 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
 
 
-    ageSlider.noUiSlider.on('update', function( values, handle ) {
-        ageInput.value = values[handle];
-        $scope.age = Number(values[handle]);
-    });
+    // ageSlider.noUiSlider.on('update', function( values, handle ) {
+    //     ageInput.value = values[handle];
+    //     $scope.age = Number(values[handle]);
+    // });
     fySlider.noUiSlider.on('update', function( values, handle ) {
         fyInput.value = values[handle];
         $scope.fy = Number(values[handle]);
+        $scope.ageChange();
     });
     csesSlider.noUiSlider.on('update', function( values, handle ) {
         csesInput.value = values[handle];
@@ -510,12 +516,13 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       thpSlider.noUiSlider.set($scope.thp);
     })
 
-    ageInput.addEventListener("change",function(){
-      ageSlider.noUiSlider.set($scope.age);
-    })
+    // ageInput.addEventListener("change",function(){
+    //   ageSlider.noUiSlider.set($scope.age);
+    // })
 
     fyInput.addEventListener("change",function(){
       fySlider.noUiSlider.set($scope.fy);
+      $scope.changeAge();
     })
 
     beforeTTRInput.addEventListener("change",function(){
@@ -541,12 +548,12 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     $scope.submitForm2(true);
     });
 
-    ageSlider.noUiSlider.on('set', function( values, handle ) {
-    ageInput.value = values[handle];
-    $scope.age = (values[handle]);
-    $scope.changeMaxTarget($scope.calculateMaxTHPSS());
-    $scope.submitForm2(true);
-    });
+    // ageSlider.noUiSlider.on('set', function( values, handle ) {
+    // ageInput.value = values[handle];
+    // $scope.age = (values[handle]);
+    // $scope.changeMaxTarget($scope.calculateMaxTHPSS());
+    // $scope.submitForm2(true);
+    // });
 
     fySlider.noUiSlider.on('set', function( values, handle ) {
     fyInput.value = values[handle];
