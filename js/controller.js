@@ -71,7 +71,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       // dateDisabled: disabled,
       formatYear: 'yy',
       // maxDate: new Date(2020, 5, 22),
-      // minDate: new Date(),
+      minDate: initDate,
       startingDay: 1,
       showWeeks: false
     };
@@ -252,10 +252,6 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     // var finalAmountSS = WithoutSSCalculator.getFinalAmount($scope.age,
     //       $scope.fy,$scope.cses,$scope.beforeTTR,
     //       $scope.tfp,$scope.nra,$scope.nrp,$scope.thp)[2];
-
-    $scope.ageChange =  function(){
-       $scope.age = AgeCalculator.getAge($scope.dob,$scope.fy);
-    }
 
     $scope.maxTHPSS = WithSSCalculator.getResults($scope.age,
           $scope.fy,$scope.cses,$scope.beforeTTR,
@@ -447,11 +443,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     //     ageInput.value = values[handle];
     //     $scope.age = Number(values[handle]);
     // });
-    fySlider.noUiSlider.on('update', function( values, handle ) {
-        fyInput.value = values[handle];
-        $scope.fy = Number(values[handle]);
-        $scope.ageChange();
-    });
+    
     csesSlider.noUiSlider.on('update', function( values, handle ) {
         csesInput.value = values[handle];
         $scope.cses = (values[handle]);
@@ -477,9 +469,6 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
         $scope.nrp = (values[handle]);
     });
 
-
-
-
     $scope.calculateMaxTHPSS = function(){
       console.log("yooyoyoy",$scope.cses);
       var cses1=$scope.cses.replace("$","").replace(",","");
@@ -495,7 +484,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     return WithSSCalculator.maxTakeHome($scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
     }
 
-    $scope.changeMaxTarget = function(endValue){
+        $scope.changeMaxTarget = function(endValue){
     console.log(endValue);
     thpSlider.noUiSlider.updateOptions({
     range: {
@@ -508,6 +497,25 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     }
     $scope.changeMaxTarget($scope.calculateMaxTHPSS());
     $scope.submitForm2(true);
+
+     $scope.ageChange =  function(){
+       var dobText = document.getElementById("dobText"); 
+       var date_regex = /^\d{1,2}\/\d{1,2}\/\d{4}$/ ;
+       var correct =  date_regex.test(dobText.value);
+       if(!correct){
+        $scope.dob = initDate;
+       }
+       $scope.age = AgeCalculator.getAge($scope.dob,$scope.fy);
+       $scope.changeMaxTarget($scope.calculateMaxTHPSS());
+    $scope.submitForm2(true);
+    }
+
+    fySlider.noUiSlider.on('update', function( values, handle ) {
+        fyInput.value = values[handle];
+        $scope.fy = Number(values[handle]);
+        $scope.ageChange();
+    });
+
     csesInput.addEventListener("change",function(){
       csesSlider.noUiSlider.set($scope.cses);
     })

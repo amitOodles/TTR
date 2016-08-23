@@ -44,17 +44,18 @@
                           <div class="row">
                            <div class="col-xs-12">
                              <div class="form-group">
-                             <div class="input-group">
+                             <div class="input-group" ng-class="{'err-border' : ttrForm.dob.$invalid }">
                               <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
-                                 <input type="text" name="dob"
+                                 <input type="text" name="dob" id="dobText" onClick="this.select();"
                                     class="standard-input form-control" show-button-bar="false"
                                     uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
-                                    datepicker-options="dateOptions" required close-text="Close" ng-change="ageChange()"
+                                    datepicker-options="dateOptions" required close-text="Close" ng-change="ageChange()" ng-model-options='{ debounce: 500 }'
                                     />
                                  <span class="input-group-addon" ng-click="open1()">
                                  <span class="glyphicon glyphicon-calendar"></span>
                                  </span>
                               </div>
+                              <!-- <span ng-show="ttrForm.dob.$invalid">Invalid Date Entered</span> -->
                              </div>
                              </div>
                            </div>  
