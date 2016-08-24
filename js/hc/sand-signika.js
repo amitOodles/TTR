@@ -17,6 +17,29 @@ Highcharts.createElement('link', {
 // 	proceed.call(this);
 // 	this.container.style.background = 'url(http://www.highcharts.com/samples/graphics/sand.png)';
 // });
+Highcharts.getOptions().plotOptions.pie.colors = (function () {
+         var colors = [],
+             base = Highcharts.getOptions().colors[0],
+             i;
+
+         for (i = 0; i < 10; i += 1) {
+
+             colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+         }
+         return colors;
+     }());
+
+     Highcharts.getOptions().plotOptions.column.colors = (function () {
+         var colors = [],
+             base = Highcharts.getOptions().colors[0],
+             i;
+
+         for (i = 0; i < 10; i += 1) {
+
+             colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+         }
+         return colors;
+     }());
 
 var perShapeGradient = {
             x1: 0,
@@ -27,7 +50,7 @@ var perShapeGradient = {
 Highcharts.theme = {
 	/*colors: ["#FE0001", "#F5DE1D", "#0271BB", "#039349", "#F5DE1D", "#F99321", "#eeaaee",
 		"#93278B", "#DF5353", "#7798BF", "#aaeeee"],*/
-		 colors: [{
+		 /*colors: [{
             linearGradient: perShapeGradient,
             stops: [
             	[0, '#1B2631'],
@@ -45,7 +68,7 @@ Highcharts.theme = {
                 [0, '#0E2421'],
                 [1, '#337F75']
                 ]},
-        ],
+        ],*/
 	chart: {
 		backgroundColor: null,
 		style: {
