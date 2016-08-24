@@ -455,6 +455,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     // })
 
     fyInput.addEventListener("change",function(){
+      if(this.value < 2015){
+        $scope.fy = 2017;
+      }
       fySlider.noUiSlider.set($scope.fy);
       // $scope.ageChange();
     })
