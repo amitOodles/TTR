@@ -524,18 +524,18 @@ button:focus{
     background-color: #6F7070!important;
     color: white;
     /*margin: 10px;*/
-    margin:10px 0px;
+    margin:4px 0px;
     padding: 10px;
-    margin-bottom: 0;
+    margin-bottom: 15px;
 }
 .res-2{
     background-color: #ddd;
-    margin: 10px 0px;
+    margin: 4px 0px;
     padding: 10px;
     color: #666;
     font-size: 11px;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
 .res-1  .row{
@@ -555,7 +555,7 @@ button:focus{
 }
 .res-value{
     font-size: 16px;
-        text-align: right;
+        /*text-align: right;*/
         padding-left: 0;
         padding-right: 5px;
 }
@@ -942,4 +942,12 @@ i{
 }
 .tooltip.top .tooltip-arrow {
 display: none;
+}
+
+@media print{
+
+  #chartBox{
+    padding-top: 35px;
+    margin-left: 10px;
+  }
 }
