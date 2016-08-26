@@ -24,7 +24,7 @@ Highcharts.getOptions().plotOptions.pie.colors = (function () {
 
          for (i = 0; i < 10; i += 1) {
 
-             colors.push(Highcharts.Color(base).brighten((i-2)/7).get());
+             colors.push(Highcharts.Color(base).brighten((i-3)/7).get());
          }
          return colors;
      }());
@@ -36,7 +36,7 @@ Highcharts.getOptions().plotOptions.pie.colors = (function () {
 
          for (i = 0; i < 10; i += 1) {
 
-             colors.push(Highcharts.Color(base).brighten((i-2)/7).get());
+             colors.push(Highcharts.Color(base).brighten((i-3)/7).get());
          }
          return colors;
      }());
