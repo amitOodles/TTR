@@ -36,7 +36,7 @@
                         <span class="title-wrapper">Your Details</span>
                         <div class="otrp-clear"></div>
                      </div>
-                     <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
+                     <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm2(ttrForm.$valid)">
                         <div class="row">
                            <div class="col-xs-8 col-sm-4 form-heading">
                               Date Of Birth
@@ -48,8 +48,10 @@
                                           <input type="text" name="dob" id="dobText" onClick="this.select();"
                                              class="standard-input form-control" show-button-bar="false"
                                              uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
-                                             datepicker-options="dateOptions" required close-text="Close" ng-change="ageChange()" ng-model-options='{ debounce: 800 }'
+                                             datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange()" max-mode="maxDate" 
                                              />
+                                             <!-- ng-model-options="{ debounce: { default: 500, blur: 0 } } -->
+                                             <!-- ng-model-options='{ debounce: 2000,blur:0 }' -->
                                           <span class="input-group-addon" ng-click="open1()">
                                           <span class="glyphicon glyphicon-calendar"></span>
                                           </span>

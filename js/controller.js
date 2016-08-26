@@ -2,9 +2,15 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
 
   $('#tooltip').tooltip();
-  var initDate = new Date();
-  initDate.setYear(1990);
-  initDate.setMonth(5);
+
+  $scope.fy = 2017;
+
+  var nd = new Date();
+  nd.setYear($scope.fy);
+  nd.setMonth(6);
+  nd.setDate(1);
+  var initDate = nd;
+  initDate.setYear(1997);
   $scope.dob = initDate;
   $scope.chartOneOpen = true;
   $scope.infoShow=function(value){
@@ -19,17 +25,20 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
   }
 
   $scope.firstDP = function(){
-    $scope.dateOptions.maxDate = new Date();
+    $scope.dateOptions.maxDate = new Date(1997,6,1);
+    // console.log($scope.dateOptions.maxDate);
+    $scope.dateOptions.minDate = new Date(1950,6,1);
+    // console.log($scope.dateOptions.minDate);
   }
 
   $scope.secondDp = function(){
     delete $scope.dateOptions.maxDate;
   }
 
-  $scope.today = function(){
-      $scope.dt = new Date();
-    };
-    $scope.today();
+  // $scope.today = function(){
+  //     $scope.dt = new Date();
+  //   };
+  //   $scope.today();
 
     $scope.clear = function() {
       $scope.dt = null;
@@ -37,7 +46,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
     $scope.inlineOptions = {
       customClass: getDayClass,
-      minDate: new Date(),
+      // minDate: initDate,
       showWeeks: true
     };
 
@@ -45,17 +54,17 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       // dateDisabled: disabled,
       formatYear: 'yy',
       // maxDate: new Date(2020, 5, 22),
-      minDate: initDate,
+      // minDate: initDate,
       startingDay: 1,
       showWeeks: false
     };
 
-    $scope.toggleMin = function() {
-      $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-      $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
-    };
+    // $scope.toggleMin = function() {
+    //   $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+    //   $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+    // };
 
-    $scope.toggleMin();
+    // $scope.toggleMin();
 
     $scope.open1 = function() {
       $scope.popup1.opened = true;
