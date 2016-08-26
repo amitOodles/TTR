@@ -10,7 +10,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
   nd.setMonth(6);
   nd.setDate(1);
   var initDate = nd;
-  initDate.setYear(1997);
+  initDate.setYear(1998);
   $scope.dob = initDate;
   $scope.chartOneOpen = true;
   $scope.infoShow=function(value){
@@ -25,10 +25,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
   }
 
   $scope.firstDP = function(){
-    $scope.dateOptions.maxDate = new Date(1997,6,1);
-    // console.log($scope.dateOptions.maxDate);
-    $scope.dateOptions.minDate = new Date(1950,6,1);
-    // console.log($scope.dateOptions.minDate);
+   $scope.dateOptions.maxDate = new Date(1998,11,31);
+   $scope.dateOptions.minDate = new Date(1950,0,1);
   }
 
   $scope.secondDp = function(){
@@ -263,7 +261,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     noUiSlider.create(fySlider, {
      start: [$scope.fy],
      range: {
-      'min': [ 2015 ],
+      'min': [ 2017 ],
       'max': [ 2025 ]
      },
     step : 1,
@@ -434,11 +432,24 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     $scope.submitForm2(true);
 
      $scope.ageChange =  function(){
-       var dobText = document.getElementById("dobText"); 
-       // var date_regex = /^\d{1,2}\/\d{1,2}\/\d{4}$/ ;
-       var date_regex = /^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/  ;
+       var dateString = dobText.value;
+       var dateArr = dateString.split("/");
+      
+       var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-8])$/;
        var correct =  date_regex.test(dobText.value);
-       if(!correct){
+       var fd = new Date(dateArr[2],dateArr[1]-1,dateArr[0]);
+       // console.log("fd",fd);
+       console.log("correct",correct);
+       // console.log("ins of",fd instanceof Date);
+       // console.log("is Finite",isFinite(fd));
+       
+       // console.log("date",new Date(dateArr[2],dateArr[1]-1,dateArr[0]));
+       // console.log(finalDs instanceof Date);
+       console.log("c1",(fd.getMonth() + 1),Number(dateArr[1]));
+       console.log("c2",fd.getDate(),Number(dateArr[0]));
+       if(((fd.getMonth() + 1) === Number(dateArr[1]) && fd.getDate() === Number(dateArr[0])) && correct ){
+        $scope.dob = fd;
+       }else{
         $scope.dob = initDate;
        }
        $scope.age = AgeCalculator.getAge($scope.dob,$scope.fy);
@@ -464,7 +475,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     // })
 
     fyInput.addEventListener("change",function(){
-      if(this.value < 2015){
+      if(this.value < 2017){
         $scope.fy = 2017;
       }
       fySlider.noUiSlider.set($scope.fy);
