@@ -264,11 +264,11 @@
                               <div class="col-xs-8 col-sm-12 res-head">Without Salary Sacrifice,you save</div>
                               <div class="col-xs-4 col-sm-12 res-value" >{{ resultWithoutSS[2] -resultWithSS[2] | currency }}</div>
                            </div>
-                           <div class="row dd">
+                           <div class="row dd" ng-show="needSS">
                               <div class="col-xs-8 col-sm-12 res-head">Salary Sacrifice Amount</div>
                               <div class="col-xs-4 col-sm-12 res-value">{{favourableSS | currency}}</div>
                            </div>
-                           <div class="row dd">
+                           <div class="row dd" ng-show="needSS">
                               <div class="col-xs-8 col-sm-12 res-head">Drawdown Percentage</div>
                               <div class="col-xs-4 col-sm-12 res-value">{{favourableDD * 100}}%</div>
                            </div>
