@@ -17,7 +17,7 @@ Highcharts.createElement('link', {
 // 	proceed.call(this);
 // 	this.container.style.background = 'url(http://www.highcharts.com/samples/graphics/sand.png)';
 // });
-Highcharts.getOptions().plotOptions.pie.colors = (function () {
+/*Highcharts.getOptions().plotOptions.pie.colors = (function () {
          var colors = [],
              base = Highcharts.getOptions().colors[0],
              i;
@@ -46,8 +46,12 @@ var perShapeGradient = {
             y1: 0,
             x2: 1,
             y2: 0
-        };
+        };*/
 Highcharts.theme = {
+			//colors: ["#3f7b82","#8bc3b9", "#FFBC75"];
+		 colors: ["#7CB5EC","#90ed7d","#FFBC75"],
+	 //colors: ["#8298a8","#a5d0d7", "#d0cbb6",  "#d7b0ac"], 
+	// colors: ["#7c8f78","#5f526a","#6f8266","#c0b6c1"],	
 	/*colors: ["#FE0001", "#F5DE1D", "#0271BB", "#039349", "#F5DE1D", "#F99321", "#eeaaee",
 		"#93278B", "#DF5353", "#7798BF", "#aaeeee"],*/
 		 /*colors: [{

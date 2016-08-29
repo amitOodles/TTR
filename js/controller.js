@@ -1,8 +1,10 @@
 app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartServiceHc','DonutChartServiceHc',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartServiceHc,DonutChartServiceHc){
 
-
+  String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.split(search).join(replacement);
+    };
   $('#tooltip').tooltip();
-
   $scope.fy = 2017;
 
   var nd = new Date();
@@ -197,7 +199,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       if(isValid){
 
       var cses1=$scope.cses.replace("$","").replace(",","");
-      var beforeTTR1=$scope.beforeTTR.replace("$","").replace(",","");
+      var beforeTTR1=$scope.beforeTTR.replace("$","").replaceAll(",","");
       var tfp1=$scope.tfp.replace("%","").replace(",","");
       var nra1=$scope.nra.replace("%","").replace(",","");
       var nrp1=$scope.nrp.replace("%","").replace(",","");
@@ -290,9 +292,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      start: [$scope.beforeTTR],
      range: {
       'min': [0],
-      'max': [ 500000 ]
+      'max': [ 10000000 ]
      },
-    step : 500,
+    step : 1000,
     format: wNumb({
       decimals: 0,
       prefix: '$',
@@ -404,9 +406,10 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
         $scope.nrp = (values[handle]);
     });
 
+     
     $scope.calculateMaxTHPSS = function(){
       var cses1=$scope.cses.replace("$","").replace(",","");
-      var beforeTTR1=$scope.beforeTTR.replace("$","").replace(",","");
+      var beforeTTR1=$scope.beforeTTR.replace("$","").replaceAll(",","");
       var tfp1=$scope.tfp.replace("%","").replace(",","");
       var nra1=$scope.nra.replace("%","").replace(",","");
       var nrp1=$scope.nrp.replace("%","").replace(",","");

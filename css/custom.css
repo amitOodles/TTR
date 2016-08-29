@@ -953,3 +953,15 @@ display: none;
 }
 
 .tooltip.in{opacity:1!important;}
+
+.largeWidth{
+  margin-top: 35px !important;
+}
+/*.highcharts-container{
+  padding-top: 10px !important;
+}
+*/
+svg{
+  padding-top: 10px !important;
+}
+
