@@ -1,4 +1,4 @@
-app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartServiceHc','DonutChartServiceHc',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartServiceHc,DonutChartServiceHc){
+app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartServiceHc','DonutChartServiceHc','PdfMaker',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartServiceHc,DonutChartServiceHc,PdfMaker){
 
   String.prototype.replaceAll = function(search, replacement) {
         var target = this;
@@ -552,6 +552,11 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     thpInput.value = values[handle];
     $scope.thp = (values[handle]);
     $scope.submitForm2(true);
+    });
+
+    document.getElementById("download").addEventListener("click",function(){
+    console.log("phit");
+      PdfMaker.createChart($scope.dob,$scope.age,$scope.fy,$scope.cses,$scope.nra,$scope.tfp,$scope.beforeTTR,$scope.nrp,$scope.thp,$scope.resultWithoutSS,$scope.resultWithSS,$scope.needSS,$scope.favourableSS,$scope.favourableDD);
     });
 
     }]);

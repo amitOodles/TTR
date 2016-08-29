@@ -23,7 +23,7 @@
             </div>
             <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">              
                <button type="button" class="button print-icon" onclick="window.print()"></button>
-               <button type="button" class="button email-icon" title="Email" role="button" aria-controls="email-overlay"></button>
+               <button type="button" class="button email-icon" id="download" title="Email" role="button" aria-controls="email-overlay"></button>
                <button type="button" class="button info-icon" ng-click="infoShow(true)" title="Information"></button>
             </div>
          </div>
@@ -379,6 +379,15 @@
       <script src="js/hc/sand-signika.js" type="text/javascript"></script>
       <script src="js/hc/donutChartService.js" type="text/javascript"></script>
       <script src="js/hc/chartService.js" type="text/javascript"></script>
+      <!-- <script src="js/jsPDF-1.2.60/dist/jspdf.min.js"></script> -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta1/html2canvas.js"></script>
+      <script type="text/javascript" src="http://gabelerner.github.io/canvg/rgbcolor.js"></script> 
+      <script type="text/javascript" src="http://gabelerner.github.io/canvg/StackBlur.js"></script>
+      <script type="text/javascript" src="http://gabelerner.github.io/canvg/canvg.js"></script>
+      <script src="js/PdfMaker.js" type="text/javascript"></script>
       <script>
          $(document).ready(function() {
          $('.selectpicker').selectpicker({
