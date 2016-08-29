@@ -290,9 +290,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
      start: [$scope.beforeTTR],
      range: {
       'min': [0],
-      'max': [ 500000 ]
+      'max': [ 10000000 ]
      },
-    step : 500,
+    step : 1000,
     format: wNumb({
       decimals: 0,
       prefix: '$',

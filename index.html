@@ -19,7 +19,7 @@
       <div class="otrp-calculator container-fluid " ng-controller="TTRController" >
          <div class=" row title " >
             <div class="col-xs-8 col-sm-9 col-lg-9">
-               <h1>Optimisation of TTR Pension</h1>
+               <h1>Optimisation of Transition to Retirement Pension</h1>
             </div>
             <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">              
                <button type="button" class="button print-icon" onclick="window.print()"></button>
@@ -146,7 +146,7 @@
                            </div>
                            <div class="col-xs-12 col-sm-6 form-heading">
                               <!-- Before TTR -->
-                              Superannuation Balance As At The TTR Strategy Implementation Date
+                              Superannuation Balance As At The Transition to Retirement Strategy Implementation Date
                               <div class="row">
                                  <div class="col-xs-4 col-sm-4">
                                     <div class="form-group">
@@ -213,8 +213,8 @@
                      </div>
                      <div class="row">
                         <div class="col-xs-12" id="chartBox">
-                           <div id="container" ng-show="chartOneOpen" style="margin:0 auto;width: 327px; height: 400px;"></div>
-                           <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;width: 327px; height: 400px; padding-top: 35px;"></div>
+                           <div id="container" ng-show="chartOneOpen" style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}" ></div>
+                           <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;width: 327px; height: 365px; padding-top: 35px;" ng-class="{largeWidth: needSS}"></div>
                         </div>
                      </div>
                   </div>
