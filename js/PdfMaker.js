@@ -83,11 +83,11 @@ this.createChart = function(dob,age,fy,cses,nra,tfp,beforeTTR,nrp,thp,resultWith
           
           if(needSS){ 
            var columns3 = [
-          {title: "You save " + saving + " with salary sacrifice of " + moneyFormat.to(favourableSS) + ", at dropdown rate of " + favourableDD + " %" , dataKey: "name"},  
+          {title: "You save " + saving + " with salary sacrifice of " + moneyFormat.to(favourableSS) + ", at dropdown rate of " + favourableDD + " %." , dataKey: "name"},  
           ];
         }else{
           var columns3 = [
-          {title: "You save " + saving + " without a Salary Sacrifice",dataKey: "name"},  
+          {title: "You save " + saving + " without a Salary Sacrifice.",dataKey: "name"},  
           ];
         }
 
