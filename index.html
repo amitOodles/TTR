@@ -46,7 +46,7 @@
                                        <div class="input-group" ng-class="{'err-border' : ttrForm.dob.$invalid }">
                                           <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
                                           <input type="text" name="dob" id="dobText" onClick="this.select();"
-                                             class="standard-input form-control" show-button-bar="false"
+                                             class="standard-input form-control dob-input" show-button-bar="false"
                                              uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
                                              datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange()"
                                              />
@@ -82,7 +82,7 @@
                                        <input type="number"  onClick="this.select();" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
                                     </div>
                                  </div>
-                                 <div class="col-xs-8 col-sm-8 form-group">
+                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
                                     <!-- <label></label> -->
                                     <div id="fySlider" style="margin-top:8px;"></div>
                                  </div>
@@ -100,7 +100,7 @@
                                        <input type="text"   onClick="this.select();" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
                                     </div>
                                  </div>
-                                 <div class="col-xs-8 col-sm-8 form-group">
+                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
                                     <!-- <label></label> -->
                                     <div id="csesSlider" style="margin-top:8px;"></div>
                                  </div>
@@ -115,7 +115,7 @@
                                        <input type="text"  onClick="this.select();" class="form-control" id="nraInput" name="nraInput" ng-model="nra" >
                                     </div>
                                  </div>
-                                 <div class="col-xs-8 col-sm-8 form-group">
+                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
                                     <!-- <label></label> -->
                                     <div id="nraSlider" style="margin-top:8px;"></div>
                                  </div>
@@ -138,7 +138,7 @@
                                        <input type="text"  onClick="this.select();" class="form-control" id="tfpInput" name="tfpInput" ng-model="tfp">
                                     </div>
                                  </div>
-                                 <div class="col-xs-8 col-sm-8 form-group">
+                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
                                     <!-- <label></label> -->
                                     <div id="tfpSlider" style="margin-top:8px;"></div>
                                  </div>
@@ -154,7 +154,7 @@
                                        <input type="text"  onClick="this.select();" class="form-control" id="beforeTTRInput" name="beforeTTRInput" ng-model="beforeTTR" >
                                     </div>
                                  </div>
-                                 <div class="col-xs-8 col-sm-8 form-group">
+                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
                                     <!-- <label></label> -->
                                     <div id="beforeTTRSlider" style="margin-top:8px;"></div>
                                  </div>
@@ -171,7 +171,7 @@
                                        <input type="text"  onClick="this.select();" class="form-control" id="nrpInput" name="nrpInput" ng-model="nrp" >
                                     </div>
                                  </div>
-                                 <div class="col-xs-8 col-sm-8 form-group">
+                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
                                     <!-- <label></label> -->
                                     <div id="nrpSlider" style="margin-top:8px;"></div>
                                  </div>
@@ -187,7 +187,7 @@
                                        <input type="text"  onClick="this.select();" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
                                     </div>
                                  </div>
-                                 <div class="col-xs-8 col-sm-8 form-group">
+                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
                                     <!-- <label></label> -->
                                     <div id="thpSlider" style="margin-top:8px;"></div>
                                  </div>
