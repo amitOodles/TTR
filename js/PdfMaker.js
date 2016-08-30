@@ -4,12 +4,20 @@ this.createChart = function(dob,age,fy,cses,nra,tfp,beforeTTR,nrp,thp,resultWith
 
   var cdob = dob.toString().split(" ")[1] + " " + dob.toString().split(" ")[2] + " " + dob.toString().split(" ")[3];
   
+  var moneyFormat = wNumb({
+  mark: '.',
+  thousand: ',',
+  prefix: '$',
+  decimals: 2
+  // postfix: ' p.p.'
+  });
+
   var saving;
 
   if(needSS){
-    saving = resultWithSS[2] - resultWithoutSS[2]
+    saving = moneyFormat.to(resultWithSS[2] - resultWithoutSS[2]);
   }else{
-    saving = resultWithoutSS[2]-resultWithSS[2]};
+    saving = moneyFormat.to(resultWithoutSS[2]-resultWithSS[2])};
 
         var svgElements = $("#container").find('svg');
 
@@ -68,18 +76,18 @@ this.createChart = function(dob,age,fy,cses,nra,tfp,beforeTTR,nrp,thp,resultWith
           {title: "With Salary Sacrifice", dataKey: "ss"}, 
           ];
     var rows2 = [
-          { "name": "Take Home Money", "wss":resultWithoutSS[0], "ss":resultWithSS[0]},
-          { "name": "Accumulation End Balance", "wss":resultWithoutSS[1], "ss":resultWithSS[1]},
-          { "name": "Final Amount", "wss":resultWithoutSS[2], "ss":resultWithSS[2]},
+          { "name": "Take Home Money", "wss":moneyFormat.to(resultWithoutSS[0]), "ss":moneyFormat.to(resultWithSS[0])},
+          { "name": "Accumulation End Balance", "wss":moneyFormat.to(resultWithoutSS[1]), "ss":moneyFormat.to(resultWithSS[1])},
+          { "name": "Final Amount", "wss":moneyFormat.to(resultWithoutSS[2]), "ss":moneyFormat.to(resultWithSS[2])},
           ];
           
           if(needSS){ 
            var columns3 = [
-          {title: "You save $ " + saving + " with salary sacrifice of " + favourableSS + ", at dropdown rate of " + favourableDD + " %" , dataKey: "name"},  
+          {title: "You save " + saving + " with salary sacrifice of " + moneyFormat.to(favourableSS) + ", at dropdown rate of " + favourableDD + " %" , dataKey: "name"},  
           ];
         }else{
           var columns3 = [
-          {title: "You save $ " + saving + " without a Salary Sacrifice",dataKey: "name"},  
+          {title: "You save " + saving + " without a Salary Sacrifice",dataKey: "name"},  
           ];
         }
 
