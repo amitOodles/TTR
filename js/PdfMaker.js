@@ -144,7 +144,7 @@ var options = {
 
       // $("#container").find('.screenShotTempCanvas').remove();
       $("#container").find('.tempHide').show().removeClass('tempHide');
-      
+      document.getElementById("container").classList.toggle("largeWidth");
       if(toggleNeeded){
       document.getElementById("container").classList.toggle("ng-hide");
     }
