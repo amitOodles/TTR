@@ -1,6 +1,6 @@
 app.service('PdfMaker', [function(){
 
-this.createChart = function(dob,age,fy,cses,nra,tfp,beforeTTR,nrp,thp,resultWithoutSS,resultWithSS,needSS,favourableSS,favourableDD){
+this.createChart = function(dob,age,fy,cses,nra,tfp,beforeTTR,nrp,thp,resultWithoutSS,resultWithSS,needSS,favourableSS,favourableDD,toggleNeeded){
 
   var cdob = dob.toString().split(" ")[1] + " " + dob.toString().split(" ")[2] + " " + dob.toString().split(" ")[3];
   
@@ -144,6 +144,10 @@ var options = {
 
       // $("#container").find('.screenShotTempCanvas').remove();
       $("#container").find('.tempHide').show().removeClass('tempHide');
+      
+      if(toggleNeeded){
+      document.getElementById("container").classList.toggle("ng-hide");
+    }
 
 }
 

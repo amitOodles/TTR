@@ -555,8 +555,12 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     });
 
     document.getElementById("download").addEventListener("click",function(){
-    console.log("phit");
-      PdfMaker.createChart($scope.dob,$scope.age,$scope.fy,$scope.cses,$scope.nra,$scope.tfp,$scope.beforeTTR,$scope.nrp,$scope.thp,$scope.resultWithoutSS,$scope.resultWithSS,$scope.needSS,$scope.favourableSS,$scope.favourableDD);
+      var toggleNeeded = false;
+      if(!$scope.chartOneOpen){
+      document.getElementById("container").classList.toggle("ng-hide");
+      toggleNeeded = true;
+      } 
+      PdfMaker.createChart($scope.dob,$scope.age,$scope.fy,$scope.cses,$scope.nra,$scope.tfp,$scope.beforeTTR,$scope.nrp,$scope.thp,$scope.resultWithoutSS,$scope.resultWithSS,$scope.needSS,$scope.favourableSS,$scope.favourableDD,toggleNeeded);
     });
 
     }]);
