@@ -61,12 +61,12 @@ this.createChart = function(dob,age,fy,cses,nra,tfp,beforeTTR,nrp,thp,resultWith
     { "name": "Date Of Birth", "country":cdob},
     { "name": "Age", "country": age},
     { "name": "Financial Year/Tax Year", "country": fy},
-    { "name": "Current Salary Exclude Super", "country": cses},
+    { "name": "Current Salary Exclude Super", "country": moneyFormat.to(Number(cses.replace('$','').replaceAll(',','')))},
     { "name": "Net Return In Accumulation Phase", "country": nra},
     { "name": "Tax Free Percentage Of Your Current Superannuation Balance", "country":tfp},
-    { "name": "Superannuation Balance As At The Transition to Retirement Strategy Implementation Date", "country": beforeTTR},
+    { "name": "Superannuation Balance As At The Transition to Retirement Strategy Implementation Date", "country": moneyFormat.to(Number(beforeTTR.replace('$','').replaceAll(',','')))},
     { "name": "Net Return In Pension Phase", "country":nrp},
-    { "name": "Desired Minimum Take Home Salary Per Annum", "country":thp},
+    { "name": "Desired Minimum Take Home Salary Per Annum", "country":moneyFormat.to(Number(thp.replace('$','').replaceAll(',','')))},
     
     ];
 
