@@ -33,20 +33,28 @@
         width: 26px;
     height: 26px;
 }
-.email-icon{
+i.fa-floppy-o{
+      background-color: #fff;
+    color: #91b6be;
+    font-size:28px;
+}
+.save-button{
+  padding:0px !important;
+}
+/*.email-icon{
 	  margin-top:2px;
     background: url("../images/email-icon.png") no-repeat;
        background-color: #91B6BE !important;
         width: 26px;
     height: 21px;
-}
+}*/
 .print-icon{
     background: url("../images/printer-icon.png") no-repeat;
         background-color: #91B6BE !important;
         width: 25px;
     height: 29px;
 }
-.button{
+.buttons{
     border: none;
     cursor: pointer;
     margin-right: 5px;
@@ -965,3 +973,12 @@ svg{
   padding-top: 10px !important;
 }
 
+.form-control{
+  width:114% !important;
+}
+.dob-input{
+  width:100% !important;
+}
+.slider-common{
+  padding-left: 25px
+}
