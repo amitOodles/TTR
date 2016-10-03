@@ -20,7 +20,7 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator
             var drawdownValue=0.04;
             var salaryExcludeSGC=currentSalaryExcludeSuper;
             var assessablePensionIncome=0;
-            var concessionalContribution= salaryExcludeSGC*SGCRate.calculateSGCRate(datePension);
+            var concessionalContribution= salaryExcludeSGC*SGCRate.calculateSGCRate(datePension) > 19615.60 ? 19615.60 : salaryExcludeSGC*SGCRate.calculateSGCRate(datePension);
             var taxableIncome= salaryExcludeSGC+assessablePensionIncome;
             var taxMediLevy=TaxRateCalculator.getTaxRate(taxableIncome)*(taxableIncome+1-TaxRateCalculator.getLowerBoundValue(taxableIncome))+ TaxRateCalculator.getTaxBase(taxableIncome);
             var rebate=0;

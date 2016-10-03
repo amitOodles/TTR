@@ -28,7 +28,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var excessContributionTax = 0.32;
 
-        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
+        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses > 19615.60 ? 19615.60 : SGCRate.calculateSGCRate(datePension)*cses ;
 
         var upperSS;
 
@@ -179,7 +179,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
         var excessContributionTax = 0.32;
 
-        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses;
+        var validEmployerContribution = SGCRate.calculateSGCRate(datePension)*cses > 19615.60 ? 19615.60 : SGCRate.calculateSGCRate(datePension)*cses;
 
         var upperSS;
 
