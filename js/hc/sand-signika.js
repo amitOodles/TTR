@@ -49,7 +49,8 @@ var perShapeGradient = {
         };*/
 Highcharts.theme = {
 			//colors: ["#3f7b82","#8bc3b9", "#FFBC75"];
-		 colors: ["#7CB5EC","#90ed7d","#FFBC75"],
+		 // colors: ["#7CB5EC","#90ed7d","#FFBC75"],
+		 colors: ["#7CB5EC","#434348","#90ed7d","#FFBC75"],
 	 //colors: ["#8298a8","#a5d0d7", "#d0cbb6",  "#d7b0ac"], 
 	// colors: ["#7c8f78","#5f526a","#6f8266","#c0b6c1"],	
 	/*colors: ["#FE0001", "#F5DE1D", "#0271BB", "#039349", "#F5DE1D", "#F99321", "#eeaaee",

@@ -111,8 +111,18 @@ app.service('PdfMaker', [function() {
                 }
 
                 if(personalDetails.postalCode){
+                    var postCode;
+                    if(personalDetails.postalCode < 10){
+                        postCode = "000" + personalDetails.postalCode
+                    }
+                    if(personalDetails.postalCode >= 10 && personalDetails.postalCode < 100){
+                        postCode = "00" + personalDetails.postalCode
+                    }
+                    if(personalDetails.postalCode >= 100 && personalDetails.postalCode < 1000){
+                        postCode = "0" + personalDetails.postalCode
+                    }
                     rows1.push(
-                        { "name": "Postal Code", "country": personalDetails.postalCode }
+                        { "name": "Postal Code", "country": postCode }
                     );
                 }
 
@@ -129,7 +139,7 @@ app.service('PdfMaker', [function() {
 
                 if (needSS) {
                     var columns3 = [
-                        { title: "You save " + saving + " with salary sacrifice of " + moneyFormat.to(favourableSS) + ", at dropdown rate of " + favourableDD + " %.", dataKey: "name" },
+                        { title: "You save " + saving + " with salary sacrifice of " + moneyFormat.to(favourableSS) + ", at drawdown rate of " + favourableDD * 100 + " %.", dataKey: "name" },
                     ];
                 } else {
                     var columns3 = [
