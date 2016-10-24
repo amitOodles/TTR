@@ -1,285 +1,331 @@
 <!doctype html>
 <html lang="en" ng-app="TTRApp">
-   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
-      <meta name="description" content="Calculator 1">
-      <link rel="icon" href="images/favicon.ico">
-      <title>TTR Calculator</title>
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <link rel="stylesheet" href="css/bootstrap-select.min.css">
-      <link rel="stylesheet" href="css/custom.css">
-      <link rel="stylesheet" href="css/font-awesome.css">
-      <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css" >
-      <link rel="stylesheet" href="css/nouislider.min.css">
-      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-   </head>
-   <body print-section ng-cloak>
-      <div class="otrp-calculator container-fluid " ng-controller="TTRController" >
-         <div class=" row title " >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta name="description" content="Calculator 1">
+    <link rel="icon" href="images/favicon.ico">
+    <title>TTR Calculator</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css">
+    <link rel="stylesheet" href="css/nouislider.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+
+<body print-section ng-cloak>
+    <div class="otrp-calculator container-fluid " ng-controller="TTRController">
+        <div class=" row title ">
             <div class="col-xs-8 col-sm-9 col-lg-9">
-               <h1>Optimisation of Transition to Retirement Pension</h1>
+                <h1>Optimisation of Transition to Retirement Pension</h1>
             </div>
-            <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">              
-               <button type="button" class="buttons button print-icon" onclick="window.print()"></button>
-               <button type="button" class="buttons button save-button" id="download" title="Save as PDF" role="button" aria-controls="email-overlay"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-               <button type="button" class="buttons button info-icon" ng-click="infoShow(true)" title="Information"></button>
+            <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">
+                <button type="button" class="buttons button print-icon print-doc"></button>
+                <button type="button" class="buttons button save-button" id="download" title="Save as PDF" role="button" aria-controls="email-overlay"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                <button type="button" class="buttons button info-icon" ng-click="infoShow(true)" title="Information"></button>
             </div>
-         </div>
-         <div class="row content" >
+        </div>
+        <div class="row content">
             <div class="col-xs-12 col-sm-12 col-lg-12">
-               <div class="row input-div">
-                  <div class="col-xs-12 col-sm-12 col-lg-12">
-                     <div class="row title-div">
-                        <span class="number-wrapper">1</span>
-                        <span class="title-wrapper">Your Details</span>
-                        <div class="otrp-clear"></div>
-                     </div>
-                     <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm2(ttrForm.$valid)">
-                        <div class="row">
-                           <div class="col-xs-8 col-sm-4 form-heading">
-                              Date Of Birth
-                              <div class="row">
-                                 <div class="col-xs-12">
+                <div class="row input-div">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <div class="row title-div">
+                            <span class="number-wrapper">1</span>
+                            <span class="title-wrapper">Your Details</span>
+                            <div class="otrp-clear"></div>
+                        </div>
+                        <form name="forms.ttrForm" class="ttr-form" novalidate ng-submit="submitForm2(forms.ttrForm.$valid)">
+                            <div class="row">
+                                <div class="col-xs-6">
                                     <div class="form-group">
-                                       <div class="input-group" ng-class="{'err-border' : ttrForm.dob.$invalid }">
-                                          <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
-                                          <input type="text" name="dob" id="dobText" onClick="this.select();"
-                                             class="standard-input form-control dob-input" show-button-bar="false"
-                                             uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
-                                             datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange()"
-                                             />
-                                             <!-- ng-model-options="{ debounce: { default: 500, blur: 0 } } -->
-                                             <!-- ng-model-options='{ debounce: 2000,blur:0 }' -->
-                                          <span class="input-group-addon" ng-click="open1()">
+                                        <label for="first-name">First Name *</label>
+                                        <input type="text" class="form-control" ng-model="personalDetails.firstName" name="firstName" id="first-name" ng-pattern="/^[a-zA-Z\s]*$/" onClick="this.select();" required>
+                                        <p class="err-msg" ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please provide a valid first name.</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="last-name">Last Name *</label>
+                                        <input type="text" name="lastName" ng-model="personalDetails.lastName" class="form-control" id="last-name" ng-pattern="/^[a-zA-Z\s]*$/" onClick="this.select();" required>
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid)">Please provide a valid last name.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="email">Email Address *</label>
+                                        <input type="email" name="email" ng-model="personalDetails.email" class="form-control" id="email" onClick="this.select();" required>
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.email.$pristine && forms.ttrForm.email.$invalid)">Enter a valid email address</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="mobile-number">Mobile Number *</label>
+                                        <input type="number" name="mobile" ng-model="personalDetails.mobile" class="form-control" id="mobile-number" required onClick="this.select();" ng-pattern="/^(04)\d{8}$/g">
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.mobile.$pristine && forms.ttrForm.mobile.$invalid)">Enter a valid mobile number</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-4 form-heading">
+                                    Date Of Birth
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <div class="input-group" ng-class="{'err-border' : ttrForm.dob.$invalid }">
+                                                    <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
+                                                    <input type="text" name="dob" id="dobText" onClick="this.select();" class="standard-input form-control dob-input" show-button-bar="false" uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened" datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange()" />
+                                                    <!-- ng-model-options="{ debounce: { default: 500, blur: 0 } } -->
+                                                    <!-- ng-model-options='{ debounce: 2000,blur:0 }' -->
+                                                    <span class="input-group-addon" ng-click="open1()">
                                           <span class="glyphicon glyphicon-calendar"></span>
-                                          </span>
-                                       </div>
-                                       <!-- <span ng-show="ttrForm.dob.$invalid">Invalid Date Entered</span> -->
+                                                    </span>
+                                                </div>
+                                                <!-- <span ng-show="ttrForm.dob.$invalid">Invalid Date Entered</span> -->
+                                            </div>
+                                        </div>
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-xs-4 col-sm-2 form-heading">
-                              Age
-                              <div class="row">
-                                 <div class="col-xs-12">
+                                </div>
+                                <div class="col-xs-4 col-sm-2 form-heading">
+                                    Age
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="number" onClick="this.select();" class="form-control dob-input" id="ageInput" name="ageInput" ng-model="age" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Financial Year/Tax Year When Pension Starts
+                                    <div class="kum">
+                                        <i class="fa fa-question" id="tooltip1" data-toggle="tooltip" data-placement="auto" title="Please enter the year when Pension starts considering the date as the first of July of that year." aria-hidden="true"></i>
+                                    </div>
+                                    <!-- TTR Strategy Implementation Year -->
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="number" onClick="this.select();" class="form-control" id="fyInput" name="fyInput" ng-model="fy">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="fySlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <!-- Current Salary -->
+                                    Current Salary Exclude Super
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="csesInput" name="csesInput" ng-model="cses">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="csesSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Net Return In Accumulation Phase
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="nraInput" name="nraInput" ng-model="nra">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="nraSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <!-- Tax Free Percentage -->
+                                    <label>
+                                        Tax Free Percentage Of Your Current Superannuation Balance
+                                        <div class="kum">
+                                            <i class="fa fa-question" id="tooltip" data-toggle="tooltip" data-placement="auto" title="Please refer to your latest superannuation member statement to locate tax free percentage. The tax free component is mainly composed by the non-concessional contributions that one contributed to the fund in the past. If you cannot find the information, please contact your fund's administrator for more details." aria-hidden="true"></i>
+                                        </div>
+                                    </label>
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="tfpInput" name="tfpInput" ng-model="tfp">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="tfpSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <!-- Before TTR -->
+                                    Superannuation Balance As At The Transition to Retirement Strategy Implementation Date
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="beforeTTRInput" name="beforeTTRInput" ng-model="beforeTTR">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="beforeTTRSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Net Return In Pension Phase
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="nrpInput" name="nrpInput" ng-model="nrp">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="nrpSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <!-- Take Home Pay -->
+                                    Desired Minimum Take Home Salary Per Annum
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="thpInput" name="thpInput" ng-model="thp">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="thpSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
                                     <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="number"  onClick="this.select();" class="form-control dob-input" id="ageInput" name="ageInput" ng-model="age" disabled>
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" name="address" ng-model="personalDetails.address" id="address"></textarea>
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-6 form-heading">
-                              Financial Year/Tax Year When Pension Starts
-                              <div class="kum">
-                                    <i class="fa fa-question" id="tooltip1" data-toggle="tooltip" data-placement="auto" title="Please enter the year when Pension starts considering the date as the first of July of that year." aria-hidden="true"></i>
-                                 </div>
-                              <!-- TTR Strategy Implementation Year -->
-                              <div class="row">
-                                 <div class="col-xs-4 col-sm-4">
+                                </div>
+                                <div class="col-xs-6">
                                     <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="number"  onClick="this.select();" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
+                                        <label for="postal-code">Postal Code</label>
+                                        <input type="number" name="postalCode" ng-model="personalDetails.postalCode" class="form-control" id="postal-code" ng-minlength="4" ng-maxlength="4" onClick="this.select();">
+                                        <p class="err-msg" ng-show="!forms.ttrForm.postalCode.$pristine &&forms.ttrForm.postalCode.$invalid">Enter a valid 4-Digit postal code</p>
                                     </div>
-                                 </div>
-                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                    <!-- <label></label> -->
-                                    <div id="fySlider" style="margin-top:8px;"></div>
-                                 </div>
-                              </div>
-                           </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button print-remove class="btn btn-block btn-primary" type="submit" style="width:25% ; margin:0 auto; margin-bottom:10px;">Calculate Result</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row result-head">
+                    <h3 class="results-title">Your results</h3>
+                </div>
+                <div class="row result-div">
+                    <div class="col-xs-12 col-sm-7 col-md-7">
+                        <div class="row chart-buttons-row" print-remove>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <button class="btn btn-primary" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
+                                <button class="btn btn-primary" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
+                                <button class="btn btn-primary print-dup print-doc" print-remove style="float:right">
+                                    Print Result
+                                </button>
+                            </div>
                         </div>
-                        <div class="row second-row-mobile">
-                           <div class="col-xs-12 col-sm-6 form-heading">
-                              <!-- Current Salary -->
-                              Current Salary Exclude Super
-                              <div class="row">
-                                 <div class="col-xs-4 col-sm-4">
-                                    <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="text"   onClick="this.select();" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
-                                    </div>
-                                 </div>
-                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                    <!-- <label></label> -->
-                                    <div id="csesSlider" style="margin-top:8px;"></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-6 form-heading">
-                              Net Return In Accumulation Phase
-                              <div class="row">
-                                 <div class="col-xs-4 col-sm-4">
-                                    <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="text"  onClick="this.select();" class="form-control" id="nraInput" name="nraInput" ng-model="nra" >
-                                    </div>
-                                 </div>
-                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                    <!-- <label></label> -->
-                                    <div id="nraSlider" style="margin-top:8px;"></div>
-                                 </div>
-                              </div>
-                           </div>
+                        <div class="row">
+                            <div class="col-xs-12" id="chartBox">
+                                <div id="container" ng-show="chartOneOpen" style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}"></div>
+                                <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}"></div>
+                            </div>
                         </div>
-                        <div class="row second-row-mobile">
-                           <div class="col-xs-12 col-sm-6 form-heading">
-                              <!-- Tax Free Percentage -->
-                              <label>
-                                 Tax Free Percentage Of Your Current Superannuation Balance
-                                 <div class="kum">
-                                    <i class="fa fa-question" id="tooltip" data-toggle="tooltip" data-placement="auto" title="Please refer to your latest superannuation member statement to locate tax free percentage. The tax free component is mainly composed by the non-concessional contributions that one contributed to the fund in the past. If you cannot find the information, please contact your fund's administrator for more details." aria-hidden="true"></i>
-                                 </div>
-                              </label>
-                              <div class="row">
-                                 <div class="col-xs-4 col-sm-4">
-                                    <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="text"  onClick="this.select();" class="form-control" id="tfpInput" name="tfpInput" ng-model="tfp">
-                                    </div>
-                                 </div>
-                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                    <!-- <label></label> -->
-                                    <div id="tfpSlider" style="margin-top:8px;"></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-6 form-heading">
-                              <!-- Before TTR -->
-                              Superannuation Balance As At The Transition to Retirement Strategy Implementation Date
-                              <div class="row">
-                                 <div class="col-xs-4 col-sm-4">
-                                    <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="text"  onClick="this.select();" class="form-control" id="beforeTTRInput" name="beforeTTRInput" ng-model="beforeTTR" >
-                                    </div>
-                                 </div>
-                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                    <!-- <label></label> -->
-                                    <div id="beforeTTRSlider" style="margin-top:8px;"></div>
-                                 </div>
-                              </div>
-                           </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5">
+                        <div class="row res-2">
+                            <div class="col-xs-12">
+                                <div class="row res-head"><strong>Your take home money</strong></div>
+                                <div class="row">
+                                    <div class="col-xs-6">Without Salary Sacrifice</div>
+                                    <div class="col-xs-6 res-value">{{ resultWithoutSS[0] | currency }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">With Salary Sacrifice</div>
+                                    <div class="col-xs-6 res-value">{{ resultWithSS[0] | currency }}</div>
+                                </div>
+                                <div class="row divider"></div>
+                                <div class="row res-head"><strong>Accumulation End Balance</strong></div>
+                                <div class="row">
+                                    <div class="col-xs-6">Without Salary Sacrifice</div>
+                                    <div class="col-xs-6 res-value">{{ resultWithoutSS[1] | currency }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">With Salary Sacrifice</div>
+                                    <div class="col-xs-6 res-value">{{ resultWithSS[1] | currency }}</div>
+                                </div>
+                                <div class="row divider">
+                                </div>
+                                <div class="row res-head"><strong>Final amount</strong></div>
+                                <div class="row">
+                                    <div class="col-xs-6">Without Salary Sacrifice</div>
+                                    <div class="col-xs-6 res-value">{{ resultWithoutSS[2] | currency }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">With Salary Sacrifice</div>
+                                    <div class="col-xs-6 res-value">{{ resultWithSS[2] | currency }}</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="row second-row-mobile">
-                           <div class="col-xs-12 col-sm-6 form-heading">
-                              Net Return In Pension Phase
-                              <div class="row">
-                                 <div class="col-xs-4 col-sm-4">
-                                    <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="text"  onClick="this.select();" class="form-control" id="nrpInput" name="nrpInput" ng-model="nrp" >
-                                    </div>
-                                 </div>
-                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                    <!-- <label></label> -->
-                                    <div id="nrpSlider" style="margin-top:8px;"></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-6 form-heading">
-                              <!-- Take Home Pay -->
-                              Desired Minimum Take Home Salary Per Annum
-                              <div class="row">
-                                 <div class="col-xs-4 col-sm-4">
-                                    <div class="form-group">
-                                       <!-- <label for="ageInput">Your Age</label> -->
-                                       <input type="text"  onClick="this.select();" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
-                                    </div>
-                                 </div>
-                                 <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                    <!-- <label></label> -->
-                                    <div id="thpSlider" style="margin-top:8px;"></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </form>
-                  </div>
-               </div>
-               <div class="row result-head">
-                  <h3 class="results-title">Your results</h3>
-               </div>
-               <div class="row result-div">
-                  <div class="col-xs-12 col-sm-7 col-md-7">
-                     <div class="row chart-buttons-row" print-remove>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                           <button class="btn btn-primary" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
-                           <button class="btn btn-primary" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
-                           <button class="btn btn-primary print-dup" print-remove onclick="window.print()" style="float:right">
-                           Print Result
-                           </button>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-xs-12" id="chartBox">
-                           <div id="container" ng-show="chartOneOpen" style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}" ></div>
-                           <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-5 col-md-5">
-                     <div class="row res-2" >
-                        <div class="col-xs-12">
-                           <div class="row res-head"><strong>Your take home money</strong></div>
-                           <div class="row">
-                              <div class="col-xs-6">Without Salary Sacrifice</div>
-                              <div class="col-xs-6 res-value" >{{ resultWithoutSS[0] | currency }}</div>
-                           </div>
-                           <div class="row">
-                              <div class="col-xs-6">With Salary Sacrifice</div>
-                              <div class="col-xs-6 res-value">{{ resultWithSS[0] | currency }}</div>
-                           </div>
-                           <div class="row divider"></div>
-                           <div class="row res-head"><strong>Accumulation End Balance</strong></div>
-                           <div class="row">
-                              <div class="col-xs-6">Without Salary Sacrifice</div>
-                              <div class="col-xs-6 res-value">{{ resultWithoutSS[1] | currency }}</div>
-                           </div>
-                           <div class="row">
-                              <div class="col-xs-6">With Salary Sacrifice</div>
-                              <div class="col-xs-6 res-value">{{ resultWithSS[1] | currency }}</div>
-                           </div>
-                           <div class="row divider">
-                           </div>
-                           <div class="row res-head"><strong>Final amount</strong></div>
-                           <div class="row">
-                              <div class="col-xs-6">Without Salary Sacrifice</div>
-                              <div class="col-xs-6 res-value">{{ resultWithoutSS[2] | currency }}</div>
-                           </div>
-                           <div class="row">
-                              <div class="col-xs-6">With Salary Sacrifice</div>
-                              <div class="col-xs-6 res-value">{{ resultWithSS[2] | currency }}</div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="row res-1">
-                        <div class="col-xs-12">
-                           <div class="row"><strong>Final Result</strong></div>
-                           <div class="row dd" ng-show="needSS">
-                              <div class="col-xs-8 col-sm-12 res-head">With Salary Sacrifice,you save</div>
-                              <div class="col-xs-4 col-sm-12 res-value" >{{ resultWithSS[2] -resultWithoutSS[2] | currency }}</div>
-                           </div>
-                           <div class="row dd" ng-show="!needSS">
-                              <div class="col-xs-8 col-sm-12 res-head">Without Salary Sacrifice,you save</div>
-                              <div class="col-xs-4 col-sm-12 res-value" >{{ resultWithoutSS[2] -resultWithSS[2] | currency }}</div>
-                           </div>
-                           <div class="row dd" ng-show="needSS">
-                              <div class="col-xs-8 col-sm-12 res-head">Salary Sacrifice Amount</div>
-                              <div class="col-xs-4 col-sm-12 res-value">{{favourableSS | currency}}</div>
-                           </div>
-                           <div class="row dd" ng-show="needSS">
-                              <div class="col-xs-8 col-sm-12 res-head">Drawdown Percentage</div>
-                              <div class="col-xs-4 col-sm-12 res-value">{{(favourableDD * 100).toFixed(2)}} %</div>
-                           </div>
-
-
-
-
-<!--                            <div class="row dd" ng-show="needSS">
+                        <div class="row res-1">
+                            <div class="col-xs-12">
+                                <div class="row"><strong>Final Result</strong></div>
+                                <div class="row dd" ng-show="needSS">
+                                    <div class="col-xs-8 col-sm-12 res-head">With Salary Sacrifice,you save</div>
+                                    <div class="col-xs-4 col-sm-12 res-value">{{ resultWithSS[2] -resultWithoutSS[2] | currency }}</div>
+                                </div>
+                                <div class="row dd" ng-show="!needSS">
+                                    <div class="col-xs-8 col-sm-12 res-head">Without Salary Sacrifice,you save</div>
+                                    <div class="col-xs-4 col-sm-12 res-value">{{ resultWithoutSS[2] -resultWithSS[2] | currency }}</div>
+                                </div>
+                                <div class="row dd" ng-show="needSS">
+                                    <div class="col-xs-8 col-sm-12 res-head">Salary Sacrifice Amount</div>
+                                    <div class="col-xs-4 col-sm-12 res-value">{{favourableSS | currency}}</div>
+                                </div>
+                                <div class="row dd" ng-show="needSS">
+                                    <div class="col-xs-8 col-sm-12 res-head">Drawdown Percentage</div>
+                                    <div class="col-xs-4 col-sm-12 res-value">{{(favourableDD * 100).toFixed(2)}} %</div>
+                                </div>
+                                <!--                            <div class="row dd" ng-show="needSS">
                               <div class="col-xs-6 res-head">With Salary Sacrifice,you save</div>
                               <div class="col-xs-6 res-value" >{{ resultWithSS[2] -resultWithoutSS[2] | currency }}</div>
                            </div>
@@ -295,109 +341,140 @@
                               <div class="col-xs-6 res-head">Salary Sacrifice Amount</div>
                               <div class="col-xs-6 res-value">{{favourableSS | currency}}</div>
                            </div> -->
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row cta" print-remove>
-                  <div class="col-xs-12">
-                     <p>Need to know more <a class="btn btn-default get-in-touch">Get in touch</a></p>
-                  </div>
-               </div>
-               <div class="row disclaimer">
-                  <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
-               </div>
-               <div class="row">
-                  <div class="col-xs-12">
-                     <img src="images/client-logo.png" class="comp-logo"/>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="row information-overlay" print-hide>
-            <div class="col-xs-12 col-sm-12 col-lg-12 ">
-               <div class="row info-title">
-                  <div class="col-xs-9 col-sm-9 col-lg-9">
-                     <h2>Calculator Information</h2>
-                  </div>
-                  <div class="col-xs-3 col-sm-3 col-lg-3">
-                     <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
-                  </div>
-               </div>
-               <hr class="submit-hr"/>
-               <div class="row info-content">
-                  <div class="col-xs-12 col-sm-12 col-lg-12">
-                     <ol>
-                        <li>
-                           Salary indicated here does not include any superannuation guarantee contribution.
-                        </li>
-                        <li>
-                           It is assumed that the member's superannuation balance is fully in accumulation phase before using this calculator.
-                        </li>
-                        <li>
-                           It is assumed that at least the minimum take-home(after salary sacrifice and tax) wage is required by the member.
-                        </li>
-                        <li>
-                           The pension drawdown percentage is within 4% to 10%.
-                        </li>
-                        <li>
-                           It is assumed that the contribution will be made in the middle of the financial year.
-                        </li>
-                        <li>
-                           It is assumed that the tax free percentage of the pension account will not change.
-                        </li>
-                        <li>
-                           It is assumed that the member will be entitled for a rebate of 15% of the taxable pension income.
-                        </li>
-                        <li>
-                           It is assumed that the member will contribute (including superannuation guarantee contribution and salary sacrifice) up to the maximum concessional contribution cap in a financial year.
-                        </li>
-                        <li>
-                           It is assumed that the net investment return in accumulation and pension phase take into the consideration of the tax impact.
-                        </li>
-                     </ol>
-                  </div>
-               </div>
-            </div>
-         </div>
+                    </div>
+                </div>
+                <div class="row cta" print-remove>
+                    <div class="col-xs-12">
+                        <p>Need to know more <a class="btn btn-default get-in-touch">Get in touch</a></p>
+                    </div>
+                </div>
+                <div class="row disclaimer">
+                    <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img src="images/client-logo.png" class="comp-logo" />
+                    </div>
+                </div>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 style="text-align:center;" class="modal-title">Your Form Inputs Are Incorrect/Incomplete</h4>
       </div>
-      <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
-      <script src="js/angular.min.js" type="text/javascript"></script>
-      <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
-      <script src="js/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
-      <script src="js/bootstrap.min.js" type="text/javascript"></script>
-      <script src="js/app.js" type="text/javascript"></script>
-      <script src="js/controller.js" type="text/javascript"></script>
-      <script src="js/AgeCalculatorService.js" type="text/javascript"></script>
-      <script src="js/TaxRateCalculatorService.js" type="text/javascript"></script>
-      <script src="js/SGCRateCalculator.js" type="text/javascript"></script>
-      <script src="js/WithoutSSCalculatorService.js" type="text/javascript"></script>
-      <script src="js/WithSSCalculatorService.js" type="text/javascript"></script>
-      <script src="js/nouislider.min.js" type="text/javascript"></script>
-      <script src="js/wNumb.js" type="text/javascript"></script>
-      <script src="bower_components/angularPrint/angularPrint.js" type="text/javascript"></script>
-      <script src="js/hc/highcharts.js" type="text/javascript"></script>
-      <script src="js/hc/data.js" type="text/javascript"></script>
-      <script src="js/hc/exporting.js" type="text/javascript"></script>
-      <script src="js/hc/sand-signika.js" type="text/javascript"></script>
-      <script src="js/hc/donutChartService.js" type="text/javascript"></script>
-      <script src="js/hc/chartService.js" type="text/javascript"></script>
-      <!-- <script src="js/jsPDF-1.2.60/dist/jspdf.min.js"></script> -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+      <div class="modal-body">
+        <ul class="modal-list">
+            <li ng-show="forms.ttrForm.firstName.$pristine ">Please provide your first name.</li>
+            <li ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please provide a valid first name.</li>
+            <li ng-show="forms.ttrForm.lastName.$pristine">Please provide your last name.</li>
+            <li ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid)">Please provide a valid last name.</li>
+            <li ng-show="(forms.ttrForm.email.$pristine || forms.ttrForm.email.$invalid)">Please provide a valid email address.</li>
+            <li ng-show="(forms.ttrForm.mobile.$pristine || forms.ttrForm.mobile.$invalid)">Please provide a valid mobile number.</li>
+            <li ng-show="forms.ttrForm.postalCode.$invalid">Please provide a valid 4-Digit postal code.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <h5 style="text-align:center">Please provide the correct inputs to calculate new result, generate the result as PDF and print the result.</h5> 
+        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+            </div>
+        </div>
+        <div class="row information-overlay" print-hide>
+            <div class="col-xs-12 col-sm-12 col-lg-12 ">
+                <div class="row info-title">
+                    <div class="col-xs-9 col-sm-9 col-lg-9">
+                        <h2>Calculator Information</h2>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-lg-3">
+                        <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
+                    </div>
+                </div>
+                <hr class="submit-hr" />
+                <div class="row info-content">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <ol>
+                            <li>
+                                Salary indicated here does not include any superannuation guarantee contribution.
+                            </li>
+                            <li>
+                                It is assumed that the member's superannuation balance is fully in accumulation phase before using this calculator.
+                            </li>
+                            <li>
+                                It is assumed that at least the minimum take-home(after salary sacrifice and tax) wage is required by the member.
+                            </li>
+                            <li>
+                                The pension drawdown percentage is within 4% to 10%.
+                            </li>
+                            <li>
+                                It is assumed that the contribution will be made in the middle of the financial year.
+                            </li>
+                            <li>
+                                It is assumed that the tax free percentage of the pension account will not change.
+                            </li>
+                            <li>
+                                It is assumed that the member will be entitled for a rebate of 15% of the taxable pension income.
+                            </li>
+                            <li>
+                                It is assumed that the member will contribute (including superannuation guarantee contribution and salary sacrifice) up to the maximum concessional contribution cap in a financial year.
+                            </li>
+                            <li>
+                                It is assumed that the net investment return in accumulation and pension phase take into the consideration of the tax impact.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="js/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script>
+    window.onload = function(){
+      var inputs = document.getElementsByTagName("input");
+      for(var i = 0; i< inputs.length; i++ ){
+         inputs[i].addEventListener("keypress",function(){
+            if(event.keyCode === 13){
+               event.preventDefault();
+            };
+         })
+      }
+    }
+    </script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/controller.js" type="text/javascript"></script>
+    <script src="js/AgeCalculatorService.js" type="text/javascript"></script>
+    <script src="js/TaxRateCalculatorService.js" type="text/javascript"></script>
+    <script src="js/SGCRateCalculator.js" type="text/javascript"></script>
+    <script src="js/WithoutSSCalculatorService.js" type="text/javascript"></script>
+    <script src="js/WithSSCalculatorService.js" type="text/javascript"></script>
+    <script src="js/nouislider.min.js" type="text/javascript"></script>
+    <script src="js/wNumb.js" type="text/javascript"></script>
+    <script src="bower_components/angularPrint/angularPrint.js" type="text/javascript"></script>
+    <script src="js/hc/highcharts.js" type="text/javascript"></script>
+    <script src="js/hc/data.js" type="text/javascript"></script>
+    <script src="js/hc/exporting.js" type="text/javascript"></script>
+    <script src="js/hc/sand-signika.js" type="text/javascript"></script>
+    <script src="js/hc/donutChartService.js" type="text/javascript"></script>
+    <script src="js/hc/chartService.js" type="text/javascript"></script>
+    <!-- <script src="js/jsPDF-1.2.60/dist/jspdf.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta1/html2canvas.js"></script>
+    <script type="text/javascript" src="js/rgbcolor.js"></script>
+    <script type="text/javascript" src="js/StackBlur.js"></script>
+    <script type="text/javascript" src="js/canvg.min.js"></script>
+    <script src="js/PdfMaker.js" type="text/javascript"></script>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta1/html2canvas.js"></script>
-      <script type="text/javascript" src="js/rgbcolor.js"></script> 
-      <script type="text/javascript" src="js/StackBlur.js"></script>
-      <script type="text/javascript" src="js/canvg.min.js"></script>
-      <script src="js/PdfMaker.js" type="text/javascript"></script>
-      <script>
-         $(document).ready(function() {
-         $('.selectpicker').selectpicker({
-             style: 'btn-default',
-             size: 5
-         });
-         });
-      </script>
-   </body>
+</body>
+
 </html>
