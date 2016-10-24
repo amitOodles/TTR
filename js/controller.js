@@ -392,7 +392,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
        }
        $scope.age = AgeCalculator.getAge($scope.dob,$scope.fy);
        $scope.changeMaxTarget($scope.calculateMaxTHPSS());
-    $scope.submitForm2(true);
+    // $scope.submitForm2(true);
     }
 
     fySlider.noUiSlider.on('update', function( values, handle ) {
