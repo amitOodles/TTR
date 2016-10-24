@@ -114,7 +114,7 @@ app.service('PdfMaker', [function() {
                     );
                 }
 
-                if(personalDetails.postalCode){
+                if(personalDetails.postalCode != undefined){
                     var postCode;
                     if(personalDetails.postalCode < 10){
                         postCode = "000" + personalDetails.postalCode
