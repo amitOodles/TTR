@@ -958,6 +958,10 @@ display: none;
     padding-top: 35px;
     margin-left: 10px;
   }
+  .res-2{
+    margin-top: 650px;
+
+  }
 }
 
 .tooltip.in{opacity:1!important;}

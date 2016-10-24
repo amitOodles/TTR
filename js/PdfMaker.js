@@ -3,6 +3,10 @@ app.service('PdfMaker', [function() {
     this.createChart = function(personalDetails,dob, age, fy, cses, nra, tfp, beforeTTR, nrp, thp, resultWithoutSS, resultWithSS, needSS, favourableSS, favourableDD, toggleNeeded) {
 
         function reduceToCapitalize(nameArr){
+            if(nameArr.length < 2){
+                var name = nameArr[0];
+           return name[0].toUpperCase() + name.slice(1); 
+            }
            return nameArr.reduce(function(first,second){
                 return first[0].toUpperCase() + first.slice(1) + " " + second[0].toUpperCase() + second.slice(1)
             })
@@ -92,7 +96,7 @@ app.service('PdfMaker', [function() {
                 var rows1 = [
                     { "name": "Full Name", "country": reduceToCapitalize((personalDetails.firstName.trim() + " " + personalDetails.lastName.trim()).split(' ')) },
                     { "name": "E-Mail", "country": personalDetails.email.trim() },
-                    { "name": "Mobile Number", "country": personalDetails.mobile},
+                    { "name": "Mobile Number", "country": "0" + personalDetails.mobile},
                     { "name": "Date Of Birth", "country": cdob },
                     { "name": "Age", "country": age },
                     { "name": "Financial Year/Tax Year", "country": fy },

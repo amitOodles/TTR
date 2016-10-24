@@ -185,8 +185,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
 
         }
         $timeout(0);
-        console.log($scope.resultWithSS.toString());
-        console.log("complete");
+        /*console.log($scope.resultWithSS.toString());
+        console.log("complete");*/
       }else{
         $("#myModal").modal('show');
       }
@@ -351,12 +351,12 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       var thp1=$scope.thp.replace("$","").replace(",","");
         //var age2=age1.replace(",","");
 
-      // console.log("yumtum",$scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
+      // //console.log("yumtum",$scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
     return WithSSCalculator.maxTakeHome($scope.age,$scope.fy,Number(cses1),Number(beforeTTR1),Number(tfp1));
     }
 
     $scope.changeMaxTarget = function(endValue){
-    console.log(endValue);
+    //console.log(endValue);
     thpSlider.noUiSlider.updateOptions({
     range: {
       'min': 1000,
@@ -377,14 +377,14 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
        var correct =  date_regex.test(dobText.value);
        var fd = new Date(dateArr[2],dateArr[1]-1,dateArr[0]);
        // console.log("fd",fd);
-       console.log("correct",correct);
+       //console.log("correct",correct);
        // console.log("ins of",fd instanceof Date);
        // console.log("is Finite",isFinite(fd));
        
        // console.log("date",new Date(dateArr[2],dateArr[1]-1,dateArr[0]));
        // console.log(finalDs instanceof Date);
-       console.log("c1",(fd.getMonth() + 1),Number(dateArr[1]));
-       console.log("c2",fd.getDate(),Number(dateArr[0]));
+       //console.log("c1",(fd.getMonth() + 1),Number(dateArr[1]));
+       //console.log("c2",fd.getDate(),Number(dateArr[0]));
        if(((fd.getMonth() + 1) === Number(dateArr[1]) && fd.getDate() === Number(dateArr[0])) && correct ){
         $scope.dob = fd;
        }else{
