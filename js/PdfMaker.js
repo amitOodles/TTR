@@ -2,17 +2,11 @@ app.service('PdfMaker', [function() {
 
     this.createChart = function(personalDetails,dob, age, fy, cses, nra, tfp, beforeTTR, nrp, thp, resultWithoutSS, resultWithSS, needSS, favourableSS, favourableDD, toggleNeeded) {
 
-        var arr = ["amit","nitin","tima"];
-
         function reduceToCapitalize(nameArr){
            return nameArr.reduce(function(first,second){
                 return first[0].toUpperCase() + first.slice(1) + " " + second[0].toUpperCase() + second.slice(1)
             })
         }
-
-        var reduced = reduceToCapitalize(arr);
-
-        console.log(reduced);
 
         var cdob = dob.toString().split(" ")[1] + " " + dob.toString().split(" ")[2] + " " + dob.toString().split(" ")[3];
 
@@ -96,7 +90,9 @@ app.service('PdfMaker', [function() {
                     { title: "Values", dataKey: "country" },
                 ];
                 var rows1 = [
-                    // { "name": "Full Name", "country": personalDetails.firstName.trim() + " " + personalDetails.lastName.trim() },
+                    { "name": "Full Name", "country": reduceToCapitalize((personalDetails.firstName.trim() + " " + personalDetails.lastName.trim()).split(' ')) },
+                    { "name": "E-Mail", "country": personalDetails.email.trim() },
+                    { "name": "Mobile Number", "country": personalDetails.mobile},
                     { "name": "Date Of Birth", "country": cdob },
                     { "name": "Age", "country": age },
                     { "name": "Financial Year/Tax Year", "country": fy },
@@ -105,9 +101,20 @@ app.service('PdfMaker', [function() {
                     { "name": "Tax Free Percentage Of Your Current Superannuation Balance", "country": tfp },
                     { "name": "Superannuation Balance As At The Transition to Retirement Strategy Implementation Date", "country": moneyFormat.to(Number(beforeTTR.replace('$', '').replaceAll(',', ''))) },
                     { "name": "Net Return In Pension Phase", "country": nrp },
-                    { "name": "Desired Minimum Take Home Salary Per Annum", "country": moneyFormat.to(Number(thp.replace('$', '').replaceAll(',', ''))) },
-
+                    { "name": "Desired Minimum Take Home Salary Per Annum", "country": moneyFormat.to(Number(thp.replace('$', '').replaceAll(',', ''))) }
                 ];
+
+                if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
+                    rows1.push(
+                        { "name": "Address", "country": reduceToCapitalize(personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ").split(" ")) }
+                    );
+                }
+
+                if(personalDetails.postalCode){
+                    rows1.push(
+                        { "name": "Postal Code", "country": personalDetails.postalCode }
+                    );
+                }
 
                 var columns2 = [
                     { title: "Differentiated Upon", dataKey: "name" },
@@ -148,10 +155,19 @@ app.service('PdfMaker', [function() {
                 });
                 doc.autoTable(columns1, rows1, {
                     margin: { top: 80 },
+                    styles:{
+                        overflow:'linebreak'
+                    },
+                    columnStyles:{
+            name: {columnWidth: 367},
+            country: {columnWidth: 150}
+            }
                 });
 
+                var top = doc.autoTableEndPosY();
+
                 doc.autoTable(columnsP2, [], {
-                    margin: { top: 300 },
+                    margin: { top: top + 30},
                     styles: {
                         rowHeight: 30,
                         halign: 'left',
@@ -160,28 +176,34 @@ app.service('PdfMaker', [function() {
                     }
                 });
 
-                doc.addImage(imgData, 'PNG', 150, 345);
-                doc.autoTable(columns2, rows2, {
-                    margin: { top: 630 },
-                });
-                doc.autoTable(columns3, [], {
-                    margin: { top: 730 },
-                    styles: {
-                        fontSize: 14,
-                        overflow: 'linebreak',
-                        valign: 'middle',
-                        fillColor: 255,
-                        textColor: 0
-                            // cellPadding : 10
-                    }
-                });
+                top = doc.autoTableEndPosY();
+
+                doc.addImage(imgData, 'PNG', 150, top + 30);
+                
                 doc.addImage(imgData2, 'PNG', 40, 780);
                 doc.setFontSize(10);
                 doc.text(510, 810, 'PAGE ' + 1);
                 doc.addPage();
 
-                doc.autoTable(columnsP3, rowsP3, {
+                doc.autoTable(columns2, rows2, {
                     margin: { top: 20 },
+                });
+
+                top = doc.autoTableEndPosY();
+
+                doc.autoTable(columns3, [], {
+                    margin: { top: top + 50 },
+                    styles: {
+                        overflow: 'linebreak',
+                        valign: 'middle',
+                            // cellPadding : 10
+                    }
+                });
+
+                top = doc.autoTableEndPosY();
+
+                doc.autoTable(columnsP3, rowsP3, {
+                    margin: { top: top + 50 },
                     styles: {
                         //   rowHeight:40,
                         //   halign : 'left',
