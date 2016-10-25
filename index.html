@@ -353,32 +353,35 @@
                         <img src="images/client-logo.png" class="comp-logo" />
                     </div>
                 </div>
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 style="text-align:center;" class="modal-title">Your Form Inputs Are Incorrect/Incomplete</h4>
-      </div>
-      <div class="modal-body">
-        <ul class="modal-list">
-            <li ng-show="forms.ttrForm.firstName.$pristine ">Please provide your first name.</li>
-            <li ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please provide a valid first name.</li>
-            <li ng-show="forms.ttrForm.lastName.$pristine">Please provide your last name.</li>
-            <li ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid)">Please provide a valid last name.</li>
-            <li ng-show="(forms.ttrForm.email.$pristine || forms.ttrForm.email.$invalid)">Please provide a valid email address.</li>
-            <li ng-show="(forms.ttrForm.mobile.$pristine || forms.ttrForm.mobile.$invalid)">Please provide a valid mobile number.</li>
-            <li ng-show="forms.ttrForm.postalCode.$invalid">Please provide a valid 4-Digit postal code.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <h5 style="text-align:center">Please provide the correct inputs to calculate new result, generate the result as PDF and print the result.</h5> 
-        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 style="text-align:center;" class="modal-title">Your Form Inputs Are Incorrect/Incomplete</h4>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="modal-list">
+                                    <li ng-show="forms.ttrForm.firstName.$pristine ">Please provide your first name.</li>
+                                    <li ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please provide a valid first name.</li>
+                                    <li ng-show="forms.ttrForm.lastName.$pristine">Please provide your last name.</li>
+                                    <li ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid)">Please provide a valid last name.</li>
+                                    <li ng-show="(forms.ttrForm.email.$pristine || forms.ttrForm.email.$invalid)">Please provide a valid email address.</li>
+                                    <li ng-show="(forms.ttrForm.mobile.$pristine || forms.ttrForm.mobile.$invalid)">Please provide a valid mobile number.</li>
+                                    <li ng-show="forms.ttrForm.postalCode.$invalid">Please provide a valid 4-Digit postal code.</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <h5 style="text-align:center">Please provide the correct inputs to calculate new result, generate the result as PDF and print the result.</h5>
+                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
+                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
             </div>
         </div>
         <div class="row information-overlay" print-hide>
@@ -479,7 +482,6 @@ $(".postal-code").keydown(function(event){
     <script type="text/javascript" src="js/StackBlur.js"></script>
     <script type="text/javascript" src="js/canvg.min.js"></script>
     <script src="js/PdfMaker.js" type="text/javascript"></script>
-
 </body>
 
 </html>
