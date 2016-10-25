@@ -1019,14 +1019,9 @@ font-size:15px;
 .modal-content .modal-footer{
   padding:18px 25px;
 }
-/*input {
-    background: white;
-}
+
 input:-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0px 9999px white;
-}*/
-input:-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0px 9999px white !important;
+    -webkit-box-shadow: inset 0 0 0px 9999px #f6f8f9 !important;
 }
 
 .form-control{
