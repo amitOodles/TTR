@@ -126,7 +126,7 @@ app.service('PdfMaker', [function() {
                         postCode = "0" + personalDetails.postalCode
                     }
                     rows1.push(
-                        { "name": "Postal Code", "country": postCode }
+                        { "name": "Postal Code", "country": personalDetails.postalCode }
                     );
                 }
 
