@@ -189,6 +189,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
         console.log("complete");*/
       }else{
         $("#myModal").modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
       }
     }
     
@@ -497,7 +498,9 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       if($scope.forms.ttrForm.$valid){
         print();
       }else{
-        $("#myModal").modal('show');        
+        $("#myModal").modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        
       }
     })
 
