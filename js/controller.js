@@ -186,8 +186,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             console.log("complete");*/
         } else {
             $("#myModal").modal('show');
+            $("html, body").animate({ scrollTop: 0 }, "slow");
         }
-                
+
     }
 
 
@@ -477,14 +478,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         }
     });
 
-    $(".print-doc").on("click",function(){
-      if($scope.forms.ttrForm.$valid){
-        print();
-      }else{
-        $("#myModal").modal('show');
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-        
-      }
+    $(".print-doc").on("click", function() {
+        if ($scope.forms.ttrForm.$valid) {
+            print();
+        } else {
+            $("#myModal").modal('show');
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+
+        }
     })
 
 }]);
