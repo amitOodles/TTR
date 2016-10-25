@@ -187,6 +187,20 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         } else {
             $("#myModal").modal('show');
         }
+                if($scope.attainableTHP && !$scope.unattainableTHPS){
+          // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
+          ChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)),Number($scope.resultWithSS[2].toFixed(2)),Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
+
+          DonutChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)),Number($scope.resultWithSS[2].toFixed(2)),Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
+
+        }
+        $timeout(0);
+        /*console.log($scope.resultWithSS.toString());
+        console.log("complete");*/
+      }else{
+        $("#myModal").modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+      }
     }
 
 
@@ -476,12 +490,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         }
     });
 
-    $(".print-doc").on("click", function() {
-        if ($scope.forms.ttrForm.$valid) {
-            print();
-        } else {
-            $("#myModal").modal('show');
-        }
+    $(".print-doc").on("click",function(){
+      if($scope.forms.ttrForm.$valid){
+        print();
+      }else{
+        $("#myModal").modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        
+      }
     })
 
 }]);
