@@ -108,11 +108,11 @@ app.service('PdfMaker', [function() {
                     { "name": "Desired Minimum Take Home Salary Per Annum", "country": moneyFormat.to(Number(thp.replace('$', '').replaceAll(',', ''))) }
                 ];
 
-                if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
-                    rows1.push(
-                        { "name": "Address", "country": reduceToCapitalize(personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ").split(" ")) }
-                    );
-                }
+                // if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
+                //     rows1.push(
+                //         { "name": "Address", "country": reduceToCapitalize(personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ").split(" ")) }
+                //     );
+                // }
 
                 if(personalDetails.postalCode != undefined){
                     var postCode = personalDetails.postalCode;
