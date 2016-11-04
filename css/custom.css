@@ -1027,3 +1027,8 @@ input:-webkit-autofill {
 .form-control{
       background-color: #f6f8f9;
 }
+@media(max-width:330px){
+  #container,#donutContainer{
+    margin-left:-20px !important;
+  }
+}
