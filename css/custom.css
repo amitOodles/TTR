@@ -19,12 +19,12 @@
     border-radius: 0;
     box-shadow: none;
 }
-.title h1{
-	font-size: 24px;
+.title h1 {
+    font-size: 24px;
     font-weight: 300;
     margin: 0;
     padding: 0;
-    color: #000000;
+    color: #0d2f47;
     line-height: normal;
 }
 .info-icon{
@@ -71,18 +71,18 @@ i.fa-floppy-o{
 }
 
 .number-wrapper{
-	background-color: #6f6f6f !important;
-    color: #FFF !important;
-		width:100%;
-    margin: 0 !important;
-		padding:6px 8px;
-		font-size:20px;
+	background-color: white;
+	 color: grey !important;
+	 width: 100%;
+	 padding: 6px 8px;
+	 font-size: 20px;
+	 margin-left: 12px;
+	 letter-spacing: 1px;
 }
 .title-wrapper{
 	margin-left: 10px;
-	color: #666666 !important;
-    background-color: #efefef !important;
-    font-size: 20px;
+    color: #fff !important;
+    font-size: 18px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -124,8 +124,8 @@ i.fa-floppy-o{
     padding: 10px 5px 10px 0px;
 }
 .title-div{
-    background: #efefef !important;
-		padding:5px !important;
+	background: #0d2f47 !important;
+	padding: 5px !important;
 }
 .amount-header{
     font-size: 12px;
@@ -141,6 +141,7 @@ i.fa-floppy-o{
     background: #efefef !important;
     border-bottom: 1px solid #CCCCCC;
         padding: 7px 9px 7px 18px;
+				margin: 0;
 }
 .results-title{
 	float: left;
@@ -150,6 +151,7 @@ i.fa-floppy-o{
     color: #666666 !important;
     background-color: #efefef !important;
     font-size: 20px;
+		padding-top: 6px;
 }
 .result-div{
     background-color: #FFF;
@@ -278,6 +280,58 @@ span.pension-note{
 	border-color: #66afe9;
       box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
+
+
+/****6 june 2017***/
+.new-btn{
+	width: 36px;
+	height: 36px;
+	border: none;
+}
+
+.new-btn.btn-prnt{
+	background: url(../images/print_inactive.png) no-repeat center top !important;
+}
+
+.new-btn.btn-sav{
+	background: url(../images/save_inactive.png) no-repeat center top !important;
+	margin: 0 9px;
+}
+
+.new-btn.btn-info{
+	background: url(../images/info_inactive.png) no-repeat center top !important;
+}
+
+.new-btn.btn-prnt:hover{
+	background: url(../images/print_active.png) no-repeat center top !important;
+}
+
+.new-btn.btn-sav:hover{
+	background: url(../images/save_active.png) no-repeat center top !important;
+}
+
+.new-btn.btn-info:hover{
+	background: url(../images/info_active.png) no-repeat center top !important;
+}
+.chart-buttons-row .btn-secdry {
+    float: left;
+    background-color: #fff !important;
+    color: #0d2f47 !important;
+    border: 1px solid #0d2f47 !important;
+}
+.chart-buttons-row .btn-secdry:hover{
+	border: 1px solid #0d2f47 !important;
+}
+
+
+
+
+
+
+
+
+
+
 
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
 	width:100% !important;
@@ -461,7 +515,7 @@ button:focus{
     /*background: #efefef !important;*/
     background-color: #ddd;
     color: #666;
-    font-size: 14px; 
+    font-size: 14px;
     font-weight: bold;
     text-align: center;
     padding: 10px;
@@ -529,7 +583,7 @@ button:focus{
 
 
 .res-1{
-    background-color: #6F7070!important;
+     background-color: #0d2f47 !important;
     color: white;
     /*margin: 10px;*/
     margin:4px 0px;
@@ -810,18 +864,18 @@ p.thpError-text{
 @media print {
 .res-2,.strategy,.res-1{
     background-color: #efefef !important;
-    -webkit-print-color-adjust: exact; 
+    -webkit-print-color-adjust: exact;
 }
 .result-div{
     border-bottom:1px solid #e2e2e2;
 }
 .form-group .noUi-connect{
    background: #3FB8AF !important;
-  -webkit-print-color-adjust: exact; 
+  -webkit-print-color-adjust: exact;
 }
 .form-group .noUi-background{
     background: #FAFAFA !important;
-    -webkit-print-color-adjust: exact; 
+    -webkit-print-color-adjust: exact;
 }
 
 .form-group .noUi-handle{
@@ -864,17 +918,17 @@ float:right;
     border: 0 !important;
      border-radius: 0 !important;
     cursor: default;
-     box-shadow: none !important; 
+     box-shadow: none !important;
 }
 
 .form-group .noUi-horizontal .noUi-handle {
-    top: -9px !important;
-    background: url(../images/slider-handle.png) !important;
-    width: 18px !important;
-    height: 28px !important;
-    border: 0 !important;
-     border-radius: 0 !important;
-     box-shadow: none !important; 
+	top: -10px !important;
+ background: url(../images/slider-handle.png) no-repeat center top !important;
+ width: 26px !important;
+ height: 26px !important;
+ border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
 
 }
 
@@ -883,16 +937,12 @@ float:right;
 }
 
 .form-group .noUi-horizontal {
-    height: 10px !important;
+    height: 8px !important;
         border-radius: 0 !important;
 }
 
 .form-group .noUi-connect {
-      background: #91B6BE ;
-    background: -webkit-linear-gradient(#263C40, #91B6BE); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#263C40, #91B6BE); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#263C40, #91B6BE); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#263C40, #91B6BE); /* Standard syntax */
+     background-color: #0d2f47 !important;
 }
 
 .form-group .noUi-origin{
@@ -916,10 +966,32 @@ float:right;
 }
 
 .input-group-addon{
-  padding:4px 10px;
+  padding:3px 10px;
 }
+.input-group-addon{
+color:#0d2f47 !important;
+}
+.col-xs-12 .btn-calculate {
+    width: 37%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: #0d2f47 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.col-xs-12 .btn-calculate:hover{
+	background-color: #0d2f47 !important;
+}
+
+
+
+
+
+
+
+
 .kum{
-  background-color: #91B6BE;
+  background-color: #0d2f47;
   position: relative;
   display: inline-block;
   width: 14px;
@@ -929,7 +1001,7 @@ float:right;
 
 }
 i{
-  background-color: #91B6BE;
+  background-color: #0d2f47;
   color: #fff;
 
 }
@@ -937,7 +1009,7 @@ i{
 .tooltip-inner {
     max-width: 320px;
     /* If max-width does not work, try using width instead */
-    width: 400px; 
+    width: 400px;
     background-color: #f2f2f2;
     color: #595959;
     padding: 15px;
@@ -996,7 +1068,7 @@ p.err-msg{
   background-color: #91B6BE !important;
   border:none !important;
   outline: none !important;
-  border-radius:0px; 
+  border-radius:0px;
 }
 ul.modal-list{
   list-style-type: upper-latin !important;
