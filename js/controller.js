@@ -178,7 +178,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
                 // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
                 ChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)), Number($scope.resultWithSS[2].toFixed(2)), Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
 
-                DonutChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)), Number($scope.resultWithSS[2].toFixed(2)), Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
+                // DonutChartServiceHc.createChart(Number($scope.resultWithoutSS[2].toFixed(2)), Number($scope.resultWithSS[2].toFixed(2)), Number(Math.abs($scope.resultWithoutSS[2] - $scope.resultWithSS[2]).toFixed(2)));
 
             }
             $timeout(0);
